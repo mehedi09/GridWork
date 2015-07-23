@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0">
+  <siteMapNode title="^SiteHome^Home^SiteHome^" description="" url="~/Default.aspx">
+    <siteMapNode title="^HomePath^Home^HomePath^" description="^HomeDesc^Application home page^HomeDesc^" url="~/Pages/Home.aspx" cssClass="Wide" />
+    <siteMapNode title="Setting" description="" url="~/Pages/Settings.aspx" roles="*">
+      <siteMapNode title="Company Information" description="" url="~/Pages/CompanyInformation.aspx" roles="*" />
+      <siteMapNode title="Chart Of Accounts" description="This is Chart of Account - Group Ledger" url="~/Pages/ChartOfAccounts.aspx" roles="*">
+        <siteMapNode title="1st Account Group" description="" url="~/Pages/GroupLedgers1.aspx" roles="SystemAdmin" />
+        <siteMapNode title="2nd Account Group" description="This is Group Ledgers. " url="~/Pages/GroupLedgers2.aspx" roles="SystemAdmin" />
+        <siteMapNode title="3rd Account Group" description="" url="~/Pages/GroupLedger3.aspx" roles="SystemAdmin" />
+        <siteMapNode title="G/L Accounts" description="" url="~/Pages/GLAccounts.aspx" roles="SystemAdmin" />
+      </siteMapNode>
+      <siteMapNode title="Financial Interface" description="" url="~/Pages/FinancialInterface.aspx" roles="*">
+        <siteMapNode title="Fiscal Year Define" description="" url="~/Pages/FiscalYearDefine.aspx" roles="*" />
+        <siteMapNode title="Ledger Interface Setup" description="" url="~/Pages/PreDefineAccounts.aspx" roles="*" />
+      </siteMapNode>
+      <siteMapNode title="Sub Ledger Info" description="" url="~/Pages/SubLedgerInfo.aspx" roles="*">
+        <siteMapNode title="Sub Ledger Item" description="" url="~/Pages/SubLedger.aspx" roles="*" />
+        <siteMapNode title="Sub Ledger Accounts" description="" url="~/Pages/CostCenters.aspx" roles="*" />
+      </siteMapNode>
+      <siteMapNode title="System Admin" description="" url="~/Pages/SystemAdmin.aspx" roles="SystemAdmin,Administrators">
+        <siteMapNode title="Currency Setup" description="" url="~/Pages/Currencys.aspx" roles="*" />
+        <siteMapNode title="User Management" description="" url="~/Pages/UserManagement.aspx" roles="*">
+          <siteMapNode title="Roles" description="View Roles" url="~/Pages/Roles.aspx" />
+          <siteMapNode title="Users" description="View Users" url="~/Pages/Users.aspx" />
+          <siteMapNode title="User Roles" description="View User Roles" url="~/Pages/UserRoles.aspx" />
+          <siteMapNode title="Module Permissions" description="" url="~/Pages/ModulePermissions.aspx" roles="SystemAdmin" />
+        </siteMapNode>
+        <siteMapNode title="Features" description="" url="~/Pages/Features.aspx" roles="*" />
+        <siteMapNode title="Voucher Types" description="" url="~/Pages/VoucherTypes.aspx" roles="*" />
+        <siteMapNode title="Prefix Setting" description="View Prefix Setting" url="~/Pages/PreFixSetting.aspx" />
+      </siteMapNode>
+      <siteMapNode title="Bank Account Entry" description="" url="~/Pages/BankAccountEntry.aspx" roles="*" />
+      <siteMapNode title="Payment Mode" description="View Payment Mode" url="~/Pages/ModeofReceipts.aspx" />
+      <siteMapNode title="Coin Entry" description="View Coin Entry" url="~/Pages/CoinEntry.aspx" />
+    </siteMapNode>
+    <siteMapNode title="Vendor" description="" url="~/Pages/AccountsPayable.aspx" roles="*">
+      <siteMapNode title="Supplier A/C Opening" description="" url="~/Pages/Suppliers.aspx" roles="*" />
+      <siteMapNode title="Bill Receive" description="View Bill Receive" url="~/Pages/BillRegister.aspx" />
+      <siteMapNode title="Bill Payment" description="" url="~/Pages/SupplierBillPayment.aspx" roles="*" />
+      <siteMapNode title="Bill Search" description="" url="~/Pages/PreviousBillSearch.aspx" roles="*" />
+      <siteMapNode title="Supplier Ledger" description="" url="~/Pages/SupllierLedgerReport.aspx" roles="*" />
+    </siteMapNode>
+    <siteMapNode title="Customer" description="" url="~/Pages/AccountsReceivable.aspx" roles="*">
+      <siteMapNode title="Customer A/C Opening" description="" url="~/Pages/Customers.aspx" roles="*" />
+      <siteMapNode title="Sales Journal Voucher" description="" url="~/Pages/SalesJournalVoucher.aspx" roles="*" />
+      <siteMapNode title="Money Receipts (Sales)" description="View Money Receipts" url="~/Pages/MoneyReceipts_1.aspx" />
+      <siteMapNode title="Customer Ledger" description="" url="~/Pages/CustomerLedger_1.aspx" roles="*" />
+      <siteMapNode title="Customer Trial Balance" description="" url="~/Pages/CustomerLedgerSchedule_1.aspx" roles="*" />
+    </siteMapNode>
+    <siteMapNode title="General Ledger" description="" url="~/Pages/GeneralLedgerMenu.aspx" roles="*">
+      <siteMapNode title="Journal Voucher" description="" url="~/Pages/JournalVoucher.aspx" roles="*" />
+      <siteMapNode title="G/Ledger" description="" url="~/Pages/LedgerReport_1.aspx" roles="*" />
+      <siteMapNode title="Trial Balance" description="" url="~/Pages/TrialBalance_1.aspx" roles="*" />
+      <siteMapNode title="Openning Balance Entry" description="" url="~/Pages/OpenningBalanceEntry.aspx" roles="*" />
+      <siteMapNode title="Opening Balance Entry (Sub.Ledger)" description="" url="~/Pages/OpeningBalanceEntryOther.aspx" roles="*" />
+    </siteMapNode>
+    <siteMapNode title="Banking" description="" url="~/Pages/Banking.aspx" roles="*">
+      <siteMapNode title="Cash Voucher" description="" url="~/Pages/CashPayment.aspx" roles="*" />
+      <siteMapNode title="Bank Voucher" description="" url="~/Pages/trnWithdrawCash.aspx" roles="*" />
+      <siteMapNode title="Money Receipts (Sales)" description="View Money Receipts" url="~/Pages/MoneyReceipts.aspx" />
+      <siteMapNode title="Money Receipts (General)" description="" url="~/Pages/MoneyReceiptsSales.aspx" roles="*" />
+      <siteMapNode title="Reverse Voucher" description="" url="~/Pages/ReverseVoucher.aspx" roles="*" />
+      <siteMapNode title="Bank Reconciliation" description="" url="~/Pages/BankReconciliation.aspx" roles="*" />
+      <siteMapNode title="Imprest Fund(Assign Person)" description="View Imprest Fund" url="~/Pages/ImprestFund.aspx" roles="*" />
+      <siteMapNode title="Imprest Fund Transaction" description="View Imprest Fund Transaction" url="~/Pages/ImprestFundTrans.aspx" roles="*" />
+      <siteMapNode title="IOU Manager" description="View Imprest Fund IOU" url="~/Pages/ImpresstFundIOU.aspx" roles="*" />
+      <siteMapNode title="Notes/Cash Counter" description="" url="~/Pages/PhysicalNotes_CashCounter.aspx" roles="*" />
+      <siteMapNode title="Impresst Fund Coins" description="View Impresst Fund Coins" url="~/Pages/ImpresstFundCoins.aspx" roles="*" />
+      <siteMapNode title="Voucher" description="" url="~/Pages/allVoucher.aspx" roles="*" />
+    </siteMapNode>
+    <siteMapNode title="Cheque Management" description="" url="~/Pages/ChequeManagement.aspx" roles="*">
+      <siteMapNode title="Cheque Book Receive" description="View Cheque Book Receive" url="~/Pages/ChequeBooks.aspx" roles="*" />
+      <siteMapNode title="Cheque Issue" description="Cheque Issue" url="~/Pages/ChequeIssue.aspx" roles="*" />
+      <siteMapNode title="Cheque Print" description="Cheque Print" url="~/Pages/ChequePrint.aspx" roles="*" />
+      <siteMapNode title="Cheque Void / Cancellation" description="Cheque Void / Cancellation" url="~/Pages/ChequeVoid.aspx" roles="*" />
+      <siteMapNode title="PDC Receive" description="View PDC Receipt" url="~/Pages/PDCReceive.aspx" roles="*" />
+      <siteMapNode title="Cheque Register" description="" url="~/Pages/ChequeRegisterNew.aspx" roles="*">
+        <siteMapNode title="Cheque Book Wise Cheque Register" description="" url="~/Pages/ChequeBookWiseChequeRegister.aspx" roles="*" />
+        <siteMapNode title="Payee Wise Cheque Register" description="" url="~/Pages/PayeeWiseChequeRegister.aspx" roles="*" />
+        <siteMapNode title="Cheque Issue Register" description="" url="~/Pages/ChequeIssuRegister.aspx" roles="*" />
+        <siteMapNode title="Cheque Utilization Summary" description="Cheque Utilization Summary" url="~/Pages/ChequeUtilizationSummary.aspx" roles="*" />
+        <siteMapNode title="Cheque Issue Report" description="Cheque Issue Report" url="~/Pages/ChequeIssueReport.aspx" roles="*">
+          <siteMapNode title="Cheque Book-wise Report" description="Cheque Book-wise Report" url="~/Pages/ChequeBook_wiseReport.aspx" roles="*" />
+          <siteMapNode title="Payee-wise Report" description="Cheque Book-wise Report" url="~/Pages/Payee_wiseReport.aspx" roles="*" />
+          <siteMapNode title="Bank A/C-wise Report" description="Bank A/C-wise Report" url="~/Pages/BankA_C_wiseReport.aspx" roles="*" />
+          <siteMapNode title="PDC Issue Report" description="PDC Issue Report" url="~/Pages/PDCIssueReport.aspx" roles="*" />
+        </siteMapNode>
+        <siteMapNode title="Cheque Void Report" description="" url="~/Pages/ChequeVoidReport.aspx" roles="*" />
+      </siteMapNode>
+      <siteMapNode title="Customer Cheque Management" description="" url="~/Pages/ChequeHonour.aspx" roles="*" />
+      <siteMapNode title="Inward PDC Entry" description="Inward PDC Entry" url="~/Pages/InwardPDCEntry.aspx" roles="*" />
+      <siteMapNode title="Inward PDC Report" description="Inward PDC Report" url="~/Pages/InwardPDCReport.aspx" roles="*" />
+      <siteMapNode title="Create Deposit Form" description="" url="~/Pages/CreateDepositForm.aspx" roles="*" />
+    </siteMapNode>
+    <siteMapNode title="Reports" description="" url="~/Pages/Reports.aspx" roles="*">
+      <siteMapNode title="Charts Of Accounts" description="" url="~/Pages/ChartsOfAccounts2nd.aspx" roles="*" />
+      <siteMapNode title="Bank Book" description="" url="~/Pages/rptBankBook.aspx" roles="*" />
+      <siteMapNode title="Cash Book" description="" url="~/Pages/CashBook.aspx" roles="*" />
+      <siteMapNode title="G/Ledger Report" description="" url="~/Pages/LedgerReport.aspx" roles="*" />
+      <siteMapNode title="Sub Ledger By Group" description="" url="~/Pages/SubLedgerByGroup.aspx" roles="*" />
+      <siteMapNode title="Accounts Payable" description="" url="~/Pages/rptAccountsPayable.aspx" roles="*">
+        <siteMapNode title="Supplier Ledger" description="" url="~/Pages/SupplierLedger.aspx" roles="*" />
+        <siteMapNode title="Supplier Trial Balance" description="" url="~/Pages/SupplierLedgerShedule.aspx" roles="*" />
+        <siteMapNode title="Supplier Aging Report" description="" url="~/Pages/SubsidiaryAgingReport.aspx" roles="*" />
+      </siteMapNode>
+      <siteMapNode title="Accounts Receivable" description="" url="~/Pages/rptAccountsReceivable.aspx" roles="*">
+        <siteMapNode title="Customer Ledger" description="" url="~/Pages/CustomerLedger.aspx" roles="*" />
+        <siteMapNode title="Customer Trial Balance" description="" url="~/Pages/CustomerLedgerSchedule.aspx" roles="*" />
+        <siteMapNode title="Customer Aging Report" description="" url="~/Pages/SubsidiaryCustomerAgingReport.aspx" roles="*" />
+      </siteMapNode>
+      <siteMapNode title="Receipts and Payments" description="" url="~/Pages/ReceiptsAndPayments.aspx" roles="*" />
+      <siteMapNode title="Financial Statements" description="" url="~/Pages/Financials.aspx" roles="*">
+        <siteMapNode title="Standard Reports" description="" url="~/Pages/StandardReports.aspx" roles="*">
+          <siteMapNode title="Trial Balance" description="" url="~/Pages/TrialBalance.aspx" roles="*" />
+          <siteMapNode title="Profit and Loss" description="" url="~/Pages/ProfitAndLoss.aspx" roles="*" />
+          <siteMapNode title="Balance Sheet" description="" url="~/Pages/BalanceSheet.aspx" roles="*" />
+        </siteMapNode>
+        <siteMapNode title="Customized Reports" description="" url="~/Pages/CustomizeReports.aspx" roles="*" />
+      </siteMapNode>
+      <siteMapNode title="Imprest Fund Reimbursment Bill" description="" url="~/Pages/ImprestFundReport.aspx" roles="*" />
+      <siteMapNode title="Ledger Report" description="" url="~/Pages/LCLedgerReport.aspx" roles="*" />
+    </siteMapNode>
+    <siteMapNode title="Help" description="About the software" url="~/Pages/Help.aspx" roles="*" />
+  </siteMapNode>
+</siteMap>

@@ -1,0 +1,407 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="PDCIssue" conflictDetection="overwriteChanges" label="PDC Issue" plugIn="MyCompany.Data.AnnotationPlugIn" handler="MyCompany.Rules.PDCIssueBusinessRules" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[select
+	"PDCIssue"."PDCRID" "PDCRID"
+	,"PDCIssue"."PDCType" "PDCType"
+	,"PDCIssue"."PDCNO" "PDCNO"
+	,"PDCIssue"."PDCPreFix" "PDCPreFix"
+	,"PDCIssue"."PDCDate" "PDCDate"
+	,"PDCIssue"."Address" "Address"
+	,"PDCIssue"."PayCatID" "PayCatID"
+	,"PayCat"."Category" "PayCatCategory"
+	,"PDCIssue"."ModeofReceiptID" "ModeofReceiptID"
+	,"ModeofReceipt"."Description" "ModeofReceiptDescription"
+	,"PDCIssue"."ChequeNo" "ChequeNo"
+	,"Cheque"."LeafNumber" "ChequeLeafNumber"
+	,"ChequeChequeBook"."ChequeBookNo" "ChequeChequeBookChequeBookNo"
+	,"ChequeChequeBookAccFund"."AccFundName" "ChequeChequeBookAccFundAccFundName"
+	,"ChequeChequeBookCoaDetail"."AccName" "ChequeChequeBookCoaDetailAccName"
+	,"PDCIssue"."BankName" "BankName"
+	,"PDCIssue"."BranchName" "BranchName"
+	,"PDCIssue"."Amount" "Amount"
+	,"PDCIssue"."IsSameAmount" "IsSameAmount"
+	,"PDCIssue"."NoOfPdc" "NoOfPdc"
+	,"PDCIssue"."Gname" "Gname"
+	,"PDCIssue"."GFathersname" "GFathersname"
+	,"PDCIssue"."GAddress" "GAddress"
+	,"PDCIssue"."OtherRemarks" "OtherRemarks"
+	,"PDCIssue"."DisplayAction" "DisplayAction"
+	,"PDCIssue"."AccFundID" "AccFundID"
+	,"AccFund"."AccFundName" "AccFundAccFundName"
+	,"PDCIssue"."PayeeCode" "PayeeCode"
+	,"Payee"."AccSubName" "PayeeAccSubName"
+	,"PayeeAccSubType"."AccSubType" "PayeeAccSubTypeAccSubType"
+	,"PDCIssue"."HeadOfExpense" "HeadOfExpense"
+	,"HeadOfExpense"."AccName" "HeadOfExpenseAccName"
+	,"HeadOfExpenseAccBalType"."AccBalType" "HeadOfExpenseAccBalTypeAccBalType"
+	,"HeadOfExpenseAccCurrency"."AccCurrencyName" "HeadOfExpenseAccCurrencyAccCurrencyName"
+	,"HeadOfExpenseAccDest"."AccDest" "HeadOfExpenseAccDestAccDest"
+	,"HeadOfExpenseAccDestCompanyType"."Description" "HeadOfExpenseAccDestCompanyTypeDescription"
+	,"HeadOfExpenseAccFund"."AccFundName" "HeadOfExpenseAccFundAccFundName"
+	,"HeadOfExpenseAccSubType"."AccSubType" "HeadOfExpenseAccSubTypeAccSubType"
+	,"HeadOfExpenseAccType"."AccType" "HeadOfExpenseAccTypeAccType"
+	,"HeadOfExpenseCoaControl"."AccName" "HeadOfExpenseCoaControlAccName"
+	,"HeadOfExpenseCoaControlAccBalType"."AccBalType" "HeadOfExpenseCoaControlAccBalTypeAccBalType"
+	,"HeadOfExpenseCoaControlAccDest"."AccDest" "HeadOfExpenseCoaControlAccDestAccDest"
+	,"HeadOfExpenseCoaControlAccType"."AccType" "HeadOfExpenseCoaControlAccTypeAccType"
+	,"HeadOfExpenseCoaControlCompType"."Description" "HeadOfExpenseCoaControlCompTypeDescription"
+	,"HeadOfExpenseCoaMain"."AccName" "HeadOfExpenseCoaMainAccName"
+	,"HeadOfExpenseCoaMainAccBalType"."AccBalType" "HeadOfExpenseCoaMainAccBalTypeAccBalType"
+	,"HeadOfExpenseCoaMainAccDest"."AccDest" "HeadOfExpenseCoaMainAccDestAccDest"
+	,"HeadOfExpenseCoaMainAccFund"."AccFundName" "HeadOfExpenseCoaMainAccFundAccFundName"
+	,"HeadOfExpenseCoaMainAccType"."AccType" "HeadOfExpenseCoaMainAccTypeAccType"
+	,"HeadOfExpenseCoaMainCoaControl"."AccName" "HeadOfExpenseCoaMainCoaControlAccName"
+	,"HeadOfExpenseCoaSub"."AccName" "HeadOfExpenseCoaSubAccName"
+	,"HeadOfExpenseCoaSubAccBalType"."AccBalType" "HeadOfExpenseCoaSubAccBalTypeAccBalType"
+	,"HeadOfExpenseCoaSubAccDest"."AccDest" "HeadOfExpenseCoaSubAccDestAccDest"
+	,"HeadOfExpenseCoaSubAccFund"."AccFundName" "HeadOfExpenseCoaSubAccFundAccFundName"
+	,"HeadOfExpenseCoaSubAccType"."AccType" "HeadOfExpenseCoaSubAccTypeAccType"
+	,"HeadOfExpenseCoaSubCoaControl"."AccName" "HeadOfExpenseCoaSubCoaControlAccName"
+	,"HeadOfExpenseCoaSubCoaMain"."AccName" "HeadOfExpenseCoaSubCoaMainAccName"
+	,"PDCIssue"."BankAccountHOA" "BankAccountHOA"
+	,"BankAccountHOA"."AccName" "BankAccountHOAAccName"
+	,"BankAccountHOAAccBalType"."AccBalType" "BankAccountHOAAccBalTypeAccBalType"
+	,"BankAccountHOAAccCurrency"."AccCurrencyName" "BankAccountHOAAccCurrencyAccCurrencyName"
+	,"BankAccountHOAAccDest"."AccDest" "BankAccountHOAAccDestAccDest"
+	,"BankAccountHOAAccDestCompanyType"."Description" "BankAccountHOAAccDestCompanyTypeDescription"
+	,"BankAccountHOAAccFund"."AccFundName" "BankAccountHOAAccFundAccFundName"
+	,"BankAccountHOAAccSubType"."AccSubType" "BankAccountHOAAccSubTypeAccSubType"
+	,"BankAccountHOAAccType"."AccType" "BankAccountHOAAccTypeAccType"
+	,"BankAccountHOACoaControl"."AccName" "BankAccountHOACoaControlAccName"
+	,"BankAccountHOACoaControlAccBalType"."AccBalType" "BankAccountHOACoaControlAccBalTypeAccBalType"
+	,"BankAccountHOACoaControlAccDest"."AccDest" "BankAccountHOACoaControlAccDestAccDest"
+	,"BankAccountHOACoaControlAccType"."AccType" "BankAccountHOACoaControlAccTypeAccType"
+	,"BankAccountHOACoaControlCompType"."Description" "BankAccountHOACoaControlCompTypeDescription"
+	,"BankAccountHOACoaMain"."AccName" "BankAccountHOACoaMainAccName"
+	,"BankAccountHOACoaMainAccBalType"."AccBalType" "BankAccountHOACoaMainAccBalTypeAccBalType"
+	,"BankAccountHOACoaMainAccDest"."AccDest" "BankAccountHOACoaMainAccDestAccDest"
+	,"BankAccountHOACoaMainAccFund"."AccFundName" "BankAccountHOACoaMainAccFundAccFundName"
+	,"BankAccountHOACoaMainAccType"."AccType" "BankAccountHOACoaMainAccTypeAccType"
+	,"BankAccountHOACoaMainCoaControl"."AccName" "BankAccountHOACoaMainCoaControlAccName"
+	,"BankAccountHOACoaSub"."AccName" "BankAccountHOACoaSubAccName"
+	,"BankAccountHOACoaSubAccBalType"."AccBalType" "BankAccountHOACoaSubAccBalTypeAccBalType"
+	,"BankAccountHOACoaSubAccDest"."AccDest" "BankAccountHOACoaSubAccDestAccDest"
+	,"BankAccountHOACoaSubAccFund"."AccFundName" "BankAccountHOACoaSubAccFundAccFundName"
+	,"BankAccountHOACoaSubAccType"."AccType" "BankAccountHOACoaSubAccTypeAccType"
+	,"BankAccountHOACoaSubCoaControl"."AccName" "BankAccountHOACoaSubCoaControlAccName"
+	,"BankAccountHOACoaSubCoaMain"."AccName" "BankAccountHOACoaSubCoaMainAccName"
+from "dbo"."PDCIssue" "PDCIssue"
+	left join "dbo"."Paycategory" "PayCat" on "PDCIssue"."PayCatID" = "PayCat"."PayCatID"
+	left join "dbo"."ModeofReceipts" "ModeofReceipt" on "PDCIssue"."ModeofReceiptID" = "ModeofReceipt"."ModeofReceiptID"
+	left join "dbo"."ChequeBooksLeaf" "Cheque" on "PDCIssue"."ChequeNo" = "Cheque"."LeafID"
+	left join "dbo"."ChequeBooks" "ChequeChequeBook" on "Cheque"."ChequeBookID" = "ChequeChequeBook"."ChequeBookID"
+	left join "dbo"."AccFunds" "ChequeChequeBookAccFund" on "ChequeChequeBook"."AccFundID" = "ChequeChequeBookAccFund"."AccFundID"
+	left join "dbo"."CoaDetail" "ChequeChequeBookCoaDetail" on "ChequeChequeBook"."CoaDetailID" = "ChequeChequeBookCoaDetail"."CoaDetailID"
+	left join "dbo"."AccFunds" "AccFund" on "PDCIssue"."AccFundID" = "AccFund"."AccFundID"
+	left join "dbo"."AccSubNames" "Payee" on "PDCIssue"."PayeeCode" = "Payee"."AccSubCode"
+	left join "dbo"."AccSubTypes" "PayeeAccSubType" on "Payee"."AccSubTypeID" = "PayeeAccSubType"."AccSubTypeID"
+	left join "dbo"."CoaDetail" "HeadOfExpense" on "PDCIssue"."HeadOfExpense" = "HeadOfExpense"."CoaDetailID"
+	left join "dbo"."AccBalTypes" "HeadOfExpenseAccBalType" on "HeadOfExpense"."AccBalTypeID" = "HeadOfExpenseAccBalType"."AccBalTypeID"
+	left join "dbo"."AccCurrencys" "HeadOfExpenseAccCurrency" on "HeadOfExpense"."AccCurrency" = "HeadOfExpenseAccCurrency"."AccCurrencyID"
+	left join "dbo"."AccDests" "HeadOfExpenseAccDest" on "HeadOfExpense"."AccDestID" = "HeadOfExpenseAccDest"."AccDestID"
+	left join "dbo"."CompanyTypes" "HeadOfExpenseAccDestCompanyType" on "HeadOfExpenseAccDest"."CompanyType" = "HeadOfExpenseAccDestCompanyType"."CompTypeID"
+	left join "dbo"."AccFunds" "HeadOfExpenseAccFund" on "HeadOfExpense"."AccFundID" = "HeadOfExpenseAccFund"."AccFundID"
+	left join "dbo"."AccSubTypes" "HeadOfExpenseAccSubType" on "HeadOfExpense"."AccSubTypeID" = "HeadOfExpenseAccSubType"."AccSubTypeID"
+	left join "dbo"."AccTypes" "HeadOfExpenseAccType" on "HeadOfExpense"."AccTypeID" = "HeadOfExpenseAccType"."AccTypeID"
+	left join "dbo"."CoaControl" "HeadOfExpenseCoaControl" on "HeadOfExpense"."CoaControlID" = "HeadOfExpenseCoaControl"."CoaControlID"
+	left join "dbo"."AccBalTypes" "HeadOfExpenseCoaControlAccBalType" on "HeadOfExpenseCoaControl"."AccBalTypeID" = "HeadOfExpenseCoaControlAccBalType"."AccBalTypeID"
+	left join "dbo"."AccDests" "HeadOfExpenseCoaControlAccDest" on "HeadOfExpenseCoaControl"."AccDestID" = "HeadOfExpenseCoaControlAccDest"."AccDestID"
+	left join "dbo"."AccTypes" "HeadOfExpenseCoaControlAccType" on "HeadOfExpenseCoaControl"."AccTypeID" = "HeadOfExpenseCoaControlAccType"."AccTypeID"
+	left join "dbo"."CompanyTypes" "HeadOfExpenseCoaControlCompType" on "HeadOfExpenseCoaControl"."CompType" = "HeadOfExpenseCoaControlCompType"."CompTypeID"
+	left join "dbo"."CoaMain" "HeadOfExpenseCoaMain" on "HeadOfExpense"."CoaMainID" = "HeadOfExpenseCoaMain"."CoaMainID"
+	left join "dbo"."AccBalTypes" "HeadOfExpenseCoaMainAccBalType" on "HeadOfExpenseCoaMain"."AccBalTypeID" = "HeadOfExpenseCoaMainAccBalType"."AccBalTypeID"
+	left join "dbo"."AccDests" "HeadOfExpenseCoaMainAccDest" on "HeadOfExpenseCoaMain"."AccDestID" = "HeadOfExpenseCoaMainAccDest"."AccDestID"
+	left join "dbo"."AccFunds" "HeadOfExpenseCoaMainAccFund" on "HeadOfExpenseCoaMain"."AccFundID" = "HeadOfExpenseCoaMainAccFund"."AccFundID"
+	left join "dbo"."AccTypes" "HeadOfExpenseCoaMainAccType" on "HeadOfExpenseCoaMain"."AccTypeID" = "HeadOfExpenseCoaMainAccType"."AccTypeID"
+	left join "dbo"."CoaControl" "HeadOfExpenseCoaMainCoaControl" on "HeadOfExpenseCoaMain"."CoaControlID" = "HeadOfExpenseCoaMainCoaControl"."CoaControlID"
+	left join "dbo"."CoaSub" "HeadOfExpenseCoaSub" on "HeadOfExpense"."CoaSubID" = "HeadOfExpenseCoaSub"."CoaSubID"
+	left join "dbo"."AccBalTypes" "HeadOfExpenseCoaSubAccBalType" on "HeadOfExpenseCoaSub"."AccBalTypeID" = "HeadOfExpenseCoaSubAccBalType"."AccBalTypeID"
+	left join "dbo"."AccDests" "HeadOfExpenseCoaSubAccDest" on "HeadOfExpenseCoaSub"."AccDestID" = "HeadOfExpenseCoaSubAccDest"."AccDestID"
+	left join "dbo"."AccFunds" "HeadOfExpenseCoaSubAccFund" on "HeadOfExpenseCoaSub"."AccFundID" = "HeadOfExpenseCoaSubAccFund"."AccFundID"
+	left join "dbo"."AccTypes" "HeadOfExpenseCoaSubAccType" on "HeadOfExpenseCoaSub"."AccTypeID" = "HeadOfExpenseCoaSubAccType"."AccTypeID"
+	left join "dbo"."CoaControl" "HeadOfExpenseCoaSubCoaControl" on "HeadOfExpenseCoaSub"."CoaControlID" = "HeadOfExpenseCoaSubCoaControl"."CoaControlID"
+	left join "dbo"."CoaMain" "HeadOfExpenseCoaSubCoaMain" on "HeadOfExpenseCoaSub"."CoaMainID" = "HeadOfExpenseCoaSubCoaMain"."CoaMainID"
+	left join "dbo"."CoaDetail" "BankAccountHOA" on "PDCIssue"."BankAccountHOA" = "BankAccountHOA"."CoaDetailID"
+	left join "dbo"."AccBalTypes" "BankAccountHOAAccBalType" on "BankAccountHOA"."AccBalTypeID" = "BankAccountHOAAccBalType"."AccBalTypeID"
+	left join "dbo"."AccCurrencys" "BankAccountHOAAccCurrency" on "BankAccountHOA"."AccCurrency" = "BankAccountHOAAccCurrency"."AccCurrencyID"
+	left join "dbo"."AccDests" "BankAccountHOAAccDest" on "BankAccountHOA"."AccDestID" = "BankAccountHOAAccDest"."AccDestID"
+	left join "dbo"."CompanyTypes" "BankAccountHOAAccDestCompanyType" on "BankAccountHOAAccDest"."CompanyType" = "BankAccountHOAAccDestCompanyType"."CompTypeID"
+	left join "dbo"."AccFunds" "BankAccountHOAAccFund" on "BankAccountHOA"."AccFundID" = "BankAccountHOAAccFund"."AccFundID"
+	left join "dbo"."AccSubTypes" "BankAccountHOAAccSubType" on "BankAccountHOA"."AccSubTypeID" = "BankAccountHOAAccSubType"."AccSubTypeID"
+	left join "dbo"."AccTypes" "BankAccountHOAAccType" on "BankAccountHOA"."AccTypeID" = "BankAccountHOAAccType"."AccTypeID"
+	left join "dbo"."CoaControl" "BankAccountHOACoaControl" on "BankAccountHOA"."CoaControlID" = "BankAccountHOACoaControl"."CoaControlID"
+	left join "dbo"."AccBalTypes" "BankAccountHOACoaControlAccBalType" on "BankAccountHOACoaControl"."AccBalTypeID" = "BankAccountHOACoaControlAccBalType"."AccBalTypeID"
+	left join "dbo"."AccDests" "BankAccountHOACoaControlAccDest" on "BankAccountHOACoaControl"."AccDestID" = "BankAccountHOACoaControlAccDest"."AccDestID"
+	left join "dbo"."AccTypes" "BankAccountHOACoaControlAccType" on "BankAccountHOACoaControl"."AccTypeID" = "BankAccountHOACoaControlAccType"."AccTypeID"
+	left join "dbo"."CompanyTypes" "BankAccountHOACoaControlCompType" on "BankAccountHOACoaControl"."CompType" = "BankAccountHOACoaControlCompType"."CompTypeID"
+	left join "dbo"."CoaMain" "BankAccountHOACoaMain" on "BankAccountHOA"."CoaMainID" = "BankAccountHOACoaMain"."CoaMainID"
+	left join "dbo"."AccBalTypes" "BankAccountHOACoaMainAccBalType" on "BankAccountHOACoaMain"."AccBalTypeID" = "BankAccountHOACoaMainAccBalType"."AccBalTypeID"
+	left join "dbo"."AccDests" "BankAccountHOACoaMainAccDest" on "BankAccountHOACoaMain"."AccDestID" = "BankAccountHOACoaMainAccDest"."AccDestID"
+	left join "dbo"."AccFunds" "BankAccountHOACoaMainAccFund" on "BankAccountHOACoaMain"."AccFundID" = "BankAccountHOACoaMainAccFund"."AccFundID"
+	left join "dbo"."AccTypes" "BankAccountHOACoaMainAccType" on "BankAccountHOACoaMain"."AccTypeID" = "BankAccountHOACoaMainAccType"."AccTypeID"
+	left join "dbo"."CoaControl" "BankAccountHOACoaMainCoaControl" on "BankAccountHOACoaMain"."CoaControlID" = "BankAccountHOACoaMainCoaControl"."CoaControlID"
+	left join "dbo"."CoaSub" "BankAccountHOACoaSub" on "BankAccountHOA"."CoaSubID" = "BankAccountHOACoaSub"."CoaSubID"
+	left join "dbo"."AccBalTypes" "BankAccountHOACoaSubAccBalType" on "BankAccountHOACoaSub"."AccBalTypeID" = "BankAccountHOACoaSubAccBalType"."AccBalTypeID"
+	left join "dbo"."AccDests" "BankAccountHOACoaSubAccDest" on "BankAccountHOACoaSub"."AccDestID" = "BankAccountHOACoaSubAccDest"."AccDestID"
+	left join "dbo"."AccFunds" "BankAccountHOACoaSubAccFund" on "BankAccountHOACoaSub"."AccFundID" = "BankAccountHOACoaSubAccFund"."AccFundID"
+	left join "dbo"."AccTypes" "BankAccountHOACoaSubAccType" on "BankAccountHOACoaSub"."AccTypeID" = "BankAccountHOACoaSubAccType"."AccTypeID"
+	left join "dbo"."CoaControl" "BankAccountHOACoaSubCoaControl" on "BankAccountHOACoaSub"."CoaControlID" = "BankAccountHOACoaSubCoaControl"."CoaControlID"
+	left join "dbo"."CoaMain" "BankAccountHOACoaSubCoaMain" on "BankAccountHOACoaSub"."CoaMainID" = "BankAccountHOACoaSubCoaMain"."CoaMainID"
+]]></text>
+    </command>
+    <command id="PDCRIDIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="PDCRID" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="PDCRID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Pdcrid" readOnly="true" />
+    <field name="PDCType" type="Boolean" allowNulls="false" default="((0))" label="PDC Type" showInSummary="true" />
+    <field name="PDCNO" type="String" label="Pdcno" length="30" showInSummary="true" />
+    <field name="PDCPreFix" type="String" label="PDC Pre Fix" length="20" showInSummary="true" />
+    <field name="PDCDate" type="DateTime" label="PDC Date" showInSummary="true" />
+    <field name="Address" type="String" label="Address" length="250" showInSummary="true" />
+    <field name="PayCatID" type="Int32" label="Pay Cat#">
+      <items style="Lookup" dataController="Paycategory" newDataView="createForm1" />
+    </field>
+    <field name="PayCatCategory" type="String" readOnly="true" label="Purpose" length="50" />
+    <field name="ModeofReceiptID" type="Int32" label="Modeof Receipt#">
+      <items style="Lookup" dataController="ModeofReceipts" />
+    </field>
+    <field name="ModeofReceiptDescription" type="String" readOnly="true" label="Issue Mode" length="50" />
+    <field name="ChequeNo" type="Int32" label="Cheque No" contextFields="IsUsed='False', ChequeBookCoaDetailCoaDetailID=BankAccountHOA">
+      <items style="Lookup" dataController="ChequeBooksLeaf" dataView="UnUsedleafs" dataTextField="LeafNumber" dataValueField="LeafID" letters="true" />
+    </field>
+    <field name="ChequeLeafNumber" type="Int32" readOnly="true" label="Cheque no" length="50" />
+    <field name="ChequeChequeBookChequeBookNo" type="String" readOnly="true" label="Cheque Book No" length="50" />
+    <field name="ChequeChequeBookAccFundAccFundName" type="String" readOnly="true" label="Cheque Book Acc Fund Name" length="100" />
+    <field name="ChequeChequeBookCoaDetailAccName" type="String" readOnly="true" label="Cheque Book Coa Detail Acc Name" length="150" />
+    <field name="BankName" type="String" label="Bank Name" length="50" />
+    <field name="BranchName" type="String" label="Branch Name" length="50" />
+    <field name="Amount" type="Decimal" label="Amount" />
+    <field name="IsSameAmount" type="Boolean" label="Is Same Amount" allowNulls="false">
+      <items style="CheckBox" />
+    </field>
+    <field name="NoOfPdc" type="String" label="No Of Pdc" length="10" />
+    <field name="Gname" type="String" label="Gname" length="50" />
+    <field name="GFathersname" type="String" label="G Fathersname" length="50" />
+    <field name="GAddress" type="String" label="G Address" length="50" />
+    <field name="OtherRemarks" type="String" label="Other Remarks" length="100" />
+    <field name="DisplayAction" type="Boolean" label="Display Action" />
+    <field name="AccFundID" type="Int32" label="Acc Fund#">
+      <items style="Lookup" dataController="AccFunds" newDataView="createForm1" />
+    </field>
+    <field name="AccFundAccFundName" type="String" readOnly="true" label="Company Name" length="100" />
+    <field name="PayeeCode" type="Int32" label="Paid To" contextFields="AccSubTypeID=4">
+      <items style="Lookup" dataController="AccSubNames" newDataView="createForm1" dataView="grid1" dataTextField="AccSubName" dataValueField="AccSubCode" />
+    </field>
+    <field name="PayeeAccSubName" type="String" readOnly="true" label="Paid To" length="75" />
+    <field name="PayeeAccSubTypeAccSubType" type="String" readOnly="true" label="Payee Acc Sub Type" length="2" />
+    <field name="HeadOfExpense" type="Int32" label="Head Of Expense" contextFields="AccTypeID =1,AccTypeID =2,AccTypeID =3,AccTypeID =5,AccTypeID =6">
+      <items style="AutoComplete" dataController="CoaDetail" newDataView="createForm1" dataView="grid1" dataTextField="AccName" dataValueField="CoaDetailID" />
+    </field>
+    <field name="HeadOfExpenseAccName" type="String" readOnly="true" label="Head Of Expense " length="150" />
+    <field name="HeadOfExpenseAccBalTypeAccBalType" type="String" readOnly="true" label="Head Of Expense Acc Bal Type" length="2" />
+    <field name="HeadOfExpenseAccCurrencyAccCurrencyName" type="String" readOnly="true" label="Head Of Expense Acc Currency Name" length="10" />
+    <field name="HeadOfExpenseAccDestAccDest" type="String" readOnly="true" label="Head Of Expense Acc Dest" length="2" />
+    <field name="HeadOfExpenseAccDestCompanyTypeDescription" type="String" readOnly="true" label="Head Of Expense Acc Dest Company Type Description" length="50" />
+    <field name="HeadOfExpenseAccFundAccFundName" type="String" readOnly="true" label="Head Of Expense Acc Fund Name" length="100" />
+    <field name="HeadOfExpenseAccSubTypeAccSubType" type="String" readOnly="true" label="Head Of Expense Acc Sub Type" length="2" />
+    <field name="HeadOfExpenseAccTypeAccType" type="String" readOnly="true" label="Head Of Expense Acc Type" length="2" />
+    <field name="HeadOfExpenseCoaControlAccName" type="String" readOnly="true" label="Head Of Expense Coa Control Acc Name" length="50" />
+    <field name="HeadOfExpenseCoaControlAccBalTypeAccBalType" type="String" readOnly="true" label="Head Of Expense Coa Control Acc Bal Type" length="2" />
+    <field name="HeadOfExpenseCoaControlAccDestAccDest" type="String" readOnly="true" label="Head Of Expense Coa Control Acc Dest" length="2" />
+    <field name="HeadOfExpenseCoaControlAccTypeAccType" type="String" readOnly="true" label="Head Of Expense Coa Control Acc Type" length="2" />
+    <field name="HeadOfExpenseCoaControlCompTypeDescription" type="String" readOnly="true" label="Head Of Expense Coa Control Comp Type Description" length="50" />
+    <field name="HeadOfExpenseCoaMainAccName" type="String" readOnly="true" label="Head Of Expense Coa Main Acc Name" length="50" />
+    <field name="HeadOfExpenseCoaMainAccBalTypeAccBalType" type="String" readOnly="true" label="Head Of Expense Coa Main Acc Bal Type" length="2" />
+    <field name="HeadOfExpenseCoaMainAccDestAccDest" type="String" readOnly="true" label="Head Of Expense Coa Main Acc Dest" length="2" />
+    <field name="HeadOfExpenseCoaMainAccFundAccFundName" type="String" readOnly="true" label="Head Of Expense Coa Main Acc Fund Name" length="100" />
+    <field name="HeadOfExpenseCoaMainAccTypeAccType" type="String" readOnly="true" label="Head Of Expense Coa Main Acc Type" length="2" />
+    <field name="HeadOfExpenseCoaMainCoaControlAccName" type="String" readOnly="true" label="Head Of Expense Coa Main Coa Control Acc Name" length="50" />
+    <field name="HeadOfExpenseCoaSubAccName" type="String" readOnly="true" label="Head Of Expense Coa Sub Acc Name" length="50" />
+    <field name="HeadOfExpenseCoaSubAccBalTypeAccBalType" type="String" readOnly="true" label="Head Of Expense Coa Sub Acc Bal Type" length="2" />
+    <field name="HeadOfExpenseCoaSubAccDestAccDest" type="String" readOnly="true" label="Head Of Expense Coa Sub Acc Dest" length="2" />
+    <field name="HeadOfExpenseCoaSubAccFundAccFundName" type="String" readOnly="true" label="Head Of Expense Coa Sub Acc Fund Name" length="100" />
+    <field name="HeadOfExpenseCoaSubAccTypeAccType" type="String" readOnly="true" label="Head Of Expense Coa Sub Acc Type" length="2" />
+    <field name="HeadOfExpenseCoaSubCoaControlAccName" type="String" readOnly="true" label="Head Of Expense Coa Sub Coa Control Acc Name" length="50" />
+    <field name="HeadOfExpenseCoaSubCoaMainAccName" type="String" readOnly="true" label="Head Of Expense Coa Sub Coa Main Acc Name" length="50" />
+    <field name="BankAccountHOA" type="Int32" label="Bank Account" contextFields="IsBankNature='True'" computed="true">
+      <items style="Lookup" dataController="CoaDetail" newDataView="createForm1" dataView="grid1" dataTextField="AccName" dataValueField="CoaDetailID" />
+    </field>
+    <field name="BankAccountHOAAccName" type="String" readOnly="true" label="Bank Account ( HOA )" length="150" />
+    <field name="BankAccountHOAAccBalTypeAccBalType" type="String" readOnly="true" label="Bank Account HOA Acc Bal Type" length="2" />
+    <field name="BankAccountHOAAccCurrencyAccCurrencyName" type="String" readOnly="true" label="Bank Account HOA Acc Currency Name" length="10" />
+    <field name="BankAccountHOAAccDestAccDest" type="String" readOnly="true" label="Bank Account HOA Acc Dest" length="2" />
+    <field name="BankAccountHOAAccDestCompanyTypeDescription" type="String" readOnly="true" label="Bank Account HOA Acc Dest Company Type Description" length="50" />
+    <field name="BankAccountHOAAccFundAccFundName" type="String" readOnly="true" label="Bank Account HOA Acc Fund Name" length="100" />
+    <field name="BankAccountHOAAccSubTypeAccSubType" type="String" readOnly="true" label="Bank Account HOA Acc Sub Type" length="2" />
+    <field name="BankAccountHOAAccTypeAccType" type="String" readOnly="true" label="Bank Account HOA Acc Type" length="2" />
+    <field name="BankAccountHOACoaControlAccName" type="String" readOnly="true" label="Bank Account HOA Coa Control Acc Name" length="50" />
+    <field name="BankAccountHOACoaControlAccBalTypeAccBalType" type="String" readOnly="true" label="Bank Account HOA Coa Control Acc Bal Type" length="2" />
+    <field name="BankAccountHOACoaControlAccDestAccDest" type="String" readOnly="true" label="Bank Account HOA Coa Control Acc Dest" length="2" />
+    <field name="BankAccountHOACoaControlAccTypeAccType" type="String" readOnly="true" label="Bank Account HOA Coa Control Acc Type" length="2" />
+    <field name="BankAccountHOACoaControlCompTypeDescription" type="String" readOnly="true" label="Bank Account HOA Coa Control Comp Type Description" length="50" />
+    <field name="BankAccountHOACoaMainAccName" type="String" readOnly="true" label="Bank Account HOA Coa Main Acc Name" length="50" />
+    <field name="BankAccountHOACoaMainAccBalTypeAccBalType" type="String" readOnly="true" label="Bank Account HOA Coa Main Acc Bal Type" length="2" />
+    <field name="BankAccountHOACoaMainAccDestAccDest" type="String" readOnly="true" label="Bank Account HOA Coa Main Acc Dest" length="2" />
+    <field name="BankAccountHOACoaMainAccFundAccFundName" type="String" readOnly="true" label="Bank Account HOA Coa Main Acc Fund Name" length="100" />
+    <field name="BankAccountHOACoaMainAccTypeAccType" type="String" readOnly="true" label="Bank Account HOA Coa Main Acc Type" length="2" />
+    <field name="BankAccountHOACoaMainCoaControlAccName" type="String" readOnly="true" label="Bank Account HOA Coa Main Coa Control Acc Name" length="50" />
+    <field name="BankAccountHOACoaSubAccName" type="String" readOnly="true" label="Bank Account HOA Coa Sub Acc Name" length="50" />
+    <field name="BankAccountHOACoaSubAccBalTypeAccBalType" type="String" readOnly="true" label="Bank Account HOA Coa Sub Acc Bal Type" length="2" />
+    <field name="BankAccountHOACoaSubAccDestAccDest" type="String" readOnly="true" label="Bank Account HOA Coa Sub Acc Dest" length="2" />
+    <field name="BankAccountHOACoaSubAccFundAccFundName" type="String" readOnly="true" label="Bank Account HOA Coa Sub Acc Fund Name" length="100" />
+    <field name="BankAccountHOACoaSubAccTypeAccType" type="String" readOnly="true" label="Bank Account HOA Coa Sub Acc Type" length="2" />
+    <field name="BankAccountHOACoaSubCoaControlAccName" type="String" readOnly="true" label="Bank Account HOA Coa Sub Coa Control Acc Name" length="50" />
+    <field name="BankAccountHOACoaSubCoaMainAccName" type="String" readOnly="true" label="Bank Account HOA Coa Sub Coa Main Acc Name" length="50" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="PDC Issue" sortExpression="PDCRID desc">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="PDCNO" columns="30" />
+        <dataField fieldName="PayeeCode" columns="15" aliasFieldName="PayeeAccSubName" />
+        <dataField fieldName="PDCDate" columns="10" />
+        <dataField fieldName="ChequeNo" aliasFieldName="ChequeLeafNumber" hyperlinkFormatString="~/Pages/ChequeBooksLeaf.aspx?LeafID={ChequeNo}&amp;_controller=ChequeBooksLeaf&amp;_commandName=Select&amp;_commandArgument=editForm1" />
+        <dataField fieldName="BankName" columns="50" />
+        <dataField fieldName="BranchName" columns="50" />
+        <dataField fieldName="Amount" columns="15" />
+        <dataField fieldName="NoOfPdc" columns="10" />
+        <dataField fieldName="AccFundID" columns="15" aliasFieldName="AccFundAccFundName" hidden="true" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review PDC Issue">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Review PDC Issue" newColumn="true">
+          <description><![CDATA[Review PDC Issue]]></description>
+          <dataFields>
+            <dataField fieldName="PDCDate" columns="10" />
+            <dataField fieldName="HeadOfExpense" aliasFieldName="HeadOfExpenseAccName" />
+            <dataField fieldName="BankAccountHOA" aliasFieldName="BankAccountHOAAccName" />
+            <dataField fieldName="PayeeCode" aliasFieldName="PayeeAccSubName" />
+            <dataField fieldName="PayCatID" aliasFieldName="PayCatCategory" />
+            <dataField fieldName="OtherRemarks">
+              <visibility>
+                <expression test="[PayCatID]=='4'" type="ClientScript" />
+              </visibility>
+            </dataField>
+            <dataField fieldName="ModeofReceiptID" aliasFieldName="ModeofReceiptDescription" hidden="true" />
+            <dataField fieldName="ChequeNo" aliasFieldName="ChequeLeafNumber" />
+            <dataField fieldName="BankName" columns="50" />
+            <dataField fieldName="BranchName" columns="50" />
+            <dataField fieldName="Amount" columns="15" />
+            <dataField fieldName="IsSameAmount" />
+            <dataField fieldName="NoOfPdc" columns="10" />
+            <dataField fieldName="AccFundID" aliasFieldName="AccFundAccFundName" hidden="true" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New PDC Issue">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="New PDC Issue" newColumn="true">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="PDCDate" columns="10" />
+            <dataField fieldName="HeadOfExpense" aliasFieldName="HeadOfExpenseAccName" />
+            <dataField fieldName="BankAccountHOA" aliasFieldName="BankAccountHOAAccName" />
+            <dataField fieldName="PayeeCode" aliasFieldName="PayeeAccSubName" />
+            <dataField fieldName="PayCatID" aliasFieldName="PayCatCategory" />
+            <dataField fieldName="OtherRemarks">
+              <visibility>
+                <expression test="[PayCatID]=='4'" type="ClientScript" />
+              </visibility>
+            </dataField>
+            <dataField fieldName="ModeofReceiptID" aliasFieldName="ModeofReceiptDescription" hidden="true" />
+            <dataField fieldName="ChequeNo" aliasFieldName="ChequeLeafNumber" />
+            <dataField fieldName="BankName" columns="50" />
+            <dataField fieldName="BranchName" columns="50" />
+            <dataField fieldName="Amount" columns="15" />
+            <dataField fieldName="IsSameAmount" />
+            <dataField fieldName="NoOfPdc" columns="10" />
+            <dataField fieldName="AccFundID" aliasFieldName="AccFundAccFundName" hidden="true" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Delete" />
+      <action id="a6" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a7" whenLastCommandName="New" commandName="SQL" headerText="OK">
+        <data><![CDATA[   declare @pdcrreceiptRef nvarchar(50)
+exec UPS_PDCIssue  @PDCDate, @PayeeCode, @PayCatID,@ModeofReceiptID, @Amount,  @NoOfPdc, @OtherRemarks,@IsSameAmount,@ChequeNo,@BankName, @BranchName,@AccFundID, @HeadOfExpense, @BankAccountHOA, @pdcrreceiptRef output
+  if (@pdcrreceiptRef is not null ) 
+begin
+set @Result_ShowAlert =  @pdcrreceiptRef+' is saved'
+set @Result_NavigateUrl ='InwardPDCEntry.aspx'
+
+
+end
+
+
+
+]]></data>
+      </action>
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenKeySelected="true" whenClientScript="this.get_hasDetails()" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+</dataController>

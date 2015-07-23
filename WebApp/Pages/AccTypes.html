@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Acc Types</title>
+    <meta name="description" content="This page allows acc types management." />
+  </head>
+  <body>
+    <div data-flow="row">
+      <div id="view1" data-controller="AccTypes" data-view="grid1" data-show-in-summary="true" data-search-on-start="true"> </div>
+    </div>
+    <div data-flow="row">
+      <div data-activator="Tab|Coa Control">
+        <div id="view2" data-controller="CoaControl" data-view="grid1" data-filter-source="view1" data-filter-fields="AccTypeID" data-page-size="5" data-auto-hide="container"> </div>
+      </div>
+      <div data-activator="Tab|Coa Detail">
+        <div id="view3" data-controller="CoaDetail" data-view="grid1" data-filter-source="view1" data-filter-fields="AccTypeID" data-page-size="5" data-auto-hide="container"> </div>
+      </div>
+      <div data-activator="Tab|Coa Main">
+        <div id="view4" data-controller="CoaMain" data-view="grid1" data-filter-source="view1" data-filter-fields="AccTypeID" data-page-size="5" data-auto-hide="container"> </div>
+      </div>
+      <div data-activator="Tab|Coa Sub">
+        <div id="view5" data-controller="CoaSub" data-view="grid1" data-filter-source="view1" data-filter-fields="AccTypeID" data-page-size="5" data-auto-hide="container"> </div>
+      </div>
+    </div>
+  </body>
+</html>

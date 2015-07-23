@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="AccTrnHeader" conflictDetection="overwriteChanges" label="Acc Trn Header" plugIn="MyCompany.Data.AnnotationPlugIn" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"AccTrnHeader"."AccVoucherTranID" "AccVoucherTranID"
+	,"AccTrnHeader"."AccFundCode" "AccFundCode"
+	,"AccFund"."AccFundCode" "AccFundAccFundCode"
+	,"AccTrnHeader"."VchrTypesID" "VchrTypesID"
+	,"AccTrnHeader"."VchrNumber" "VchrNumber"
+	,"AccTrnHeader"."AccTranRef" "AccTranRef"
+	,"AccTrnHeader"."RefNo" "RefNo"
+	,"AccTrnHeader"."AccTranDate" "AccTranDate"
+	,"AccTrnHeader"."PaidTo" "PaidTo"
+	,"AccTrnHeader"."AccRemarks" "AccRemarks"
+	,"AccTrnHeader"."YrClosing" "YrClosing"
+	,"AccTrnHeader"."Voucher_Check" "Voucher_Check"
+	,"AccTrnHeader"."Voucher_EditBy" "Voucher_EditBy"
+	,"AccTrnHeader"."Voucher_EditTime" "Voucher_EditTime"
+	,"AccTrnHeader"."Voucher_InstBy" "Voucher_InstBy"
+	,"AccTrnHeader"."Voucher_InstTime" "Voucher_InstTime"
+	,"AccTrnHeader"."DLT" "DLT"
+	,"AccTrnHeader"."VchrType" "VchrType"
+	,"AccTrnHeader"."AccUnitCode" "AccUnitCode"
+	,"AccTrnHeader"."VchrPreFix" "VchrPreFix"
+	,"AccTrnHeader"."VNO" "VNO"
+	,"AccTrnHeader"."CostCenterID" "CostCenterID"
+	,"AccTrnHeader"."FinancialYearID" "FinancialYearID"
+from "dbo"."AccTrnHeader" "AccTrnHeader"
+	left join "dbo"."AccFunds" "AccFund" on "AccTrnHeader"."AccFundCode" = "AccFund"."AccFundID"
+]]></text>
+    </command>
+    <command id="AccVoucherTranIDIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="AccVoucherTranID" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="AccVoucherTranID" type="Int64" allowNulls="false" isPrimaryKey="true" label="Acc Voucher Tran#" readOnly="true" />
+    <field name="AccFundCode" type="Int32" label="Company" showInSummary="true">
+      <items style="Lookup" dataController="AccFunds" newDataView="createForm1" dataView="grid1" dataTextField="AccFundName" dataValueField="AccFundID" />
+    </field>
+    <field name="AccFundAccFundCode" type="String" readOnly="true" label="Acc Fund Code" length="4" />
+    <field name="VchrTypesID" type="Int32" label="Voucher" showInSummary="true">
+      <items style="DropDownList" dataController="VoucherTypes" dataView="grid1" dataTextField="VchrTypeDesc" dataValueField="VchrTypeID" />
+    </field>
+    <field name="VchrNumber" type="String" allowNulls="false" label="Vchr Number" length="50" showInSummary="true" />
+    <field name="AccTranRef" type="String" label="Acc Tran Ref" length="10" showInSummary="true" />
+    <field name="RefNo" type="String" label="Ref No" length="50" showInSummary="true" />
+    <field name="AccTranDate" type="DateTime" allowNulls="false" label="Acc Tran Date" />
+    <field name="PaidTo" type="String" label="Paid To" length="150" />
+    <field name="AccRemarks" type="String" label="Voucher Description/Narration" length="150" />
+    <field name="YrClosing" type="Int32" default="((0))" label="Yr Closing" />
+    <field name="Voucher_Check" type="Boolean" default="((1))" label="Voucher Check" />
+    <field name="Voucher_EditBy" type="String" label="Voucher Edit By" length="50" />
+    <field name="Voucher_EditTime" type="DateTime" default="(getdate())" label="Voucher Edit Time" />
+    <field name="Voucher_InstBy" type="String" label="Voucher Inst By" length="50" />
+    <field name="Voucher_InstTime" type="DateTime" default="(getdate())" label="Voucher Inst Time" />
+    <field name="DLT" type="Byte" default="((0))" label="Dlt" />
+    <field name="VchrType" type="String" label="Vchr Type" length="2" />
+    <field name="AccUnitCode" type="Int32" label="Acc Unit Code" />
+    <field name="VchrPreFix" type="String" label="Vchr Pre Fix" length="10" />
+    <field name="VNO" type="Int64" default="((0))" label="Vno" />
+    <field name="CostCenterID" type="Int32" default="((0))" label="Cost Center#" />
+    <field name="FinancialYearID" type="Int32" default="((1))" label="Financial Year#" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Acc Trn Header">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="VchrNumber" columns="50" />
+        <dataField fieldName="AccFundCode" aliasFieldName="AccFundAccFundCode" hyperlinkFormatString="~/Pages/AccFunds.aspx?AccFundID={AccFundCode}&amp;_controller=AccFunds&amp;_commandName=Select&amp;_commandArgument=editForm1" />
+        <dataField fieldName="VchrTypesID" columns="15" />
+        <dataField fieldName="AccTranRef" columns="10" />
+        <dataField fieldName="RefNo" columns="50" />
+        <dataField fieldName="AccTranDate" columns="10" />
+        <dataField fieldName="PaidTo" />
+        <dataField fieldName="AccRemarks" />
+        <dataField fieldName="YrClosing" columns="15" />
+        <dataField fieldName="Voucher_Check" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Acc Trn Header">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category headerText="Voucher" id="c1" newColumn="true">
+          <dataFields>
+            <dataField fieldName="VchrNumber" columns="50" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Acc Trn Header">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="New" newColumn="true">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="AccFundCode" />
+            <dataField fieldName="VchrTypesID" columns="15">
+              <headerText>Voucher</headerText>
+            </dataField>
+            <dataField fieldName="VchrNumber" columns="50" />
+            <dataField fieldName="AccTranDate" columns="10" />
+            <dataField fieldName="AccRemarks" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Delete" />
+      <action id="a6" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenKeySelected="true" whenClientScript="this.get_hasDetails()" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+</dataController>

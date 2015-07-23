@@ -1,0 +1,390 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="MoneyReceiptsGeneral" label="MoneyReceiptsGeneral" conflictDetection="overwriteChanges" plugIn="MyCompany.Data.AnnotationPlugIn" handler="MyCompany.Rules.MoneyReceiptsGeneralBusinessRules" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"MoneyReceipts"."MoneyReceiptsID" "MoneyReceiptsID"
+	,"MoneyReceipts"."MRDate" "MRDate"
+	,"MoneyReceipts"."MRNo" "MRNo"
+	,"MoneyReceipts"."PlotSaleID" "PlotSaleID"
+	,"MoneyReceipts"."PayCatID" "PayCatID"
+	,"PayCat"."Category" "PayCatCategory"
+	,"MoneyReceipts"."PCode" "PCode"
+	,"MoneyReceipts"."ReceAmount" "ReceAmount"
+	,"MoneyReceipts"."ModeofReceiptID" "ModeofReceiptID"
+	,"ModeofReceipt"."Description" "ModeofReceiptDescription"
+	,"MoneyReceipts"."ApplicantId" "ApplicantId"
+	,"MoneyReceipts"."AccSubNameID" "AccSubNameID"
+	,"AccSubName"."AccSubName" "AccSubNameAccSubName"
+	,"AccSubNameAccSubType"."AccSubType" "AccSubNameAccSubTypeAccSubType"
+	,"MoneyReceipts"."Fileno" "Fileno"
+	,"MoneyReceipts"."Checkno" "Checkno"
+	,"MoneyReceipts"."CheckDate" "CheckDate"
+	,"MoneyReceipts"."CheckPostDate" "CheckPostDate"
+	,"MoneyReceipts"."CheckBankName" "CheckBankName"
+	,"MoneyReceipts"."BankBranch" "BankBranch"
+	,"MoneyReceipts"."Dlt" "Dlt"
+	,"MoneyReceipts"."Description" "Description"
+	,"MoneyReceipts"."MultiPayment" "MultiPayment"
+	,"MoneyReceipts"."CancelMR" "CancelMR"
+	,"MoneyReceipts"."CancelDate" "CancelDate"
+	,"MoneyReceipts"."ReceiptType" "ReceiptType"
+	,"MoneyReceipts"."GName" "GName"
+	,"MoneyReceipts"."GFathersName" "GFathersName"
+	,"MoneyReceipts"."Gaddress" "Gaddress"
+	,"MoneyReceipts"."vide" "vide"
+	,"MoneyReceipts"."Created_BY" "Created_BY"
+	,"MoneyReceipts"."Created_DT" "Created_DT"
+	,"MoneyReceipts"."Updated_BY" "Updated_BY"
+	,"MoneyReceipts"."Updated_DT" "Updated_DT"
+	,"MoneyReceipts"."Remarks" "Remarks"
+	,"MoneyReceipts"."DisplayAction" "DisplayAction"
+	,"MoneyReceipts"."AccFundID" "AccFundID"
+	,"MoneyReceipts"."CoaDetailID" "CoaDetailID"
+	,"CoaDetail"."AccName" "CoaDetailAccName"
+	,"CoaDetailAccBalType"."AccBalType" "CoaDetailAccBalTypeAccBalType"
+	,"CoaDetailAccCurrency"."AccCurrencyName" "CoaDetailAccCurrencyAccCurrencyName"
+	,"CoaDetailAccDest"."AccDest" "CoaDetailAccDestAccDest"
+	,"CoaDetailAccDestCompanyType"."Description" "CoaDetailAccDestCompanyTypeDescription"
+	,"CoaDetailAccFund"."AccFundCode" "CoaDetailAccFundAccFundCode"
+	,"CoaDetailAccSubType"."AccSubType" "CoaDetailAccSubTypeAccSubType"
+	,"CoaDetailAccType"."AccType" "CoaDetailAccTypeAccType"
+	,"CoaDetailCoaControl"."AccName" "CoaDetailCoaControlAccName"
+	,"CoaDetailCoaControlAccBalType"."AccBalType" "CoaDetailCoaControlAccBalTypeAccBalType"
+	,"CoaDetailCoaControlAccDest"."AccDest" "CoaDetailCoaControlAccDestAccDest"
+	,"CoaDetailCoaControlAccType"."AccType" "CoaDetailCoaControlAccTypeAccType"
+	,"CoaDetailCoaControlCompType"."Description" "CoaDetailCoaControlCompTypeDescription"
+	,"CoaDetailCoaMain"."AccName" "CoaDetailCoaMainAccName"
+	,"CoaDetailCoaMainAccBalType"."AccBalType" "CoaDetailCoaMainAccBalTypeAccBalType"
+	,"CoaDetailCoaMainAccDest"."AccDest" "CoaDetailCoaMainAccDestAccDest"
+	,"CoaDetailCoaMainAccFund"."AccFundCode" "CoaDetailCoaMainAccFundAccFundCode"
+	,"CoaDetailCoaMainAccType"."AccType" "CoaDetailCoaMainAccTypeAccType"
+	,"CoaDetailCoaMainCoaControl"."AccName" "CoaDetailCoaMainCoaControlAccName"
+	,"CoaDetailCoaSub"."AccName" "CoaDetailCoaSubAccName"
+	,"CoaDetailCoaSubAccBalType"."AccBalType" "CoaDetailCoaSubAccBalTypeAccBalType"
+	,"CoaDetailCoaSubAccDest"."AccDest" "CoaDetailCoaSubAccDestAccDest"
+	,"CoaDetailCoaSubAccFund"."AccFundCode" "CoaDetailCoaSubAccFundAccFundCode"
+	,"CoaDetailCoaSubAccType"."AccType" "CoaDetailCoaSubAccTypeAccType"
+	,"CoaDetailCoaSubCoaControl"."AccName" "CoaDetailCoaSubCoaControlAccName"
+	,"CoaDetailCoaSubCoaMain"."AccName" "CoaDetailCoaSubCoaMainAccName"
+	,"MoneyReceipts"."AccTranID" "AccTranID"
+from "dbo"."MoneyReceipts" "MoneyReceipts"
+	left join "dbo"."Paycategory" "PayCat" on "MoneyReceipts"."PayCatID" = "PayCat"."PayCatID"
+	left join "dbo"."ModeofReceipts" "ModeofReceipt" on "MoneyReceipts"."ModeofReceiptID" = "ModeofReceipt"."ModeofReceiptID"
+	left join "dbo"."AccSubNames" "AccSubName" on "MoneyReceipts"."AccSubNameID" = "AccSubName"."AccSubCode"
+	left join "dbo"."AccSubTypes" "AccSubNameAccSubType" on "AccSubName"."AccSubTypeID" = "AccSubNameAccSubType"."AccSubTypeID"
+	left join "dbo"."CoaDetail" "CoaDetail" on "MoneyReceipts"."CoaDetailID" = "CoaDetail"."CoaDetailID"
+	left join "dbo"."AccBalTypes" "CoaDetailAccBalType" on "CoaDetail"."AccBalTypeID" = "CoaDetailAccBalType"."AccBalTypeID"
+	left join "dbo"."AccCurrencys" "CoaDetailAccCurrency" on "CoaDetail"."AccCurrency" = "CoaDetailAccCurrency"."AccCurrencyID"
+	left join "dbo"."AccDests" "CoaDetailAccDest" on "CoaDetail"."AccDestID" = "CoaDetailAccDest"."AccDestID"
+	left join "dbo"."CompanyTypes" "CoaDetailAccDestCompanyType" on "CoaDetailAccDest"."CompanyType" = "CoaDetailAccDestCompanyType"."CompTypeID"
+	left join "dbo"."AccFunds" "CoaDetailAccFund" on "CoaDetail"."AccFundID" = "CoaDetailAccFund"."AccFundID"
+	left join "dbo"."AccSubTypes" "CoaDetailAccSubType" on "CoaDetail"."AccSubTypeID" = "CoaDetailAccSubType"."AccSubTypeID"
+	left join "dbo"."AccTypes" "CoaDetailAccType" on "CoaDetail"."AccTypeID" = "CoaDetailAccType"."AccTypeID"
+	left join "dbo"."CoaControl" "CoaDetailCoaControl" on "CoaDetail"."CoaControlID" = "CoaDetailCoaControl"."CoaControlID"
+	left join "dbo"."AccBalTypes" "CoaDetailCoaControlAccBalType" on "CoaDetailCoaControl"."AccBalTypeID" = "CoaDetailCoaControlAccBalType"."AccBalTypeID"
+	left join "dbo"."AccDests" "CoaDetailCoaControlAccDest" on "CoaDetailCoaControl"."AccDestID" = "CoaDetailCoaControlAccDest"."AccDestID"
+	left join "dbo"."AccTypes" "CoaDetailCoaControlAccType" on "CoaDetailCoaControl"."AccTypeID" = "CoaDetailCoaControlAccType"."AccTypeID"
+	left join "dbo"."CompanyTypes" "CoaDetailCoaControlCompType" on "CoaDetailCoaControl"."CompType" = "CoaDetailCoaControlCompType"."CompTypeID"
+	left join "dbo"."CoaMain" "CoaDetailCoaMain" on "CoaDetail"."CoaMainID" = "CoaDetailCoaMain"."CoaMainID"
+	left join "dbo"."AccBalTypes" "CoaDetailCoaMainAccBalType" on "CoaDetailCoaMain"."AccBalTypeID" = "CoaDetailCoaMainAccBalType"."AccBalTypeID"
+	left join "dbo"."AccDests" "CoaDetailCoaMainAccDest" on "CoaDetailCoaMain"."AccDestID" = "CoaDetailCoaMainAccDest"."AccDestID"
+	left join "dbo"."AccFunds" "CoaDetailCoaMainAccFund" on "CoaDetailCoaMain"."AccFundID" = "CoaDetailCoaMainAccFund"."AccFundID"
+	left join "dbo"."AccTypes" "CoaDetailCoaMainAccType" on "CoaDetailCoaMain"."AccTypeID" = "CoaDetailCoaMainAccType"."AccTypeID"
+	left join "dbo"."CoaControl" "CoaDetailCoaMainCoaControl" on "CoaDetailCoaMain"."CoaControlID" = "CoaDetailCoaMainCoaControl"."CoaControlID"
+	left join "dbo"."CoaSub" "CoaDetailCoaSub" on "CoaDetail"."CoaSubID" = "CoaDetailCoaSub"."CoaSubID"
+	left join "dbo"."AccBalTypes" "CoaDetailCoaSubAccBalType" on "CoaDetailCoaSub"."AccBalTypeID" = "CoaDetailCoaSubAccBalType"."AccBalTypeID"
+	left join "dbo"."AccDests" "CoaDetailCoaSubAccDest" on "CoaDetailCoaSub"."AccDestID" = "CoaDetailCoaSubAccDest"."AccDestID"
+	left join "dbo"."AccFunds" "CoaDetailCoaSubAccFund" on "CoaDetailCoaSub"."AccFundID" = "CoaDetailCoaSubAccFund"."AccFundID"
+	left join "dbo"."AccTypes" "CoaDetailCoaSubAccType" on "CoaDetailCoaSub"."AccTypeID" = "CoaDetailCoaSubAccType"."AccTypeID"
+	left join "dbo"."CoaControl" "CoaDetailCoaSubCoaControl" on "CoaDetailCoaSub"."CoaControlID" = "CoaDetailCoaSubCoaControl"."CoaControlID"
+	left join "dbo"."CoaMain" "CoaDetailCoaSubCoaMain" on "CoaDetailCoaSub"."CoaMainID" = "CoaDetailCoaSubCoaMain"."CoaMainID"
+]]></text>
+    </command>
+    <command id="MoneyReceiptsIDIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="MoneyReceiptsID" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="MoneyReceiptsID" type="Int64" allowNulls="false" isPrimaryKey="true" label="ID" readOnly="true" />
+    <field name="MRDate" type="DateTime" label="Date" showInSummary="true" allowNulls="false" />
+    <field name="MRNo" type="String" label="Money Receipt No" length="50" showInSummary="true" />
+    <field name="PlotSaleID" type="Int64" label="Plot Sale#" showInSummary="true" />
+    <field name="PayCatID" type="Int32" label="Purpose" showInSummary="true" calculated="true" allowNulls="false">
+      <items dataController="Paycategory" newDataView="createForm1" dataTextField="Category" dataValueField="PayCatID" />
+    </field>
+    <field name="PayCatCategory" type="String" readOnly="true" label="Purpose" length="50" />
+    <field name="PCode" type="Int32" label="P Code" showInSummary="true" />
+    <field name="ReceAmount" type="Decimal" label="Receive Amount" allowNulls="false" />
+    <field name="ModeofReceiptID" type="Int32" allowNulls="false" label="Vide">
+      <items style="Lookup" dataController="ModeofReceipts" newDataView="createForm1" dataView="grid1" dataTextField="Description" dataValueField="ModeofReceiptID" />
+    </field>
+    <field name="ModeofReceiptDescription" type="String" readOnly="true" label="Vide" length="50" />
+    <field name="ApplicantId" type="Int32" label="Applicant#" />
+    <field name="AccSubNameID" type="Int32" label="Acc Sub Name#" allowNulls="false">
+      <items style="Lookup" dataController="AccSubNames" newDataView="createForm1" />
+    </field>
+    <field name="AccSubNameAccSubName" type="String" readOnly="true" label="Acc Sub Name" length="75" />
+    <field name="AccSubNameAccSubTypeAccSubType" type="String" readOnly="true" label="Acc Sub Name Acc Sub Type" length="2" />
+    <field name="Fileno" type="String" label="Fileno" length="50" />
+    <field name="Checkno" type="String" label="Check No/Pay Order No" length="50" />
+    <field name="CheckDate" type="DateTime" label="Check/Pay Order Date" />
+    <field name="CheckPostDate" type="DateTime" label="Check Post Date" />
+    <field name="CheckBankName" type="String" label="Bank Name" length="100" />
+    <field name="BankBranch" type="String" label="Branch" length="100" />
+    <field name="Dlt" type="Boolean" label="Dlt" />
+    <field name="Description" type="String" label="Description" length="250" />
+    <field name="MultiPayment" type="Boolean" default="((0))" label="Multi Payment" />
+    <field name="CancelMR" type="Boolean" label="Cancel MR" />
+    <field name="CancelDate" type="DateTime" label="Cancel Date" />
+    <field name="ReceiptType" type="Boolean" label="Receipt Type" />
+    <field name="GName" type="String" label="Payee" length="50" allowNulls="false" />
+    <field name="GFathersName" type="String" label="Fathers Name" length="50" />
+    <field name="Gaddress" type="String" label="Address" length="100" />
+    <field name="vide" type="String" label="Vide" length="150" />
+    <field name="Created_BY" type="String" label="Created BY" length="50" />
+    <field name="Created_DT" type="DateTime" default="(getdate())" label="Created DT" />
+    <field name="Updated_BY" type="String" label="Updated BY" length="50" />
+    <field name="Updated_DT" type="DateTime" label="Updated DT" />
+    <field name="Remarks" type="String" label="Remarks" length="50" />
+    <field name="DisplayAction" type="Boolean" default="((0))" label="Display Action" />
+    <field name="AccFundID" type="Int32" label="Company" />
+    <field name="CoaDetailID" type="Int32" label="Income from" contextFields="AccTypeID=4, AccTypeID=2, AccTypeID=3, AccTypeID=1" allowNulls="false">
+      <items style="Lookup" dataController="CoaDetail" newDataView="createForm1" dataView="CoaLookup" dataTextField="AccName" dataValueField="CoaDetailID" />
+    </field>
+    <field name="CoaDetailAccName" type="String" readOnly="true" label=" Account Name" length="150" />
+    <field name="CoaDetailAccBalTypeAccBalType" type="String" readOnly="true" label="Coa Detail Acc Bal Type" length="2" />
+    <field name="CoaDetailAccCurrencyAccCurrencyName" type="String" readOnly="true" label="Coa Detail Acc Currency Name" length="10" />
+    <field name="CoaDetailAccDestAccDest" type="String" readOnly="true" label="Coa Detail Acc Dest" length="2" />
+    <field name="CoaDetailAccDestCompanyTypeDescription" type="String" readOnly="true" label="Coa Detail Acc Dest Company Type Description" length="50" />
+    <field name="CoaDetailAccFundAccFundCode" type="String" readOnly="true" label="Coa Detail Acc Fund Code" length="4" />
+    <field name="CoaDetailAccSubTypeAccSubType" type="String" readOnly="true" label="Coa Detail Acc Sub Type" length="2" />
+    <field name="CoaDetailAccTypeAccType" type="String" readOnly="true" label="Coa Detail Acc Type" length="2" />
+    <field name="CoaDetailCoaControlAccName" type="String" readOnly="true" label="Coa Detail Coa Control Acc Name" length="50" />
+    <field name="CoaDetailCoaControlAccBalTypeAccBalType" type="String" readOnly="true" label="Coa Detail Coa Control Acc Bal Type" length="2" />
+    <field name="CoaDetailCoaControlAccDestAccDest" type="String" readOnly="true" label="Coa Detail Coa Control Acc Dest" length="2" />
+    <field name="CoaDetailCoaControlAccTypeAccType" type="String" readOnly="true" label="Coa Detail Coa Control Acc Type" length="2" />
+    <field name="CoaDetailCoaControlCompTypeDescription" type="String" readOnly="true" label="Coa Detail Coa Control Comp Type Description" length="50" />
+    <field name="CoaDetailCoaMainAccName" type="String" readOnly="true" label="Coa Detail Coa Main Acc Name" length="50" />
+    <field name="CoaDetailCoaMainAccBalTypeAccBalType" type="String" readOnly="true" label="Coa Detail Coa Main Acc Bal Type" length="2" />
+    <field name="CoaDetailCoaMainAccDestAccDest" type="String" readOnly="true" label="Coa Detail Coa Main Acc Dest" length="2" />
+    <field name="CoaDetailCoaMainAccFundAccFundCode" type="String" readOnly="true" label="Coa Detail Coa Main Acc Fund Code" length="4" />
+    <field name="CoaDetailCoaMainAccTypeAccType" type="String" readOnly="true" label="Coa Detail Coa Main Acc Type" length="2" />
+    <field name="CoaDetailCoaMainCoaControlAccName" type="String" readOnly="true" label="Coa Detail Coa Main Coa Control Acc Name" length="50" />
+    <field name="CoaDetailCoaSubAccName" type="String" readOnly="true" label="Coa Detail Coa Sub Acc Name" length="50" />
+    <field name="CoaDetailCoaSubAccBalTypeAccBalType" type="String" readOnly="true" label="Coa Detail Coa Sub Acc Bal Type" length="2" />
+    <field name="CoaDetailCoaSubAccDestAccDest" type="String" readOnly="true" label="Coa Detail Coa Sub Acc Dest" length="2" />
+    <field name="CoaDetailCoaSubAccFundAccFundCode" type="String" readOnly="true" label="Coa Detail Coa Sub Acc Fund Code" length="4" />
+    <field name="CoaDetailCoaSubAccTypeAccType" type="String" readOnly="true" label="Coa Detail Coa Sub Acc Type" length="2" />
+    <field name="CoaDetailCoaSubCoaControlAccName" type="String" readOnly="true" label="Coa Detail Coa Sub Coa Control Acc Name" length="50" />
+    <field name="CoaDetailCoaSubCoaMainAccName" type="String" readOnly="true" label="Coa Detail Coa Sub Coa Main Acc Name" length="50" />
+    <field name="AccTranID" type="Int32" label="Acc Tran#" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Money Receipts (General)" filter="ReceiptType=1 and AccFundID=@BusinessRules_CompanyID" sortExpression="MoneyReceiptsID desc">
+      <headerText>Money Receipts (General)</headerText>
+      <dataFields>
+        <dataField fieldName="ModeofReceiptID" aliasFieldName="ModeofReceiptDescription" />
+        <dataField fieldName="MRNo" columns="50">
+          <headerText>Money Receipt No</headerText>
+        </dataField>
+        <dataField fieldName="MRDate" columns="10">
+          <headerText>Date</headerText>
+        </dataField>
+        <dataField fieldName="GName" columns="50" />
+        <dataField fieldName="GFathersName" columns="50" />
+        <dataField fieldName="Gaddress" rows="5" />
+        <dataField fieldName="PayCatID" columns="15" />
+        <dataField fieldName="Remarks" columns="50">
+          <headerText>Remark</headerText>
+        </dataField>
+        <dataField fieldName="ReceAmount" columns="15">
+          <headerText>Receive Amount</headerText>
+        </dataField>
+        <dataField fieldName="CoaDetailID" columns="15" aliasFieldName="CoaDetailAccName" />
+        <dataField fieldName="MoneyReceiptsID" columns="15" />
+        <dataField fieldName="AccFundID" columns="15" hidden="true" />
+        <dataField fieldName="ReceiptType" hidden="true" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Money Receipts">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" newColumn="true">
+          <dataFields>
+            <dataField fieldName="ReceiptType" hidden="true" />
+            <dataField fieldName="MRDate" columns="10" />
+            <dataField fieldName="GName" columns="50" />
+            <dataField fieldName="GFathersName" columns="50" />
+            <dataField fieldName="Gaddress" rows="5" />
+            <dataField fieldName="PayCatID" columns="15" />
+            <dataField fieldName="Remarks" columns="50">
+              <visibility>
+                <expression test="[PayCatID]=='4'&#xD;&#xA;" type="ClientScript" />
+              </visibility>
+            </dataField>
+            <dataField fieldName="AccFundID" columns="15" hidden="true" />
+            <dataField fieldName="CoaDetailID" columns="15" aliasFieldName="CoaDetailAccName" />
+            <dataField fieldName="ModeofReceiptID" columns="15" />
+            <dataField fieldName="Checkno" columns="50">
+              <readOnly>
+                <expression test="[ModeofReceiptID]=='3' || [ModeofReceiptID]=='4' " type="ClientScript" />
+              </readOnly>
+            </dataField>
+            <dataField fieldName="CheckDate" columns="10">
+              <visibility>
+                <expression test="[ModeofReceiptID]=='3' || [ModeofReceiptID]=='4' " type="ClientScript" />
+              </visibility>
+            </dataField>
+            <dataField fieldName="CheckPostDate" columns="10">
+              <visibility>
+                <expression test="[ModeofReceiptID]=='3' || [ModeofReceiptID]=='4' " type="ClientScript" />
+              </visibility>
+            </dataField>
+            <dataField fieldName="CheckBankName" rows="5">
+              <visibility>
+                <expression test="[ModeofReceiptID]=='3' || [ModeofReceiptID]=='4' || [ModeofReceiptID]=='2' || [ModeofReceiptID]=='5' " type="ClientScript" />
+              </visibility>
+            </dataField>
+            <dataField fieldName="BankBranch" rows="5">
+              <visibility>
+                <expression test="[ModeofReceiptID]=='3' || [ModeofReceiptID]=='4' || [ModeofReceiptID]=='2' || [ModeofReceiptID]=='5' " type="ClientScript" />
+              </visibility>
+            </dataField>
+            <dataField fieldName="ReceAmount" columns="15" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Money Receipts">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" newColumn="true">
+          <dataFields>
+            <dataField fieldName="ReceiptType" hidden="true" />
+            <dataField fieldName="MRDate" columns="10" />
+            <dataField fieldName="GName" columns="50" />
+            <dataField fieldName="GFathersName" columns="50" />
+            <dataField fieldName="Gaddress" rows="2" />
+            <dataField fieldName="PayCatID" columns="15" />
+            <dataField fieldName="Remarks" columns="50">
+              <visibility>
+                <expression test="[PayCatID]=='4'&#xD;&#xA;" type="ClientScript" />
+              </visibility>
+            </dataField>
+            <dataField fieldName="AccFundID" columns="15" hidden="true" />
+            <dataField fieldName="CoaDetailID" columns="15" aliasFieldName="CoaDetailAccName" />
+            <dataField fieldName="ModeofReceiptID" columns="15" />
+            <dataField fieldName="Checkno" columns="50">
+              <visibility>
+                <expression test="[ModeofReceiptID]=='3' || [ModeofReceiptID]=='4' " type="ClientScript" />
+              </visibility>
+            </dataField>
+            <dataField fieldName="CheckDate" columns="10">
+              <visibility>
+                <expression test="[ModeofReceiptID]=='3' || [ModeofReceiptID]=='4' " type="ClientScript" />
+              </visibility>
+            </dataField>
+            <dataField fieldName="CheckPostDate" columns="10">
+              <visibility>
+                <expression test="[ModeofReceiptID]=='3' || [ModeofReceiptID]=='4' " type="ClientScript" />
+              </visibility>
+            </dataField>
+            <dataField fieldName="CheckBankName">
+              <visibility>
+                <expression test="[ModeofReceiptID]=='3' || [ModeofReceiptID]=='4' || [ModeofReceiptID]=='2' || [ModeofReceiptID]=='5' " type="ClientScript" />
+              </visibility>
+            </dataField>
+            <dataField fieldName="BankBranch">
+              <visibility>
+                <expression test="[ModeofReceiptID]=='3' || [ModeofReceiptID]=='4' || [ModeofReceiptID]=='2' || [ModeofReceiptID]=='5' " type="ClientScript" />
+              </visibility>
+            </dataField>
+            <dataField fieldName="ReceAmount" columns="15" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Delete" />
+      <action id="a6" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a7" whenLastCommandName="New" commandName="SQL" headerText="Submit">
+        <data><![CDATA[   declare @moneyreceiptRef nvarchar(50)
+
+exec UPS_MRInsertUpdateAcc @MRDate ,@PayCatID ,@ModeofReceiptID ,@Checkno ,@ReceAmount ,@CheckDate ,@CheckPostDate ,@CheckBankName,@BankBranch,@Remarks, @AccFundID, @CoaDetailID, @GName, @GFathersName,@Gaddress,@moneyreceiptRef output 
+ if (@moneyreceiptRef is not null ) 
+begin
+set @Result_ShowAlert =  @moneyreceiptRef +' is saved'
+set @Result_NavigateUrl ='MoneyReceiptsSales.aspx'
+end
+
+
+
+
+]]></data>
+      </action>
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenKeySelected="true" whenClientScript="this.get_hasDetails()" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+      <action commandName="Navigate" commandArgument="MoneyReceiptReportView.aspx?MoneyReceiptsID={MoneyReceiptsID}&amp;ReceiptType={ReceiptType}&amp;AccSubNameID={AccSubNameID}&amp;_controller=MoneyReceipts" id="a100" headerText="View Money Receipt" whenKeySelected="true" />
+      <action commandName="Navigate" commandArgument="MoneyReceiptReport.aspx?MoneyReceiptsID={MoneyReceiptsID}&amp;ReceiptType={ReceiptType}&amp;AccSubNameID={AccSubNameID}&amp;_controller=MoneyReceipts" id="a101" headerText="Print Money Receipt" whenKeySelected="true" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" whenHRef="false:" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" whenHRef="false:" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+  <businessRules>
+    <rule id="r100" commandName="Insert|Update" type="Sql" phase="Execute"><![CDATA[set @PayCatID=4]]></rule>
+  </businessRules>
+</dataController>

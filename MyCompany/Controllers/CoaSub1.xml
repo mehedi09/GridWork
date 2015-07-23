@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="CoaSub1" label="CoaSub1" conflictDetection="overwriteChanges" plugIn="MyCompany.Data.AnnotationPlugIn" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[select
+	"CoaSub"."CoaSubID" "CoaSubID"
+	,"CoaSub"."AccFundID" "AccFundID"
+	,"AccFund"."AccFundName" "AccFundAccFundName"
+	,"CoaSub"."AccFundCode" "AccFundCode"
+	,"CoaSub"."Acccode" "Acccode"
+	,"CoaSub"."AccName" "AccName"
+	,"CoaSub"."AccDesc" "AccDesc"
+	,"CoaSub"."AccTypeID" "AccTypeID"
+	,"AccType"."AccType" "AccTypeAccType"
+,"AccType"."AccTypeName" "AccTypeAccTypeName"
+
+	,"CoaSub"."AccDestID" "AccDestID"
+	,"AccDest"."AccDest" "AccDestAccDest"
+,"AccDest"."AccDestName" "AccDestAccDestName"
+
+	,"AccDestCompanyType"."Description" "AccDestCompanyTypeDescription"
+	,"CoaSub"."AccBalTypeID" "AccBalTypeID"
+	,"AccBalType"."AccBalType" "AccBalTypeAccBalType"
+,"AccBalType"."AccBalTypeName" "AccBalTypeAccBalTypeName"
+
+	,"CoaSub"."AccCurrency" "AccCurrency"
+	,"CoaSub"."AccCurrencyRate" "AccCurrencyRate"
+	,"CoaSub"."ConsTranCode" "ConsTranCode"
+	,"CoaSub"."CoaControlID" "CoaControlID"
+	,"CoaControl"."AccName" "CoaControlAccName"
+	,"CoaControlAccBalType"."AccBalType" "CoaControlAccBalTypeAccBalType"
+	,"CoaControlAccDest"."AccDest" "CoaControlAccDestAccDest"
+	,"CoaControlAccDestCompanyType"."Description" "CoaControlAccDestCompanyTypeDescription"
+	,"CoaControlAccType"."AccType" "CoaControlAccTypeAccType"
+	,"CoaControlCompType"."Description" "CoaControlCompTypeDescription"
+	,"CoaSub"."CoaMainID" "CoaMainID"
+	,"CoaMain"."AccName" "CoaMainAccName"
+	,"CoaMainAccBalType"."AccBalType" "CoaMainAccBalTypeAccBalType"
+	,"CoaMainAccDest"."AccDest" "CoaMainAccDestAccDest"
+	,"CoaMainAccDestCompanyType"."Description" "CoaMainAccDestCompanyTypeDescription"
+	,"CoaMainAccFund"."AccFundName" "CoaMainAccFundAccFundName"
+	,"CoaMainAccType"."AccType" "CoaMainAccTypeAccType"
+	,"CoaMainCoaControl"."AccName" "CoaMainCoaControlAccName"
+	,"CoaMainCoaControlAccBalType"."AccBalType" "CoaMainCoaControlAccBalTypeAccBalType"
+	,"CoaMainCoaControlAccDest"."AccDest" "CoaMainCoaControlAccDestAccDest"
+	,"CoaMainCoaControlAccType"."AccType" "CoaMainCoaControlAccTypeAccType"
+	,"CoaMainCoaControlCompType"."Description" "CoaMainCoaControlCompTypeDescription"
+from "dbo"."CoaSub" "CoaSub"
+	left join "dbo"."AccFunds" "AccFund" on "CoaSub"."AccFundID" = "AccFund"."AccFundID"
+	left join "dbo"."AccTypes" "AccType" on "CoaSub"."AccTypeID" = "AccType"."AccTypeID"
+	left join "dbo"."AccDests" "AccDest" on "CoaSub"."AccDestID" = "AccDest"."AccDestID"
+	left join "dbo"."CompanyTypes" "AccDestCompanyType" on "AccDest"."CompanyType" = "AccDestCompanyType"."CompTypeID"
+	left join "dbo"."AccBalTypes" "AccBalType" on "CoaSub"."AccBalTypeID" = "AccBalType"."AccBalTypeID"
+	left join "dbo"."CoaControl" "CoaControl" on "CoaSub"."CoaControlID" = "CoaControl"."CoaControlID"
+	left join "dbo"."AccBalTypes" "CoaControlAccBalType" on "CoaControl"."AccBalTypeID" = "CoaControlAccBalType"."AccBalTypeID"
+	left join "dbo"."AccDests" "CoaControlAccDest" on "CoaControl"."AccDestID" = "CoaControlAccDest"."AccDestID"
+	left join "dbo"."CompanyTypes" "CoaControlAccDestCompanyType" on "CoaControlAccDest"."CompanyType" = "CoaControlAccDestCompanyType"."CompTypeID"
+	left join "dbo"."AccTypes" "CoaControlAccType" on "CoaControl"."AccTypeID" = "CoaControlAccType"."AccTypeID"
+	left join "dbo"."CompanyTypes" "CoaControlCompType" on "CoaControl"."CompType" = "CoaControlCompType"."CompTypeID"
+	left join "dbo"."CoaMain" "CoaMain" on "CoaSub"."CoaMainID" = "CoaMain"."CoaMainID"
+	left join "dbo"."AccBalTypes" "CoaMainAccBalType" on "CoaMain"."AccBalTypeID" = "CoaMainAccBalType"."AccBalTypeID"
+	left join "dbo"."AccDests" "CoaMainAccDest" on "CoaMain"."AccDestID" = "CoaMainAccDest"."AccDestID"
+	left join "dbo"."CompanyTypes" "CoaMainAccDestCompanyType" on "CoaMainAccDest"."CompanyType" = "CoaMainAccDestCompanyType"."CompTypeID"
+	left join "dbo"."AccFunds" "CoaMainAccFund" on "CoaMain"."AccFundID" = "CoaMainAccFund"."AccFundID"
+	left join "dbo"."AccTypes" "CoaMainAccType" on "CoaMain"."AccTypeID" = "CoaMainAccType"."AccTypeID"
+	left join "dbo"."CoaControl" "CoaMainCoaControl" on "CoaMain"."CoaControlID" = "CoaMainCoaControl"."CoaControlID"
+	left join "dbo"."AccBalTypes" "CoaMainCoaControlAccBalType" on "CoaMainCoaControl"."AccBalTypeID" = "CoaMainCoaControlAccBalType"."AccBalTypeID"
+	left join "dbo"."AccDests" "CoaMainCoaControlAccDest" on "CoaMainCoaControl"."AccDestID" = "CoaMainCoaControlAccDest"."AccDestID"
+	left join "dbo"."AccTypes" "CoaMainCoaControlAccType" on "CoaMainCoaControl"."AccTypeID" = "CoaMainCoaControlAccType"."AccTypeID"
+	left join "dbo"."CompanyTypes" "CoaMainCoaControlCompType" on "CoaMainCoaControl"."CompType" = "CoaMainCoaControlCompType"."CompTypeID"
+]]></text>
+    </command>
+    <command id="CoaSubIDIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="CoaSubID" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="CoaSubID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Coa Sub#" readOnly="true" />
+    <field name="AccFundID" type="Int32" allowNulls="false" label="Company" showInSummary="true">
+      <items style="Lookup" dataController="AccFunds" newDataView="createForm1" dataView="grid1" dataTextField="AccFundName" dataValueField="AccFundID" />
+    </field>
+    <field name="AccFundAccFundName" type="String" readOnly="true" label="Acc Fund Name" length="100" />
+    <field name="AccFundCode" type="String" label="Acc Fund Code" length="4" showInSummary="true" />
+    <field name="Acccode" type="String" label="Acccode" length="11" showInSummary="true" />
+    <field name="AccName" type="String" allowNulls="false" label="3rd Group Ledger Name" length="50" showInSummary="true" />
+    <field name="AccDesc" type="String" label="3rd Group Ledger Description" length="50" showInSummary="true" />
+    <field name="AccTypeID" type="Int32" allowNulls="false" label="Account Type">
+      <items style="Lookup" dataController="AccTypes" newDataView="createForm1" dataView="grid1" dataTextField="AccTypeName" dataValueField="AccTypeID" />
+    </field>
+    <field name="AccTypeAccType" type="String" readOnly="true" label="Acc Type" length="2" />
+    <field name="AccDestID" type="Int32" allowNulls="false" label="Destination">
+      <items style="Lookup" dataController="AccDests" newDataView="createForm1" dataView="grid1" dataTextField="AccDestName" dataValueField="AccDestID" />
+    </field>
+    <field name="AccDestAccDest" type="String" readOnly="true" label="Acc Dest" length="2" />
+    <field name="AccDestCompanyTypeDescription" type="String" readOnly="true" label="Acc Dest Company Type Description" length="50" />
+    <field name="AccBalTypeID" type="Int32" allowNulls="false" label="Balance Type">
+      <items style="Lookup" dataController="AccBalTypes" newDataView="createForm1" dataView="grid1" dataTextField="AccBalTypeName" dataValueField="AccBalTypeID" />
+    </field>
+    <field name="AccBalTypeAccBalType" type="String" readOnly="true" label="Acc Bal Type" length="2" />
+    <field name="AccCurrency" type="Int32" label="Acc Currency" />
+    <field name="AccCurrencyRate" type="Decimal" label="Acc Currency Rate" />
+    <field name="ConsTranCode" type="String" label="Cons Tran Code" length="10" />
+    <field name="CoaControlID" type="Int32" label="1st Group Ledger">
+      <items style="Lookup" dataController="CoaControl" newDataView="createForm1" dataView="grid1" dataTextField="AccName" dataValueField="CoaControlID" />
+    </field>
+    <field name="CoaControlAccName" type="String" readOnly="true" label="Ist Group Ledger" length="50" />
+    <field name="CoaControlAccBalTypeAccBalType" type="String" readOnly="true" label="Coa Control Acc Bal Type" length="2" />
+    <field name="CoaControlAccDestAccDest" type="String" readOnly="true" label="Coa Control Acc Dest" length="2" />
+    <field name="CoaControlAccDestCompanyTypeDescription" type="String" readOnly="true" label="Coa Control Acc Dest Company Type Description" length="50" />
+    <field name="CoaControlAccTypeAccType" type="String" readOnly="true" label="Coa Control Acc Type" length="2" />
+    <field name="CoaControlCompTypeDescription" type="String" readOnly="true" label="Coa Control Comp Type Description" length="50" />
+    <field name="CoaMainID" type="Int32" label="2nd Group Ledger" contextFields="AccFundID=AccFundID">
+      <items style="Lookup" dataController="CoaMain" newDataView="createForm1" dataView="grid1" dataTextField="AccName" dataValueField="CoaMainID" copy="AccTypeID=AccTypeID,AccDestID=AccDestID,AccBalTypeID=AccBalTypeID,CoaControlID=CoaControlID,CoaMainID=CoaMainID" pageSize="10" letters="true" description="2nd Group Ledger" />
+    </field>
+    <field name="CoaMainAccName" type="String" readOnly="true" label="2nd Group Ledger" length="50" />
+    <field name="CoaMainAccBalTypeAccBalType" type="String" readOnly="true" label="Coa Main Acc Bal Type" length="2" />
+    <field name="CoaMainAccDestAccDest" type="String" readOnly="true" label="Coa Main Acc Dest" length="2" />
+    <field name="CoaMainAccDestCompanyTypeDescription" type="String" readOnly="true" label="Coa Main Acc Dest Company Type Description" length="50" />
+    <field name="CoaMainAccFundAccFundName" type="String" readOnly="true" label="Coa Main Acc Fund Name" length="100" />
+    <field name="CoaMainAccTypeAccType" type="String" readOnly="true" label="Coa Main Acc Type" length="2" />
+    <field name="CoaMainCoaControlAccName" type="String" readOnly="true" label="Coa Main Coa Control Acc Name" length="50" />
+    <field name="CoaMainCoaControlAccBalTypeAccBalType" type="String" readOnly="true" label="Coa Main Coa Control Acc Bal Type" length="2" />
+    <field name="CoaMainCoaControlAccDestAccDest" type="String" readOnly="true" label="Coa Main Coa Control Acc Dest" length="2" />
+    <field name="CoaMainCoaControlAccTypeAccType" type="String" readOnly="true" label="Coa Main Coa Control Acc Type" length="2" />
+    <field name="CoaMainCoaControlCompTypeDescription" type="String" readOnly="true" label="Coa Main Coa Control Comp Type Description" length="50" />
+    <field name="AccBalTypeAccBalTypeName" type="String" allowNulls="false" label="Balance Type" allowQBE="false" allowSorting="false" htmlEncode="false" hidden="false" length="50">
+      <items letters="false" />
+    </field>
+    <field name="AccDestAccDestName" type="String" allowNulls="false" label="Destination " allowQBE="false" allowSorting="false" htmlEncode="false" hidden="false" length="50">
+      <items letters="false" />
+    </field>
+    <field name="AccTypeAccTypeName" type="String" allowNulls="false" label="Account Type" allowQBE="false" allowSorting="false" htmlEncode="false" hidden="false" length="50">
+      <items letters="false" />
+    </field>
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="3rd Group Ledger" filter="AccFundID=@Session_CompanyID" reportTemplate="true">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="AccFundID" hidden="true" aliasFieldName="AccFundAccFundName" />
+        <dataField fieldName="Acccode" columns="11" hidden="true" />
+        <dataField fieldName="CoaControlID" columns="15" aliasFieldName="CoaControlAccName" />
+        <dataField fieldName="CoaMainID" columns="15" aliasFieldName="CoaMainAccName" />
+        <dataField fieldName="AccName" columns="50" />
+        <dataField fieldName="AccDesc" columns="50" hidden="true" />
+        <dataField fieldName="AccTypeID" columns="15" aliasFieldName="AccTypeAccTypeName" />
+        <dataField fieldName="AccDestID" columns="15" aliasFieldName="AccDestAccDestName" />
+        <dataField fieldName="AccBalTypeID" columns="15" aliasFieldName="AccBalTypeAccBalTypeName" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review 3rd Group">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="3rd Group" newColumn="true">
+          <dataFields>
+            <dataField fieldName="AccFundID" />
+            <dataField fieldName="CoaMainID" />
+            <dataField fieldName="AccName" columns="50">
+              <headerText>2nd Group Ledger Name</headerText>
+            </dataField>
+            <dataField fieldName="AccDesc" columns="50">
+              <headerText>2nd Group Ledger Description</headerText>
+            </dataField>
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New 3rd Group">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="New 3rd Group" newColumn="true">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="AccFundID" />
+            <dataField fieldName="CoaMainID" />
+            <dataField fieldName="AccName" columns="50">
+              <headerText>3rd Group Ledger Name</headerText>
+            </dataField>
+            <dataField fieldName="AccDesc" columns="50">
+              <headerText>3rd Group Ledger Description</headerText>
+            </dataField>
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="grid3" type="Grid" commandId="command1" label="3rd Group Ledger" filter="AccFundID=@Session_CompanyID" reportTemplate="true">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="AccFundID" />
+        <dataField fieldName="Acccode" columns="11" hidden="true" />
+        <dataField fieldName="CoaControlID" columns="15" aliasFieldName="CoaControlAccName" />
+        <dataField fieldName="CoaMainID" columns="15" aliasFieldName="CoaMainAccName" />
+        <dataField fieldName="AccName" columns="50" />
+        <dataField fieldName="AccDesc" columns="50" />
+        <dataField fieldName="AccTypeID" columns="15" aliasFieldName="AccTypeAccTypeName" />
+        <dataField fieldName="AccDestID" columns="15" aliasFieldName="AccDestAccDestName" />
+        <dataField fieldName="AccBalTypeID" columns="15" aliasFieldName="AccBalTypeAccBalTypeName" />
+      </dataFields>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" whenHRef="false:" />
+      <action id="a2" commandName="Edit" whenHRef="false:" />
+      <action id="a3" commandName="Delete" whenHRef="false:" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" whenHRef="false:" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" whenHRef="false:" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Delete" />
+      <action id="a6" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenKeySelected="true" whenClientScript="this.get_hasDetails()" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" whenHRef="false:" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" whenHRef="false:" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" whenHRef="false:" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+</dataController>

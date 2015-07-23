@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="AccBillRegisterH" conflictDetection="overwriteChanges" label="Acc Bill Register H" plugIn="MyCompany.Data.AnnotationPlugIn" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"AccBillRegisterH"."RegID" "RegID"
+	,"AccBillRegisterH"."RegisterPrefix" "RegisterPrefix"
+	,"AccBillRegisterH"."RegisterNo" "RegisterNo"
+	,"AccBillRegisterH"."RegisterDate" "RegisterDate"
+	,"AccBillRegisterH"."BillEmployee" "BillEmployee"
+	,"AccBillRegisterH"."AccVoucherTranID" "AccVoucherTranID"
+	,"AccBillRegisterH"."PreparedBy" "PreparedBy"
+	,"AccBillRegisterH"."PreparedDate" "PreparedDate"
+	,"AccBillRegisterH"."ApprovedBy" "ApprovedBy"
+	,"AccBillRegisterH"."ApprovedDate" "ApprovedDate"
+	,"AccBillRegisterH"."Remarks" "Remarks"
+	,"AccBillRegisterH"."Status" "Status"
+from "dbo"."AccBillRegisterH" "AccBillRegisterH"
+]]></text>
+    </command>
+    <command id="RegIDIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="RegID" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="RegID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Reg#" readOnly="true" />
+    <field name="RegisterPrefix" type="String" label="Register Prefix" length="50" showInSummary="true">
+      <items style="DropDownList" dataController="Prefix" dataView="grid1" dataTextField="Prefix" dataValueField="Prefix" newDataView="createForm1" />
+    </field>
+    <field name="RegisterNo" type="String" label="Register No" length="50" showInSummary="true" />
+    <field name="RegisterDate" type="DateTime" label="Register Date" showInSummary="true" />
+    <field name="BillEmployee" type="Int32" label="Bill Employee" showInSummary="true">
+      <items style="Lookup" dataController="Employees" dataView="grid1" dataTextField="EmpName" dataValueField="EmployeeID" newDataView="createForm1" />
+    </field>
+    <field name="AccVoucherTranID" type="Int32" label="Vaocher No" showInSummary="true" />
+    <field name="PreparedBy" type="Int32" label="Prepared By" />
+    <field name="PreparedDate" type="DateTime" label="Prepared Date" />
+    <field name="ApprovedBy" type="Int32" label="Approved By" />
+    <field name="ApprovedDate" type="DateTime" label="Approved Date" />
+    <field name="Remarks" type="String" label="Remarks" length="50" />
+    <field name="Status" type="String" default="(N'Initial')" label="Status" length="50" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Acc Bill Register H">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="RegID" columns="15" hidden="true" />
+        <dataField fieldName="RegisterNo" columns="50" />
+        <dataField fieldName="RegisterDate" columns="10" />
+        <dataField fieldName="BillEmployee" columns="15" />
+        <dataField fieldName="AccVoucherTranID" columns="15" />
+        <dataField fieldName="Status" columns="50" />
+        <dataField fieldName="Remarks" columns="50" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Acc Bill Register H">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Acc Bill Register H" newColumn="true">
+          <description><![CDATA[$DefaultEditDescription]]></description>
+          <dataFields>
+            <dataField fieldName="RegisterPrefix" columns="50" />
+            <dataField fieldName="RegisterDate" columns="10" />
+            <dataField fieldName="BillEmployee" columns="15" />
+            <dataField fieldName="Remarks" columns="30" rows="2" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Acc Bill Register H">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="New Acc Bill Register H" newColumn="true">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="RegisterPrefix" columns="50" />
+            <dataField fieldName="RegisterNo" columns="50" hidden="true" />
+            <dataField fieldName="RegisterDate" columns="10" />
+            <dataField fieldName="BillEmployee" columns="15" />
+            <dataField fieldName="AccVoucherTranID" columns="15" hidden="true" />
+            <dataField fieldName="PreparedBy" columns="15" hidden="true" />
+            <dataField fieldName="PreparedDate" columns="10" hidden="true" />
+            <dataField fieldName="ApprovedBy" columns="15" hidden="true" />
+            <dataField fieldName="ApprovedDate" columns="10" hidden="true" />
+            <dataField fieldName="Remarks" columns="30" rows="2" />
+            <dataField fieldName="Status" columns="50" hidden="true" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Delete" />
+      <action id="a6" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a7" whenLastCommandName="New" commandName="SQL" headerText="Add">
+        <data><![CDATA[exec USP_BILLREG_CREATE @RegisterPrefix,@RegisterDate,@BillEmployee,@Remarks
+]]></data>
+      </action>
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenKeySelected="true" whenClientScript="this.get_hasDetails()" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+      <action commandName="Custom" commandArgument="ApproveBill" headerText="Approve" id="a100" />
+    </actionGroup>
+  </actions>
+  <businessRules>
+    <rule id="r100" commandName="Custom" commandArgument="ApproveBill" type="Sql" phase="Execute"><![CDATA[exec USP_Approved_Bill_Register @RegID]]></rule>
+  </businessRules>
+</dataController>

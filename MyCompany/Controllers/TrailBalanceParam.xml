@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="TrailBalanceParam" label="TrailBalanceParam" conflictDetection="overwriteChanges" plugIn="MyCompany.Data.AnnotationPlugIn" handler="MyCompany.Rules.TrailBalanceParamBusinessRules" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <fields>
+    <field name="AccFundCode" type="Int32" label="Company Name" htmlEncode="false" hidden="false">
+      <items style="AutoComplete" dataController="AccFunds" dataTextField="AccFundName" dataValueField="AccFundID" letters="false" dataView="grid1" />
+    </field>
+    <field name="FrDate" type="DateTime" allowNulls="false" label="From Date" allowQBE="false" allowSorting="false" htmlEncode="false" hidden="false">
+      <items letters="false" />
+    </field>
+    <field name="ToDate" type="DateTime" allowNulls="false" label="To Date" allowQBE="false" allowSorting="false" htmlEncode="false" hidden="false">
+      <items letters="false" />
+    </field>
+  </fields>
+</dataController>

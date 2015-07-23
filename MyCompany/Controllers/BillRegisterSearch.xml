@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="BillRegisterSearch" label="BillRegisterSearch" conflictDetection="overwriteChanges" plugIn="MyCompany.Data.AnnotationPlugIn" handler="MyCompany.Rules.BillRegisterSearchBusinessRules" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"BillRegister"."BillRegisterID" "BillRegisterID"
+	,"BillRegister"."BillRegisterNo" "BillRegisterNo"
+	,"BillRegister"."BillDate" "BillDate"
+	,"BillRegister"."SupplierID" "SupplierID"
+	,"Supplier"."AccSubName" "SupplierAccSubName"
+	,"SupplierAccSubType"."AccSubType" "SupplierAccSubTypeAccSubType"
+	,"BillRegister"."ProductDescription" "ProductDescription"
+	,"BillRegister"."Reference" "Reference"
+	,"BillRegister"."Quantity" "Quantity"
+	,"BillRegister"."UnitPrice" "UnitPrice"
+	,"BillRegister"."BillAmount" "BillAmount"
+	,"BillRegister"."AccFundID" "AccFundID"
+	,"AccFund"."AccFundName" "AccFundAccFundName"
+	,"BillRegister"."ProjectID" "ProjectID"
+	,"BillRegister"."PaidAmount" "PaidAmount"
+	,"BillRegister"."VchrTranID" "VchrTranID"
+	,"BillRegister"."VchrTypeID" "VchrTypeID"
+	,"BillRegister"."ExpenseHeadAccID" "ExpenseHeadAccID"
+	,"BillRegister"."HeadAccID" "HeadAccID"
+	,"HeadAcc"."AccName" "HeadAccAccName"
+	,"HeadAccAccBalType"."AccBalType" "HeadAccAccBalTypeAccBalType"
+	,"HeadAccAccCurrency"."AccCurrencyName" "HeadAccAccCurrencyAccCurrencyName"
+	,"HeadAccAccDest"."AccDest" "HeadAccAccDestAccDest"
+	,"HeadAccAccDestCompanyType"."Description" "HeadAccAccDestCompanyTypeDescription"
+	,"HeadAccAccFund"."AccFundName" "HeadAccAccFundAccFundName"
+	,"HeadAccAccSubType"."AccSubType" "HeadAccAccSubTypeAccSubType"
+	,"HeadAccAccType"."AccType" "HeadAccAccTypeAccType"
+	,"HeadAccCoaControl"."AccName" "HeadAccCoaControlAccName"
+	,"HeadAccCoaControlAccBalType"."AccBalType" "HeadAccCoaControlAccBalTypeAccBalType"
+	,"HeadAccCoaControlAccDest"."AccDest" "HeadAccCoaControlAccDestAccDest"
+	,"HeadAccCoaControlAccType"."AccType" "HeadAccCoaControlAccTypeAccType"
+	,"HeadAccCoaControlCompType"."Description" "HeadAccCoaControlCompTypeDescription"
+	,"HeadAccCoaMain"."AccName" "HeadAccCoaMainAccName"
+	,"HeadAccCoaMainAccBalType"."AccBalType" "HeadAccCoaMainAccBalTypeAccBalType"
+	,"HeadAccCoaMainAccDest"."AccDest" "HeadAccCoaMainAccDestAccDest"
+	,"HeadAccCoaMainAccFund"."AccFundName" "HeadAccCoaMainAccFundAccFundName"
+	,"HeadAccCoaMainAccType"."AccType" "HeadAccCoaMainAccTypeAccType"
+	,"HeadAccCoaMainCoaControl"."AccName" "HeadAccCoaMainCoaControlAccName"
+	,"HeadAccCoaSub"."AccName" "HeadAccCoaSubAccName"
+	,"HeadAccCoaSubAccBalType"."AccBalType" "HeadAccCoaSubAccBalTypeAccBalType"
+	,"HeadAccCoaSubAccDest"."AccDest" "HeadAccCoaSubAccDestAccDest"
+	,"HeadAccCoaSubAccFund"."AccFundName" "HeadAccCoaSubAccFundAccFundName"
+	,"HeadAccCoaSubAccType"."AccType" "HeadAccCoaSubAccTypeAccType"
+	,"HeadAccCoaSubCoaControl"."AccName" "HeadAccCoaSubCoaControlAccName"
+	,"HeadAccCoaSubCoaMain"."AccName" "HeadAccCoaSubCoaMainAccName"
+	,"BillRegister"."RevAccID" "RevAccID"
+	,"BillRegister"."Bankname" "Bankname"
+	,"BillRegister"."ChequeNo" "ChequeNo"
+	,"BillRegister"."ChequeDT" "ChequeDT"
+	,"BillRegister"."IsPost" "IsPost"
+	,"BillRegister"."PostDate" "PostDate"
+	,"BillRegister"."IsPartialPay" "IsPartialPay"
+from "dbo"."BillRegister" "BillRegister"
+	left join "dbo"."AccSubNames" "Supplier" on "BillRegister"."SupplierID" = "Supplier"."AccSubCode"
+	left join "dbo"."AccSubTypes" "SupplierAccSubType" on "Supplier"."AccSubTypeID" = "SupplierAccSubType"."AccSubTypeID"
+	left join "dbo"."AccFunds" "AccFund" on "BillRegister"."AccFundID" = "AccFund"."AccFundID"
+	left join "dbo"."CoaDetail" "HeadAcc" on "BillRegister"."HeadAccID" = "HeadAcc"."CoaDetailID"
+	left join "dbo"."AccBalTypes" "HeadAccAccBalType" on "HeadAcc"."AccBalTypeID" = "HeadAccAccBalType"."AccBalTypeID"
+	left join "dbo"."AccCurrencys" "HeadAccAccCurrency" on "HeadAcc"."AccCurrency" = "HeadAccAccCurrency"."AccCurrencyID"
+	left join "dbo"."AccDests" "HeadAccAccDest" on "HeadAcc"."AccDestID" = "HeadAccAccDest"."AccDestID"
+	left join "dbo"."CompanyTypes" "HeadAccAccDestCompanyType" on "HeadAccAccDest"."CompanyType" = "HeadAccAccDestCompanyType"."CompTypeID"
+	left join "dbo"."AccFunds" "HeadAccAccFund" on "HeadAcc"."AccFundID" = "HeadAccAccFund"."AccFundID"
+	left join "dbo"."AccSubTypes" "HeadAccAccSubType" on "HeadAcc"."AccSubTypeID" = "HeadAccAccSubType"."AccSubTypeID"
+	left join "dbo"."AccTypes" "HeadAccAccType" on "HeadAcc"."AccTypeID" = "HeadAccAccType"."AccTypeID"
+	left join "dbo"."CoaControl" "HeadAccCoaControl" on "HeadAcc"."CoaControlID" = "HeadAccCoaControl"."CoaControlID"
+	left join "dbo"."AccBalTypes" "HeadAccCoaControlAccBalType" on "HeadAccCoaControl"."AccBalTypeID" = "HeadAccCoaControlAccBalType"."AccBalTypeID"
+	left join "dbo"."AccDests" "HeadAccCoaControlAccDest" on "HeadAccCoaControl"."AccDestID" = "HeadAccCoaControlAccDest"."AccDestID"
+	left join "dbo"."AccTypes" "HeadAccCoaControlAccType" on "HeadAccCoaControl"."AccTypeID" = "HeadAccCoaControlAccType"."AccTypeID"
+	left join "dbo"."CompanyTypes" "HeadAccCoaControlCompType" on "HeadAccCoaControl"."CompType" = "HeadAccCoaControlCompType"."CompTypeID"
+	left join "dbo"."CoaMain" "HeadAccCoaMain" on "HeadAcc"."CoaMainID" = "HeadAccCoaMain"."CoaMainID"
+	left join "dbo"."AccBalTypes" "HeadAccCoaMainAccBalType" on "HeadAccCoaMain"."AccBalTypeID" = "HeadAccCoaMainAccBalType"."AccBalTypeID"
+	left join "dbo"."AccDests" "HeadAccCoaMainAccDest" on "HeadAccCoaMain"."AccDestID" = "HeadAccCoaMainAccDest"."AccDestID"
+	left join "dbo"."AccFunds" "HeadAccCoaMainAccFund" on "HeadAccCoaMain"."AccFundID" = "HeadAccCoaMainAccFund"."AccFundID"
+	left join "dbo"."AccTypes" "HeadAccCoaMainAccType" on "HeadAccCoaMain"."AccTypeID" = "HeadAccCoaMainAccType"."AccTypeID"
+	left join "dbo"."CoaControl" "HeadAccCoaMainCoaControl" on "HeadAccCoaMain"."CoaControlID" = "HeadAccCoaMainCoaControl"."CoaControlID"
+	left join "dbo"."CoaSub" "HeadAccCoaSub" on "HeadAcc"."CoaSubID" = "HeadAccCoaSub"."CoaSubID"
+	left join "dbo"."AccBalTypes" "HeadAccCoaSubAccBalType" on "HeadAccCoaSub"."AccBalTypeID" = "HeadAccCoaSubAccBalType"."AccBalTypeID"
+	left join "dbo"."AccDests" "HeadAccCoaSubAccDest" on "HeadAccCoaSub"."AccDestID" = "HeadAccCoaSubAccDest"."AccDestID"
+	left join "dbo"."AccFunds" "HeadAccCoaSubAccFund" on "HeadAccCoaSub"."AccFundID" = "HeadAccCoaSubAccFund"."AccFundID"
+	left join "dbo"."AccTypes" "HeadAccCoaSubAccType" on "HeadAccCoaSub"."AccTypeID" = "HeadAccCoaSubAccType"."AccTypeID"
+	left join "dbo"."CoaControl" "HeadAccCoaSubCoaControl" on "HeadAccCoaSub"."CoaControlID" = "HeadAccCoaSubCoaControl"."CoaControlID"
+	left join "dbo"."CoaMain" "HeadAccCoaSubCoaMain" on "HeadAccCoaSub"."CoaMainID" = "HeadAccCoaSubCoaMain"."CoaMainID"
+]]></text>
+    </command>
+    <command id="BillRegisterIDIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="BillRegisterID" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="BillRegisterID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Bill Register#" readOnly="true" />
+    <field name="BillRegisterNo" type="String" label="Bill Register No" length="50" showInSummary="true" />
+    <field name="BillDate" type="DateTime" label="Bill Date" showInSummary="true" />
+    <field name="SupplierID" type="Int32" label="Supplier#" showInSummary="true">
+      <items style="AutoComplete" dataController="AccSubNames" newDataView="createForm1" dataView="grid1" dataTextField="AccSubName" dataValueField="AccSubCode" />
+      <configuration>AccFundID=@Session_CompanyID</configuration>
+    </field>
+    <field name="SupplierAccSubName" type="String" readOnly="true" label="Supplier Acc Sub Name" length="75" />
+    <field name="SupplierAccSubTypeAccSubType" type="String" readOnly="true" label="Supplier Acc Sub Type" length="2" />
+    <field name="ProductDescription" type="String" label="Description" length="150" showInSummary="true" />
+    <field name="Reference" type="String" label="Reference" length="150" showInSummary="true" />
+    <field name="Quantity" type="Decimal" default="((1))" label="Quantity" />
+    <field name="UnitPrice" type="Decimal" default="((1))" label="Unit Price" />
+    <field name="BillAmount" type="Decimal" default="((0))" label="Bill Amount" />
+    <field name="AccFundID" type="Int32" label="Company">
+      <items style="DropDownList" dataController="AccFunds" newDataView="createForm1" dataView="grid1" dataTextField="AccFundName" dataValueField="AccFundID" />
+    </field>
+    <field name="AccFundAccFundName" type="String" readOnly="true" label="Acc Fund Name" length="100" />
+    <field name="ProjectID" type="Int32" label="Project#" />
+    <field name="PaidAmount" type="Decimal" label="Paid Amount" />
+    <field name="VchrTranID" type="Int32" label="Vchr Tran#" />
+    <field name="VchrTypeID" type="Int32" label="Vchr Type#" />
+    <field name="ExpenseHeadAccID" type="Int32" label="Expense Head Acc#" />
+    <field name="HeadAccID" type="Int32" label="Head Acc#">
+      <items style="Lookup" dataController="CoaDetail" newDataView="createForm1" />
+    </field>
+    <field name="HeadAccAccName" type="String" readOnly="true" label="Head Acc Name" length="150" />
+    <field name="HeadAccAccBalTypeAccBalType" type="String" readOnly="true" label="Head Acc Bal Type" length="2" />
+    <field name="HeadAccAccCurrencyAccCurrencyName" type="String" readOnly="true" label="Head Acc Currency Name" length="10" />
+    <field name="HeadAccAccDestAccDest" type="String" readOnly="true" label="Head Acc Dest" length="2" />
+    <field name="HeadAccAccDestCompanyTypeDescription" type="String" readOnly="true" label="Head Acc Dest Company Type Description" length="50" />
+    <field name="HeadAccAccFundAccFundName" type="String" readOnly="true" label="Head Acc Fund Name" length="100" />
+    <field name="HeadAccAccSubTypeAccSubType" type="String" readOnly="true" label="Head Acc Sub Type" length="2" />
+    <field name="HeadAccAccTypeAccType" type="String" readOnly="true" label="Head Acc Type" length="2" />
+    <field name="HeadAccCoaControlAccName" type="String" readOnly="true" label="Head Acc Coa Control Acc Name" length="50" />
+    <field name="HeadAccCoaControlAccBalTypeAccBalType" type="String" readOnly="true" label="Head Acc Coa Control Acc Bal Type" length="2" />
+    <field name="HeadAccCoaControlAccDestAccDest" type="String" readOnly="true" label="Head Acc Coa Control Acc Dest" length="2" />
+    <field name="HeadAccCoaControlAccTypeAccType" type="String" readOnly="true" label="Head Acc Coa Control Acc Type" length="2" />
+    <field name="HeadAccCoaControlCompTypeDescription" type="String" readOnly="true" label="Head Acc Coa Control Comp Type Description" length="50" />
+    <field name="HeadAccCoaMainAccName" type="String" readOnly="true" label="Head Acc Coa Main Acc Name" length="50" />
+    <field name="HeadAccCoaMainAccBalTypeAccBalType" type="String" readOnly="true" label="Head Acc Coa Main Acc Bal Type" length="2" />
+    <field name="HeadAccCoaMainAccDestAccDest" type="String" readOnly="true" label="Head Acc Coa Main Acc Dest" length="2" />
+    <field name="HeadAccCoaMainAccFundAccFundName" type="String" readOnly="true" label="Head Acc Coa Main Acc Fund Name" length="100" />
+    <field name="HeadAccCoaMainAccTypeAccType" type="String" readOnly="true" label="Head Acc Coa Main Acc Type" length="2" />
+    <field name="HeadAccCoaMainCoaControlAccName" type="String" readOnly="true" label="Head Acc Coa Main Coa Control Acc Name" length="50" />
+    <field name="HeadAccCoaSubAccName" type="String" readOnly="true" label="Head Acc Coa Sub Acc Name" length="50" />
+    <field name="HeadAccCoaSubAccBalTypeAccBalType" type="String" readOnly="true" label="Head Acc Coa Sub Acc Bal Type" length="2" />
+    <field name="HeadAccCoaSubAccDestAccDest" type="String" readOnly="true" label="Head Acc Coa Sub Acc Dest" length="2" />
+    <field name="HeadAccCoaSubAccFundAccFundName" type="String" readOnly="true" label="Head Acc Coa Sub Acc Fund Name" length="100" />
+    <field name="HeadAccCoaSubAccTypeAccType" type="String" readOnly="true" label="Head Acc Coa Sub Acc Type" length="2" />
+    <field name="HeadAccCoaSubCoaControlAccName" type="String" readOnly="true" label="Head Acc Coa Sub Coa Control Acc Name" length="50" />
+    <field name="HeadAccCoaSubCoaMainAccName" type="String" readOnly="true" label="Head Acc Coa Sub Coa Main Acc Name" length="50" />
+    <field name="RevAccID" type="Int32" label="Rev Acc#" />
+    <field name="Bankname" type="String" label="Bankname" length="50" />
+    <field name="ChequeNo" type="String" label="Cheque No" length="50" />
+    <field name="ChequeDT" type="DateTime" label="Cheque DT" />
+    <field name="IsPost" type="Boolean" default="((0))" label="Is Post" />
+    <field name="PostDate" type="DateTime" label="Post Date" />
+    <field name="IsPartialPay" type="String" label="Is Partial Pay" length="10" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Bill Search" filter="AccFundID=@Session_CompanyID and (IsPartialPay='Part' or IsPartialPay='Full')">
+      <headerText>Bill Search</headerText>
+      <dataFields>
+        <dataField fieldName="BillRegisterNo" columns="50" />
+        <dataField fieldName="BillDate" columns="10" />
+        <dataField fieldName="SupplierID" aliasFieldName="SupplierAccSubName" hyperlinkFormatString="~/Pages/AccSubNames.aspx?AccSubCode={SupplierID}&amp;_controller=AccSubNames&amp;_commandName=Select&amp;_commandArgument=editForm1" />
+        <dataField fieldName="ProductDescription" />
+        <dataField fieldName="Reference" />
+        <dataField fieldName="BillAmount" columns="15" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Bill Register">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Bill Register" newColumn="true">
+          <description><![CDATA[$DefaultEditDescription]]></description>
+          <dataFields>
+            <dataField fieldName="AccFundID" aliasFieldName="AccFundAccFundName" hyperlinkFormatString="~/Pages/AccFunds.aspx?AccFundID={AccFundID}&amp;_controller=AccFunds&amp;_commandName=Select&amp;_commandArgument=editForm1" />
+            <dataField fieldName="BillRegisterNo" columns="50" />
+            <dataField fieldName="BillDate" columns="10" />
+            <dataField fieldName="SupplierID" aliasFieldName="SupplierAccSubName" hyperlinkFormatString="~/Pages/AccSubNames.aspx?AccSubCode={SupplierID}&amp;_controller=AccSubNames&amp;_commandName=Select&amp;_commandArgument=editForm1" />
+            <dataField fieldName="ProductDescription" />
+            <dataField fieldName="Reference" />
+            <dataField fieldName="BillAmount" columns="15" />
+            <dataField fieldName="ExpenseHeadAccID" columns="15" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Bill Register">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Bill Register" newColumn="true">
+          <description><![CDATA[$DefaultEditDescription]]></description>
+          <dataFields>
+            <dataField fieldName="AccFundID" aliasFieldName="AccFundAccFundName" hyperlinkFormatString="~/Pages/AccFunds.aspx?AccFundID={AccFundID}&amp;_controller=AccFunds&amp;_commandName=Select&amp;_commandArgument=editForm1" />
+            <dataField fieldName="BillRegisterNo" columns="50" />
+            <dataField fieldName="BillDate" columns="10" />
+            <dataField fieldName="SupplierID" aliasFieldName="SupplierAccSubName" hyperlinkFormatString="~/Pages/AccSubNames.aspx?AccSubCode={SupplierID}&amp;_controller=AccSubNames&amp;_commandName=Select&amp;_commandArgument=editForm1" />
+            <dataField fieldName="ProductDescription" />
+            <dataField fieldName="Reference" />
+            <dataField fieldName="BillAmount" columns="15" />
+            <dataField fieldName="ExpenseHeadAccID" columns="15" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Delete" />
+      <action id="a6" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenKeySelected="true" whenClientScript="this.get_hasDetails()" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" whenHRef="false:" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" whenHRef="false:" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" whenHRef="false:" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+</dataController>

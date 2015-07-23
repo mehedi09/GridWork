@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="AccountsReceivable" label="AccountsReceivable" conflictDetection="overwriteChanges" plugIn="MyCompany.Data.AnnotationPlugIn" handler="MyCompany.Rules.AccountsReceivableBusinessRules" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[select
+	"AccSubNames"."AccSubCode" "AccSubCode"
+	,"AccSubNames"."AccSubTypeID" "AccSubTypeID"
+	,"AccSubType"."AccSubType" "AccSubTypeAccSubType"
+	,"AccSubNames"."AccSubID" "AccSubID"
+	,"AccSubNames"."AccSubType" "AccSubType"
+	,"AccSubNames"."AccSubName" "AccSubName"
+	,"AccSubNames"."Address" "Address"
+	,"AccSubNames"."OfficeAdd" "OfficeAdd"
+	,"AccSubNames"."OffPhone" "OffPhone"
+	,"AccSubNames"."HmPhone" "HmPhone"
+	,"AccSubNames"."Mobile" "Mobile"
+	,"AccSubNames"."Fax" "Fax"
+	,"AccSubNames"."Email" "Email"
+	,"AccSubNames"."CPerson" "CPerson"
+	,"AccSubNames"."LicenseNum" "LicenseNum"
+	,"AccSubNames"."LicenseExpDate" "LicenseExpDate"
+	,"AccSubNames"."Dlt" "Dlt"
+	,"AccSubNames"."DesigID" "DesigID"
+	,"AccSubNames"."DeptID" "DeptID"
+	,"AccSubNames"."CustType" "CustType"
+	,"AccSubNames"."AccFundID" "AccFundID"
+from "dbo"."AccSubNames" "AccSubNames"
+	left join "dbo"."AccSubTypes" "AccSubType" on "AccSubNames"."AccSubTypeID" = "AccSubType"."AccSubTypeID"
+where "AccSubNames"."AccSubTypeID"  = 3
+]]></text>
+    </command>
+    <command id="AccSubCodeIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="AccSubCode" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="AccSubCode" type="Int32" allowNulls="false" isPrimaryKey="true" label="Acc Sub Code" readOnly="true" />
+    <field name="AccSubTypeID" type="Int32" label="Type" showInSummary="true">
+      <items style="Lookup" dataController="AccSubTypes" newDataView="createForm1" dataView="grid1" dataTextField="AccSubTypeName" dataValueField="AccSubTypeID" />
+    </field>
+    <field name="AccSubTypeAccSubType" type="String" readOnly="true" label="Acc Sub Type" length="2" />
+    <field name="AccSubID" type="String" label="Acc Sub#" length="10" showInSummary="true" />
+    <field name="AccSubType" type="String" label="Acc Sub Type" length="2" showInSummary="true" />
+    <field name="AccSubName" type="String" allowNulls="false" label="Customer Name" length="75" showInSummary="true" />
+    <field name="Address" type="String" label="Address" length="100" showInSummary="true" />
+    <field name="OfficeAdd" type="String" label="Office Address" length="100" />
+    <field name="OffPhone" type="String" label="Office Phone" length="15" />
+    <field name="HmPhone" type="String" label="Hm Phone" length="15" />
+    <field name="Mobile" type="String" label="Mobile" length="15" />
+    <field name="Fax" type="String" label="Fax" length="15" />
+    <field name="Email" type="String" label="Email" length="50" />
+    <field name="CPerson" type="String" label="Contact Person" length="50" />
+    <field name="LicenseNum" type="String" label="License Num" length="50" />
+    <field name="LicenseExpDate" type="DateTime" label="License Exp Date" />
+    <field name="Dlt" type="Byte" label="Dlt" />
+    <field name="DesigID" type="String" label="Desig#" length="4" />
+    <field name="DeptID" type="String" label="Dept#" length="4" />
+    <field name="CustType" type="String" label="Cust Type" length="50" />
+    <field name="AccFundID" type="Int32" label="Company ">
+      <items style="DropDownList" dataController="AccFunds" dataView="grid1" dataTextField="AccFundName" dataValueField="AccFundID" letters="false" description="Filter by Company " />
+    </field>
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Customers" filter="AccSubTypeID=3" reportLabel="Customers Information" reportTemplate="true" sortExpression="AccSubName">
+      <headerText>Customers Information</headerText>
+      <dataFields>
+        <dataField fieldName="AccFundID" columns="15" hidden="true" />
+        <dataField fieldName="AccSubName" />
+        <dataField fieldName="Address" />
+        <dataField fieldName="OfficeAdd" />
+        <dataField fieldName="OffPhone" columns="15" />
+        <dataField fieldName="Mobile" columns="15" />
+        <dataField fieldName="Fax" columns="15" />
+        <dataField fieldName="Email" columns="50" />
+        <dataField fieldName="CPerson" columns="50" />
+        <dataField fieldName="AccSubTypeID" hidden="true" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Acc Sub Names">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Review Customers" newColumn="true">
+          <description><![CDATA[Customers Information]]></description>
+          <dataFields>
+            <dataField fieldName="AccFundID" columns="15" hidden="true" />
+            <dataField fieldName="AccSubName">
+              <headerText>Customer Name</headerText>
+            </dataField>
+            <dataField fieldName="Address" />
+            <dataField fieldName="OfficeAdd" />
+            <dataField fieldName="OffPhone" columns="15" />
+            <dataField fieldName="Mobile" columns="15" />
+            <dataField fieldName="Fax" columns="15" />
+            <dataField fieldName="Email" columns="50" />
+            <dataField fieldName="CPerson" columns="50" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Supplier">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Customer Information" newColumn="true">
+          <description><![CDATA[Customers Information]]></description>
+          <dataFields>
+            <dataField fieldName="AccFundID" columns="15" hidden="true" />
+            <dataField fieldName="AccSubTypeID" hidden="true" />
+            <dataField fieldName="AccSubName">
+              <headerText>Customer Name</headerText>
+            </dataField>
+            <dataField fieldName="Address" />
+            <dataField fieldName="OfficeAdd" />
+            <dataField fieldName="OffPhone" columns="15" />
+            <dataField fieldName="Mobile" columns="15" />
+            <dataField fieldName="Fax" columns="15" />
+            <dataField fieldName="Email" columns="50" />
+            <dataField fieldName="CPerson" columns="50" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Delete" />
+      <action id="a6" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenKeySelected="true" whenClientScript="this.get_hasDetails()" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+</dataController>

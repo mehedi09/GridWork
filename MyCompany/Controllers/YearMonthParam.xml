@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="YearMonthParam" label="YearMonthParam" conflictDetection="overwriteChanges" plugIn="MyCompany.Data.AnnotationPlugIn" handler="MyCompany.Rules.YearMonthParamBusinessRules" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <fields>
+    <field name="AccFundCode" type="Int32" label="Company Name" allowQBE="false" allowSorting="false" htmlEncode="false" hidden="false">
+      <items style="Lookup" dataController="AccFunds" dataView="grid1" dataTextField="AccFundName" dataValueField="AccFundID" letters="false" />
+    </field>
+    <field name="FrDate" type="DateTime" allowNulls="false" label="From Date" allowQBE="false" allowSorting="false" htmlEncode="false" hidden="false">
+      <items letters="false" />
+    </field>
+    <field name="ToDate" type="DateTime" allowNulls="false" label="To Date" allowQBE="false" allowSorting="false" htmlEncode="false" hidden="false">
+      <items letters="false" />
+    </field>
+  </fields>
+</dataController>

@@ -1,0 +1,72 @@
+﻿.FieldLabel {
+        font-weight: bold;
+        padding: 10px;
+        width: 200px;
+    }
+
+    .RightAlignedInputs input {
+        text-align: right;
+    }
+
+    #Voucher_form {
+        font-size: 1.30em; /* 14px/16=0.875em */
+        font-family: "Times New Roman", Times, serif;
+    }
+
+    #div_Voucher_find {
+        font-size: 1.30em; /* 14px/16=0.875em */
+        font-family: "Times New Roman", Times, serif;
+    }
+
+    .sss {
+        float: right;
+        margin-right: 10%;
+    }
+    .grid-view
+{
+   padding: 0;
+   margin: 0;
+   /*border: 1px solid #333;*/
+   font-family: "Tahoma";
+   font-size: 8.5pt;
+  
+}
+
+.grid-view tr.header
+{
+   color: black;
+   background-color: #cee2fd; /*#FF5600;*/
+   height: 25px;
+   vertical-align: middle;
+   text-align: center;
+   font-weight: bold;
+   border-color:transparent;
+   
+}
+
+.grid-view tr.normal
+{
+   color: #003399;
+   background-color: #ffffff;/*#FDC64E;*/
+   height: 25px;
+   vertical-align: middle;
+   text-align: center;
+   text-decoration-color:#003399;
+}
+
+.grid-view tr.alternate
+{
+   color: #003399;
+   background-color:#f5f5f5;/* #D59200;*/
+   height: 25px;
+   vertical-align: middle;
+   text-align: center;
+   text-decoration-color:#003399;
+}
+.grid-view tr.normal:hover, .grid-view tr.alternate:hover
+{
+   background-color: #ffe6a0;
+   color: #003399;
+  /* font-weight: bold;*/
+  text-decoration-color:#003399;
+}

@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="PreFixSetting" conflictDetection="overwriteChanges" label="Pre Fix Setting" plugIn="MyCompany.Data.AnnotationPlugIn" handler="MyCompany.Rules.PreFixSettingBusinessRules" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"PreFixSetting"."PreFixID" "PreFixID"
+	,"PreFixSetting"."AccFundID" "AccFundID"
+	,"PreFixSetting"."PrefixGRN" "PrefixGRN"
+	,"PreFixSetting"."PrefixISS" "PrefixISS"
+	,"PreFixSetting"."PrefixPO" "PrefixPO"
+	,"PreFixSetting"."PreFixMRGEN" "PreFixMRGEN"
+	,"PreFixSetting"."PreFixMRSALE" "PreFixMRSALE"
+	,"PreFixSetting"."PreFixPDCGEN" "PreFixPDCGEN"
+	,"PreFixSetting"."PreFixPDCSALE" "PreFixPDCSALE"
+	,"PreFixSetting"."PreFixAppl" "PreFixAppl"
+	,"PreFixSetting"."PrefixDeposit" "PrefixDeposit"
+	,"PreFixSetting"."PrefixBillReg" "PrefixBillReg"
+from "dbo"."PreFixSetting" "PreFixSetting"
+]]></text>
+    </command>
+    <command id="PreFixIDIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="PreFixID" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="PreFixID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Pre Fix#" readOnly="true" />
+    <field name="AccFundID" type="Int32" allowNulls="false" label="Company" showInSummary="true" contextFields="AccFundID=@Session_CompanyID">
+      <items style="DropDownList" />
+    </field>
+    <field name="PrefixGRN" type="String" label="Prefix Goods Receiving Notes" length="50" showInSummary="true" />
+    <field name="PrefixISS" type="String" label="Prefix Issue Notes" length="50" showInSummary="true" />
+    <field name="PrefixPO" type="String" label="Prefix Purchase Order" length="50" showInSummary="true" />
+    <field name="PreFixMRGEN" type="String" label="PreFix Money Receipts (General)" length="50" showInSummary="true" />
+    <field name="PreFixMRSALE" type="String" label="PreFix Money Receipts (Sales)" length="50" />
+    <field name="PreFixPDCGEN" type="String" label="PreFix PDC (General)" length="50" />
+    <field name="PreFixPDCSALE" type="String" label="PreFix PDC (SALE)" length="50" />
+    <field name="PreFixAppl" type="String" label="PreFix Real Estate Form Application" length="50" />
+    <field name="PrefixDeposit" type="String" label="Prefix Bank Deposit Form" length="50" />
+    <field name="PrefixBillReg" type="String" label="Prefix Supplier Bill Registration" length="50" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Pre Fix Setting" filter="AccFundID=@BusinessRules_CompanyID">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="AccFundID" columns="15" />
+        <dataField fieldName="PrefixGRN" columns="50" />
+        <dataField fieldName="PrefixISS" columns="50" />
+        <dataField fieldName="PrefixPO" columns="50" />
+        <dataField fieldName="PreFixMRGEN" columns="50" />
+        <dataField fieldName="PreFixMRSALE" columns="50" />
+        <dataField fieldName="PreFixPDCGEN" columns="50" />
+        <dataField fieldName="PreFixPDCSALE" columns="50" />
+        <dataField fieldName="PreFixAppl" columns="50" />
+        <dataField fieldName="PrefixDeposit" columns="50" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Pre Fix Setting">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Review PreFix Setting" newColumn="true">
+          <description><![CDATA[Review PreFix Setting]]></description>
+          <dataFields>
+            <dataField fieldName="AccFundID" columns="15" hidden="true" />
+            <dataField fieldName="PrefixGRN" columns="50" />
+            <dataField fieldName="PrefixISS" columns="50" />
+            <dataField fieldName="PrefixPO" columns="50" />
+            <dataField fieldName="PreFixMRGEN" columns="50" />
+            <dataField fieldName="PreFixMRSALE" columns="50" />
+            <dataField fieldName="PreFixPDCGEN" columns="50" />
+            <dataField fieldName="PreFixPDCSALE" columns="50" />
+            <dataField fieldName="PreFixAppl" columns="50" />
+            <dataField fieldName="PrefixDeposit" columns="50" />
+            <dataField fieldName="PrefixBillReg" columns="50" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Pre Fix Setting">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="New Pre Fix Setting" newColumn="true">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="AccFundID" columns="15" hidden="true" />
+            <dataField fieldName="PrefixGRN" columns="50" />
+            <dataField fieldName="PrefixISS" columns="50" />
+            <dataField fieldName="PrefixPO" columns="50" />
+            <dataField fieldName="PreFixMRGEN" columns="50" />
+            <dataField fieldName="PreFixMRSALE" columns="50" />
+            <dataField fieldName="PreFixPDCGEN" columns="50" />
+            <dataField fieldName="PreFixPDCSALE" columns="50" />
+            <dataField fieldName="PreFixAppl" columns="50" />
+            <dataField fieldName="PrefixDeposit" columns="50" />
+            <dataField fieldName="PrefixBillReg" columns="50" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Delete" />
+      <action id="a6" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenKeySelected="true" whenClientScript="this.get_hasDetails()" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+</dataController>

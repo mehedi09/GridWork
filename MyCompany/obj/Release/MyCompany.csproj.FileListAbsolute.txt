@@ -1,0 +1,3 @@
+C:\Users\wrew\Documents\Code OnTime\Projects\Web App Factory\IPACERPNEW\MyCompany\obj\Release\MyCompany.csprojResolveAssemblyReference.cache
+C:\Users\wrew\Documents\Code OnTime\Projects\Web App Factory\IPACERPNEW\MyCompany\obj\Release\RdlCompile.cache
+C:\Users\wrew\Documents\Code OnTime\Projects\Web App Factory\IPACERPNEW\MyCompany\obj\Release\RdlCompile.compiled

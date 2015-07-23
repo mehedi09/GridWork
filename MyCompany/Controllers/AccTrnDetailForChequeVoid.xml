@@ -1,0 +1,420 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="AccTrnDetailForChequeVoid" label="AccTrnDetailForChequeVoid" conflictDetection="overwriteChanges" plugIn="MyCompany.Data.AnnotationPlugIn" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"AccTrnDetail"."AccTrnDetailID" "AccTrnDetailID"
+	,"AccTrnDetail"."AccTranRef" "AccTranRef"
+	,"AccTrnDetail"."AccTranSLNO" "AccTranSLNO"
+	,"AccTrnDetail"."AccVoucherTranID" "AccVoucherTranID"
+	,"AccVoucherTran"."VchrNumber" "AccVoucherTranVchrNumber"
+	,"AccVoucherTranAccFund"."AccFundName" "AccVoucherTranAccFundAccFundName"
+	,"AccTrnDetail"."AccFundID" "AccFundID"
+	,"AccFund"."AccFundName" "AccFundAccFundName"
+	,"AccTrnDetail"."VchrTypeID" "VchrTypeID"
+	,"VchrType"."VchrTypeDesc" "VchrTypeVchrTypeDesc"
+	,"AccTrnDetail"."AccTranDate" "AccTranDate"
+	,"AccTrnDetail"."AccCode" "AccCode"
+	,"Acc"."AccName" "AccAccName"
+	,"AccAccBalType"."AccBalType" "AccAccBalTypeAccBalType"
+	,"AccAccCurrency"."AccCurrencyName" "AccAccCurrencyAccCurrencyName"
+	,"AccAccDest"."AccDest" "AccAccDestAccDest"
+	,"AccAccDestCompanyType"."Description" "AccAccDestCompanyTypeDescription"
+	,"AccAccFund"."AccFundName" "AccAccFundAccFundName"
+	,"AccAccSubType"."AccSubType" "AccAccSubTypeAccSubType"
+	,"AccAccType"."AccType" "AccAccTypeAccType"
+	,"AccCoaControl"."AccName" "AccCoaControlAccName"
+	,"AccCoaControlAccBalType"."AccBalType" "AccCoaControlAccBalTypeAccBalType"
+	,"AccCoaControlAccDest"."AccDest" "AccCoaControlAccDestAccDest"
+	,"AccCoaControlAccType"."AccType" "AccCoaControlAccTypeAccType"
+	,"AccCoaControlCompType"."Description" "AccCoaControlCompTypeDescription"
+	,"AccCoaMain"."AccName" "AccCoaMainAccName"
+	,"AccCoaMainAccBalType"."AccBalType" "AccCoaMainAccBalTypeAccBalType"
+	,"AccCoaMainAccDest"."AccDest" "AccCoaMainAccDestAccDest"
+	,"AccCoaMainAccFund"."AccFundName" "AccCoaMainAccFundAccFundName"
+	,"AccCoaMainAccType"."AccType" "AccCoaMainAccTypeAccType"
+	,"AccCoaMainCoaControl"."AccName" "AccCoaMainCoaControlAccName"
+	,"AccCoaSub"."AccName" "AccCoaSubAccName"
+	,"AccCoaSubAccBalType"."AccBalType" "AccCoaSubAccBalTypeAccBalType"
+	,"AccCoaSubAccDest"."AccDest" "AccCoaSubAccDestAccDest"
+	,"AccCoaSubAccFund"."AccFundName" "AccCoaSubAccFundAccFundName"
+	,"AccCoaSubAccType"."AccType" "AccCoaSubAccTypeAccType"
+	,"AccCoaSubCoaControl"."AccName" "AccCoaSubCoaControlAccName"
+	,"AccCoaSubCoaMain"."AccName" "AccCoaSubCoaMainAccName"
+	,"AccTrnDetail"."Debit" "Debit"
+	,"AccTrnDetail"."Credit" "Credit"
+	,"AccTrnDetail"."Tran_Comment" "Tran_Comment"
+	,"AccTrnDetail"."RevAcc" "RevAcc"
+	,"AccTrnDetail"."AccCurrency" "AccCurrency"
+	,"AccCurrency"."AccCurrencyName" "AccCurrencyAccCurrencyName"
+	,"AccTrnDetail"."AccCurrencyRate" "AccCurrencyRate"
+	,"AccTrnDetail"."AccSubTypeID" "AccSubTypeID"
+	,"AccSubType"."AccSubType" "AccSubTypeAccSubType"
+	,"AccTrnDetail"."AccSubCode" "AccSubCode"
+	,"AccSub"."AccSubName" "AccSubAccSubName"
+	,"AccSubAccSubType"."AccSubType" "AccSubAccSubTypeAccSubType"
+	,"AccTrnDetail"."TrStat" "TrStat"
+	,"AccTrnDetail"."DLT" "DLT"
+	,"AccTrnDetail"."AccBranchCode" "AccBranchCode"
+	,"AccTrnDetail"."Challan_no" "Challan_no"
+	,"AccTrnDetail"."MrnNo" "MrnNo"
+	,"AccTrnDetail"."Stat" "Stat"
+	,"AccTrnDetail"."Chequeno" "Chequeno"
+	,"AccTrnDetail"."TranCode" "TranCode"
+	,"AccTrnDetail"."DepartmentsID" "DepartmentsID"
+	,"AccTrnDetail"."VchrNo" "VchrNo"
+	,"AccTrnDetail"."VchrLock" "VchrLock"
+	,"AccTrnDetail"."TransitYN" "TransitYN"
+	,"AccTrnDetail"."IsPosted" "IsPosted"
+	,"AccTrnDetail"."IsRevtran" "IsRevtran"
+	,"AccTrnDetail"."IsTransitReceived" "IsTransitReceived"
+	,"AccTrnDetail"."AccSubTypeID1" "AccSubTypeID1"
+	,"AccTrnDetail"."AccSubCode1" "AccSubCode1"
+	,"AccTrnDetail"."AccSubTypeID2" "AccSubTypeID2"
+	,"AccTrnDetail"."AccSubCode2" "AccSubCode2"
+	,"AccTrnDetail"."ChequeDT" "ChequeDT"
+	,"AccTrnDetail"."ChequeBankBranch" "ChequeBankBranch"
+	,"AccTrnDetail"."IsChequeHonour" "IsChequeHonour"
+from "dbo"."AccTrnDetail" "AccTrnDetail"
+	left join "dbo"."AccTrnHeader" "AccVoucherTran" on "AccTrnDetail"."AccVoucherTranID" = "AccVoucherTran"."AccVoucherTranID"
+	left join "dbo"."AccFunds" "AccVoucherTranAccFund" on "AccVoucherTran"."AccFundCode" = "AccVoucherTranAccFund"."AccFundID"
+	left join "dbo"."AccFunds" "AccFund" on "AccTrnDetail"."AccFundID" = "AccFund"."AccFundID"
+	left join "dbo"."VoucherTypes" "VchrType" on "AccTrnDetail"."VchrTypeID" = "VchrType"."VchrTypeID"
+	left join "dbo"."CoaDetail" "Acc" on "AccTrnDetail"."AccCode" = "Acc"."CoaDetailID"
+	left join "dbo"."AccBalTypes" "AccAccBalType" on "Acc"."AccBalTypeID" = "AccAccBalType"."AccBalTypeID"
+	left join "dbo"."AccCurrencys" "AccAccCurrency" on "Acc"."AccCurrency" = "AccAccCurrency"."AccCurrencyID"
+	left join "dbo"."AccDests" "AccAccDest" on "Acc"."AccDestID" = "AccAccDest"."AccDestID"
+	left join "dbo"."CompanyTypes" "AccAccDestCompanyType" on "AccAccDest"."CompanyType" = "AccAccDestCompanyType"."CompTypeID"
+	left join "dbo"."AccFunds" "AccAccFund" on "Acc"."AccFundID" = "AccAccFund"."AccFundID"
+	left join "dbo"."AccSubTypes" "AccAccSubType" on "Acc"."AccSubTypeID" = "AccAccSubType"."AccSubTypeID"
+	left join "dbo"."AccTypes" "AccAccType" on "Acc"."AccTypeID" = "AccAccType"."AccTypeID"
+	left join "dbo"."CoaControl" "AccCoaControl" on "Acc"."CoaControlID" = "AccCoaControl"."CoaControlID"
+	left join "dbo"."AccBalTypes" "AccCoaControlAccBalType" on "AccCoaControl"."AccBalTypeID" = "AccCoaControlAccBalType"."AccBalTypeID"
+	left join "dbo"."AccDests" "AccCoaControlAccDest" on "AccCoaControl"."AccDestID" = "AccCoaControlAccDest"."AccDestID"
+	left join "dbo"."AccTypes" "AccCoaControlAccType" on "AccCoaControl"."AccTypeID" = "AccCoaControlAccType"."AccTypeID"
+	left join "dbo"."CompanyTypes" "AccCoaControlCompType" on "AccCoaControl"."CompType" = "AccCoaControlCompType"."CompTypeID"
+	left join "dbo"."CoaMain" "AccCoaMain" on "Acc"."CoaMainID" = "AccCoaMain"."CoaMainID"
+	left join "dbo"."AccBalTypes" "AccCoaMainAccBalType" on "AccCoaMain"."AccBalTypeID" = "AccCoaMainAccBalType"."AccBalTypeID"
+	left join "dbo"."AccDests" "AccCoaMainAccDest" on "AccCoaMain"."AccDestID" = "AccCoaMainAccDest"."AccDestID"
+	left join "dbo"."AccFunds" "AccCoaMainAccFund" on "AccCoaMain"."AccFundID" = "AccCoaMainAccFund"."AccFundID"
+	left join "dbo"."AccTypes" "AccCoaMainAccType" on "AccCoaMain"."AccTypeID" = "AccCoaMainAccType"."AccTypeID"
+	left join "dbo"."CoaControl" "AccCoaMainCoaControl" on "AccCoaMain"."CoaControlID" = "AccCoaMainCoaControl"."CoaControlID"
+	left join "dbo"."CoaSub" "AccCoaSub" on "Acc"."CoaSubID" = "AccCoaSub"."CoaSubID"
+	left join "dbo"."AccBalTypes" "AccCoaSubAccBalType" on "AccCoaSub"."AccBalTypeID" = "AccCoaSubAccBalType"."AccBalTypeID"
+	left join "dbo"."AccDests" "AccCoaSubAccDest" on "AccCoaSub"."AccDestID" = "AccCoaSubAccDest"."AccDestID"
+	left join "dbo"."AccFunds" "AccCoaSubAccFund" on "AccCoaSub"."AccFundID" = "AccCoaSubAccFund"."AccFundID"
+	left join "dbo"."AccTypes" "AccCoaSubAccType" on "AccCoaSub"."AccTypeID" = "AccCoaSubAccType"."AccTypeID"
+	left join "dbo"."CoaControl" "AccCoaSubCoaControl" on "AccCoaSub"."CoaControlID" = "AccCoaSubCoaControl"."CoaControlID"
+	left join "dbo"."CoaMain" "AccCoaSubCoaMain" on "AccCoaSub"."CoaMainID" = "AccCoaSubCoaMain"."CoaMainID"
+	left join "dbo"."AccCurrencys" "AccCurrency" on "AccTrnDetail"."AccCurrency" = "AccCurrency"."AccCurrencyID"
+	left join "dbo"."AccSubTypes" "AccSubType" on "AccTrnDetail"."AccSubTypeID" = "AccSubType"."AccSubTypeID"
+	left join "dbo"."AccSubNames" "AccSub" on "AccTrnDetail"."AccSubCode" = "AccSub"."AccSubCode"
+	left join "dbo"."AccSubTypes" "AccSubAccSubType" on "AccSub"."AccSubTypeID" = "AccSubAccSubType"."AccSubTypeID"
+]]></text>
+    </command>
+    <command id="AccTrnDetailIDIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="AccTrnDetailID" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="AccTrnDetailID" type="Int64" allowNulls="false" isPrimaryKey="true" label="Acc Trn Detail#" readOnly="true" />
+    <field name="AccTranRef" type="String" label="Acc Tran Ref" length="10" showInSummary="true" />
+    <field name="AccTranSLNO" type="Int32" allowNulls="false" label="Acc Tran SLNO" showInSummary="true" />
+    <field name="AccVoucherTranID" type="Int64" allowNulls="false" label="Transaction ID" showInSummary="true">
+      <items style="Lookup" dataController="AccTrnHeader" newDataView="createForm1" />
+    </field>
+    <field name="AccVoucherTranVchrNumber" type="String" readOnly="true" label="Acc Voucher Tran Vchr Number" length="50" />
+    <field name="AccVoucherTranAccFundAccFundName" type="String" readOnly="true" label="Acc Voucher Tran Acc Fund Name" length="100" />
+    <field name="AccFundID" type="Int32" label="Acc Fund#" showInSummary="true">
+      <items style="Lookup" dataController="AccFunds" newDataView="createForm1" />
+    </field>
+    <field name="AccFundAccFundName" type="String" readOnly="true" label="Acc Fund Name" length="100" />
+    <field name="VchrTypeID" type="Int32" allowNulls="false" label="Vchr Type#" showInSummary="true">
+      <items style="Lookup" dataController="VoucherTypes" newDataView="createForm1" />
+    </field>
+    <field name="VchrTypeVchrTypeDesc" type="String" readOnly="true" label="Voucher Type" length="50" />
+    <field name="AccTranDate" type="DateTime" allowNulls="false" label="Acc Tran Date" />
+    <field name="AccCode" type="Int32" allowNulls="false" label="Acc Code">
+      <items style="Lookup" dataController="CoaDetail" newDataView="createForm1" />
+    </field>
+    <field name="AccAccName" type="String" readOnly="true" label="Account Name" length="150" />
+    <field name="AccAccBalTypeAccBalType" type="String" readOnly="true" label="Acc Bal Type" length="2" />
+    <field name="AccAccCurrencyAccCurrencyName" type="String" readOnly="true" label="Acc Currency Name" length="10" />
+    <field name="AccAccDestAccDest" type="String" readOnly="true" label="Acc Dest" length="2" />
+    <field name="AccAccDestCompanyTypeDescription" type="String" readOnly="true" label="Acc Dest Company Type Description" length="50" />
+    <field name="AccAccFundAccFundName" type="String" readOnly="true" label="Acc Fund Name" length="100" />
+    <field name="AccAccSubTypeAccSubType" type="String" readOnly="true" label="Acc Sub Type" length="2" />
+    <field name="AccAccTypeAccType" type="String" readOnly="true" label="Acc Type" length="2" />
+    <field name="AccCoaControlAccName" type="String" readOnly="true" label="Acc Coa Control Acc Name" length="50" />
+    <field name="AccCoaControlAccBalTypeAccBalType" type="String" readOnly="true" label="Acc Coa Control Acc Bal Type" length="2" />
+    <field name="AccCoaControlAccDestAccDest" type="String" readOnly="true" label="Acc Coa Control Acc Dest" length="2" />
+    <field name="AccCoaControlAccTypeAccType" type="String" readOnly="true" label="Acc Coa Control Acc Type" length="2" />
+    <field name="AccCoaControlCompTypeDescription" type="String" readOnly="true" label="Acc Coa Control Comp Type Description" length="50" />
+    <field name="AccCoaMainAccName" type="String" readOnly="true" label="Acc Coa Main Acc Name" length="50" />
+    <field name="AccCoaMainAccBalTypeAccBalType" type="String" readOnly="true" label="Acc Coa Main Acc Bal Type" length="2" />
+    <field name="AccCoaMainAccDestAccDest" type="String" readOnly="true" label="Acc Coa Main Acc Dest" length="2" />
+    <field name="AccCoaMainAccFundAccFundName" type="String" readOnly="true" label="Acc Coa Main Acc Fund Name" length="100" />
+    <field name="AccCoaMainAccTypeAccType" type="String" readOnly="true" label="Acc Coa Main Acc Type" length="2" />
+    <field name="AccCoaMainCoaControlAccName" type="String" readOnly="true" label="Acc Coa Main Coa Control Acc Name" length="50" />
+    <field name="AccCoaSubAccName" type="String" readOnly="true" label="Acc Coa Sub Acc Name" length="50" />
+    <field name="AccCoaSubAccBalTypeAccBalType" type="String" readOnly="true" label="Acc Coa Sub Acc Bal Type" length="2" />
+    <field name="AccCoaSubAccDestAccDest" type="String" readOnly="true" label="Acc Coa Sub Acc Dest" length="2" />
+    <field name="AccCoaSubAccFundAccFundName" type="String" readOnly="true" label="Acc Coa Sub Acc Fund Name" length="100" />
+    <field name="AccCoaSubAccTypeAccType" type="String" readOnly="true" label="Acc Coa Sub Acc Type" length="2" />
+    <field name="AccCoaSubCoaControlAccName" type="String" readOnly="true" label="Acc Coa Sub Coa Control Acc Name" length="50" />
+    <field name="AccCoaSubCoaMainAccName" type="String" readOnly="true" label="Acc Coa Sub Coa Main Acc Name" length="50" />
+    <field name="Debit" type="Decimal" allowNulls="false" default="((0))" label="Debit" />
+    <field name="Credit" type="Decimal" allowNulls="false" default="((0))" label="Amount" />
+    <field name="Tran_Comment" type="String" label="Transaction Comment" length="100" />
+    <field name="RevAcc" type="Int32" allowNulls="false" label="Rev Acc" />
+    <field name="AccCurrency" type="Int32" label="Acc Currency">
+      <items style="Lookup" dataController="AccCurrencys" newDataView="createForm1" />
+    </field>
+    <field name="AccCurrencyAccCurrencyName" type="String" readOnly="true" label="Acc Currency Name" length="10" />
+    <field name="AccCurrencyRate" type="Decimal" label="Acc Currency Rate" />
+    <field name="AccSubTypeID" type="Int32" label="Acc Sub Type#">
+      <items style="Lookup" dataController="AccSubTypes" newDataView="createForm1" />
+    </field>
+    <field name="AccSubTypeAccSubType" type="String" readOnly="true" label="Acc Sub Type" length="2" />
+    <field name="AccSubCode" type="Int32" label="Acc Sub Code">
+      <items style="Lookup" dataController="AccSubNames" newDataView="createForm1" />
+    </field>
+    <field name="AccSubAccSubName" type="String" readOnly="true" label="Acc Sub Name" length="75" />
+    <field name="AccSubAccSubTypeAccSubType" type="String" readOnly="true" label="Acc Sub Type" length="2" />
+    <field name="TrStat" type="String" label="Tr Stat" length="2" />
+    <field name="DLT" type="Byte" default="((0))" label="Dlt" />
+    <field name="AccBranchCode" type="Int32" label="Acc Branch Code" />
+    <field name="Challan_no" type="String" label="Challan no" length="10" />
+    <field name="MrnNo" type="String" label="Mrn No" length="10" />
+    <field name="Stat" type="String" label="Stat" length="1" />
+    <field name="Chequeno" type="String" label="Cheque no" length="50" />
+    <field name="TranCode" type="String" label="Tran Code" length="7" />
+    <field name="DepartmentsID" type="Int64" label="Departments#" />
+    <field name="VchrNo" type="String" label="Voucher No" length="50" />
+    <field name="VchrLock" type="Int32" default="((0))" label="Vchr Lock" />
+    <field name="TransitYN" type="Int32" default="((0))" label="Transit YN" />
+    <field name="IsPosted" type="Int32" default="((0))" label="Is Posted" />
+    <field name="IsRevtran" type="Boolean" default="((0))" label="Is Revtran" />
+    <field name="IsTransitReceived" type="Boolean" default="((0))" label="Is Transit Received" />
+    <field name="AccSubTypeID1" type="Int32" default="((1))" label="Acc Sub Type ID1" />
+    <field name="AccSubCode1" type="Int32" label="Acc Sub Code1" />
+    <field name="AccSubTypeID2" type="Int32" default="((1))" label="Acc Sub Type ID2" />
+    <field name="AccSubCode2" type="Int32" label="Acc Sub Code2" />
+    <field name="ChequeDT" type="DateTime" label="Cheque Date" />
+    <field name="ChequeBankBranch" type="String" label="Cheque Bank Branch" length="50" />
+    <field name="IsChequeHonour" type="Boolean" default="((0))" label="Is Cheque Honour" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Cheque Void/Cancellation " filter="IsRevtran=1 and VchrTypeID=3">
+      <headerText>Cheque Void/Cancellation </headerText>
+      <dataFields>
+        <dataField fieldName="VchrNo" columns="50" />
+        <dataField fieldName="Chequeno" columns="50" />
+        <dataField fieldName="ChequeDT" columns="10" />
+        <dataField fieldName="Credit" columns="15" />
+        <dataField fieldName="AccTranSLNO" columns="15" hidden="true" />
+        <dataField fieldName="AccTranRef" columns="10" hidden="true" />
+        <dataField fieldName="AccTranDate" columns="10" hidden="true" />
+        <dataField fieldName="AccCode" aliasFieldName="AccAccName" hyperlinkFormatString="~/Pages/CoaDetail.aspx?CoaDetailID={AccCode}&amp;_controller=CoaDetail&amp;_commandName=Select&amp;_commandArgument=editForm1" />
+        <dataField fieldName="Debit" dataFormatString="c" columns="15" hidden="true" />
+        <dataField fieldName="Tran_Comment" />
+        <dataField fieldName="AccFundID" aliasFieldName="AccFundAccFundName" hyperlinkFormatString="~/Pages/AccFunds.aspx?AccFundID={AccFundID}&amp;_controller=AccFunds&amp;_commandName=Select&amp;_commandArgument=editForm1" hidden="true" />
+        <dataField fieldName="VchrTypeID" aliasFieldName="VchrTypeVchrTypeDesc" hyperlinkFormatString="~/Pages/VoucherTypes.aspx?VchrTypeID={VchrTypeID}&amp;_controller=VoucherTypes&amp;_commandName=Select&amp;_commandArgument=editForm1" />
+        <dataField fieldName="AccVoucherTranID" hyperlinkFormatString="~/Pages/AccTrnHeader.aspx?AccVoucherTranID={AccVoucherTranID}&amp;_controller=AccTrnHeader&amp;_commandName=Select&amp;_commandArgument=editForm1" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Acc Trn Detail">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Acc Trn Detail" newColumn="true">
+          <description><![CDATA[$DefaultEditDescription]]></description>
+          <dataFields>
+            <dataField fieldName="AccTranRef" columns="10" />
+            <dataField fieldName="AccTranSLNO" columns="15" />
+            <dataField fieldName="AccVoucherTranID" aliasFieldName="AccVoucherTranVchrNumber" hyperlinkFormatString="~/Pages/AccTrnHeader.aspx?AccVoucherTranID={AccVoucherTranID}&amp;_controller=AccTrnHeader&amp;_commandName=Select&amp;_commandArgument=editForm1" />
+            <dataField fieldName="AccFundID" aliasFieldName="AccFundAccFundName" hyperlinkFormatString="~/Pages/AccFunds.aspx?AccFundID={AccFundID}&amp;_controller=AccFunds&amp;_commandName=Select&amp;_commandArgument=editForm1" />
+            <dataField fieldName="VchrTypeID" aliasFieldName="VchrTypeVchrTypeDesc" hyperlinkFormatString="~/Pages/VoucherTypes.aspx?VchrTypeID={VchrTypeID}&amp;_controller=VoucherTypes&amp;_commandName=Select&amp;_commandArgument=editForm1" />
+            <dataField fieldName="AccTranDate" columns="10" />
+            <dataField fieldName="AccCode" aliasFieldName="AccAccName" hyperlinkFormatString="~/Pages/CoaDetail.aspx?CoaDetailID={AccCode}&amp;_controller=CoaDetail&amp;_commandName=Select&amp;_commandArgument=editForm1" />
+            <dataField fieldName="Debit" dataFormatString="c" columns="15" />
+            <dataField fieldName="Credit" dataFormatString="c" columns="15" />
+            <dataField fieldName="Tran_Comment" />
+            <dataField fieldName="RevAcc" columns="15" />
+            <dataField fieldName="AccCurrency" aliasFieldName="AccCurrencyAccCurrencyName" hyperlinkFormatString="~/Pages/AccCurrencys.aspx?AccCurrencyID={AccCurrency}&amp;_controller=AccCurrencys&amp;_commandName=Select&amp;_commandArgument=editForm1" />
+            <dataField fieldName="AccCurrencyRate" columns="15" />
+            <dataField fieldName="AccSubTypeID" aliasFieldName="AccSubTypeAccSubType" hyperlinkFormatString="~/Pages/AccSubTypes.aspx?AccSubTypeID={AccSubTypeID}&amp;_controller=AccSubTypes&amp;_commandName=Select&amp;_commandArgument=editForm1" />
+            <dataField fieldName="AccSubCode" aliasFieldName="AccSubAccSubName" hyperlinkFormatString="~/Pages/AccSubNames.aspx?AccSubCode={AccSubCode}&amp;_controller=AccSubNames&amp;_commandName=Select&amp;_commandArgument=editForm1" />
+            <dataField fieldName="TrStat" columns="2" />
+            <dataField fieldName="DLT" columns="15" />
+            <dataField fieldName="AccBranchCode" columns="15" />
+            <dataField fieldName="Challan_no" columns="10" />
+            <dataField fieldName="MrnNo" columns="10" />
+            <dataField fieldName="Stat" columns="1" />
+            <dataField fieldName="Chequeno" columns="50" />
+            <dataField fieldName="TranCode" columns="7" />
+            <dataField fieldName="DepartmentsID" columns="15" />
+            <dataField fieldName="VchrNo" columns="50" />
+            <dataField fieldName="VchrLock" columns="15" />
+            <dataField fieldName="TransitYN" columns="15" />
+            <dataField fieldName="IsPosted" columns="15" />
+            <dataField fieldName="IsRevtran" />
+            <dataField fieldName="IsTransitReceived" />
+            <dataField fieldName="AccSubTypeID1" columns="15" />
+            <dataField fieldName="AccSubCode1" columns="15" />
+            <dataField fieldName="AccSubTypeID2" columns="15" />
+            <dataField fieldName="AccSubCode2" columns="15" />
+            <dataField fieldName="ChequeDT" columns="10" />
+            <dataField fieldName="ChequeBankBranch" columns="50" />
+            <dataField fieldName="IsChequeHonour" />
+          </dataFields>
+        </category>
+        <category id="c2" headerText="Reference Information">
+          <description><![CDATA[$DefaultReferenceDescription]]></description>
+          <dataFields>
+            <dataField fieldName="AccVoucherTranAccFundAccFundName" />
+            <dataField fieldName="AccAccBalTypeAccBalType" columns="2" />
+            <dataField fieldName="AccAccCurrencyAccCurrencyName" columns="10" />
+            <dataField fieldName="AccAccDestAccDest" columns="2" />
+            <dataField fieldName="AccAccDestCompanyTypeDescription" columns="50" />
+            <dataField fieldName="AccAccFundAccFundName" />
+            <dataField fieldName="AccAccSubTypeAccSubType" columns="2" />
+            <dataField fieldName="AccAccTypeAccType" columns="2" />
+            <dataField fieldName="AccCoaControlAccName" columns="50" />
+            <dataField fieldName="AccCoaControlAccBalTypeAccBalType" columns="2" />
+            <dataField fieldName="AccCoaControlAccDestAccDest" columns="2" />
+            <dataField fieldName="AccCoaControlAccTypeAccType" columns="2" />
+            <dataField fieldName="AccCoaControlCompTypeDescription" columns="50" />
+            <dataField fieldName="AccCoaMainAccName" columns="50" />
+            <dataField fieldName="AccCoaMainAccBalTypeAccBalType" columns="2" />
+            <dataField fieldName="AccCoaMainAccDestAccDest" columns="2" />
+            <dataField fieldName="AccCoaMainAccFundAccFundName" />
+            <dataField fieldName="AccCoaMainAccTypeAccType" columns="2" />
+            <dataField fieldName="AccCoaMainCoaControlAccName" columns="50" />
+            <dataField fieldName="AccCoaSubAccName" columns="50" />
+            <dataField fieldName="AccCoaSubAccBalTypeAccBalType" columns="2" />
+            <dataField fieldName="AccCoaSubAccDestAccDest" columns="2" />
+            <dataField fieldName="AccCoaSubAccFundAccFundName" />
+            <dataField fieldName="AccCoaSubAccTypeAccType" columns="2" />
+            <dataField fieldName="AccCoaSubCoaControlAccName" columns="50" />
+            <dataField fieldName="AccCoaSubCoaMainAccName" columns="50" />
+            <dataField fieldName="AccSubAccSubTypeAccSubType" columns="2" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Acc Trn Detail">
+      <headerText />
+      <categories>
+        <category id="c1" headerText="New Acc Trn Detail" newColumn="true">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="AccTranRef" columns="10" />
+            <dataField fieldName="AccTranSLNO" columns="15" />
+            <dataField fieldName="AccVoucherTranID" aliasFieldName="AccVoucherTranVchrNumber" />
+            <dataField fieldName="AccFundID" aliasFieldName="AccFundAccFundName" />
+            <dataField fieldName="VchrTypeID" aliasFieldName="VchrTypeVchrTypeDesc" />
+            <dataField fieldName="AccTranDate" columns="10" />
+            <dataField fieldName="AccCode" aliasFieldName="AccAccName" />
+            <dataField fieldName="Debit" dataFormatString="c" columns="15" />
+            <dataField fieldName="Credit" dataFormatString="c" columns="15" />
+            <dataField fieldName="Tran_Comment" />
+            <dataField fieldName="RevAcc" columns="15" />
+            <dataField fieldName="AccCurrency" aliasFieldName="AccCurrencyAccCurrencyName" />
+            <dataField fieldName="AccCurrencyRate" columns="15" />
+            <dataField fieldName="AccSubTypeID" aliasFieldName="AccSubTypeAccSubType" />
+            <dataField fieldName="AccSubCode" aliasFieldName="AccSubAccSubName" />
+            <dataField fieldName="TrStat" columns="2" />
+            <dataField fieldName="DLT" columns="15" />
+            <dataField fieldName="AccBranchCode" columns="15" />
+            <dataField fieldName="Challan_no" columns="10" />
+            <dataField fieldName="MrnNo" columns="10" />
+            <dataField fieldName="Stat" columns="1" />
+            <dataField fieldName="Chequeno" columns="50" />
+            <dataField fieldName="TranCode" columns="7" />
+            <dataField fieldName="DepartmentsID" columns="15" />
+            <dataField fieldName="VchrNo" columns="50" />
+            <dataField fieldName="VchrLock" columns="15" />
+            <dataField fieldName="TransitYN" columns="15" />
+            <dataField fieldName="IsPosted" columns="15" />
+            <dataField fieldName="IsRevtran" />
+            <dataField fieldName="IsTransitReceived" />
+            <dataField fieldName="AccSubTypeID1" columns="15" />
+            <dataField fieldName="AccSubCode1" columns="15" />
+            <dataField fieldName="AccSubTypeID2" columns="15" />
+            <dataField fieldName="AccSubCode2" columns="15" />
+            <dataField fieldName="ChequeDT" columns="10" />
+            <dataField fieldName="ChequeBankBranch" columns="50" />
+            <dataField fieldName="IsChequeHonour" />
+          </dataFields>
+        </category>
+        <category id="c2">
+          <visibility>
+            <expression test="true" type="ClientScript" />
+          </visibility>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Delete" />
+      <action id="a6" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenKeySelected="true" whenClientScript="this.get_hasDetails()" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" whenHRef="false:" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" whenHRef="false:" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" whenHRef="false:" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+</dataController>

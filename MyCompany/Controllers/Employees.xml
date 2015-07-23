@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="Employees" conflictDetection="overwriteChanges" label="Employees" plugIn="MyCompany.Data.AnnotationPlugIn" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"Employees"."EmployeeID" "EmployeeID"
+	,"Employees"."EmpCode" "EmpCode"
+	,"Employees"."EmpName" "EmpName"
+	,"Employees"."AccFundID" "AccFundID"
+	,"Employees"."AccBranchCode" "AccBranchCode"
+	,"Employees"."DesigID" "DesigID"
+	,"Employees"."DepartmentID" "DepartmentID"
+	,"Employees"."JoinDate" "JoinDate"
+	,"Employees"."GradeID" "GradeID"
+	,"Employees"."EmpGroupID" "EmpGroupID"
+	,"Employees"."Card_id" "Card_id"
+	,"Employees"."EmpGenderID" "EmpGenderID"
+	,"Employees"."EmpTypeID" "EmpTypeID"
+	,"Employees"."EmpStatusID" "EmpStatusID"
+	,"Employees"."StaffTypeID" "StaffTypeID"
+	,"Employees"."Photo" "Photo"
+	,"Employees"."PF_JoinDate" "PF_JoinDate"
+	,"Employees"."FName" "FName"
+	,"Employees"."MName" "MName"
+	,"Employees"."SName" "SName"
+	,"Employees"."LastEdu" "LastEdu"
+	,"Employees"."BirthDate" "BirthDate"
+	,"Employees"."PAddress" "PAddress"
+	,"Employees"."CAddress" "CAddress"
+	,"Employees"."CellNumber" "CellNumber"
+	,"Employees"."BloodGrpID" "BloodGrpID"
+	,"Employees"."ProdLineNo" "ProdLineNo"
+	,"Employees"."DegitalSign" "DegitalSign"
+	,"Employees"."NationalID" "NationalID"
+	,"Employees"."TIN" "TIN"
+	,"Employees"."RCNO" "RCNO"
+	,"Employees"."EmpGarantor" "EmpGarantor"
+	,"Employees"."EmpGarantorRel" "EmpGarantorRel"
+	,"Employees"."EmpGarantorAddress" "EmpGarantorAddress"
+	,"Employees"."EmpGarantorCell" "EmpGarantorCell"
+	,"Employees"."ConfirmationDate" "ConfirmationDate"
+	,"Employees"."EmpLeft" "EmpLeft"
+	,"Employees"."UserID" "UserID"
+	,"Employees"."LastUpdate" "LastUpdate"
+	,"Employees"."OffDay" "OffDay"
+from "dbo"."Employees" "Employees"
+]]></text>
+    </command>
+    <command id="EmployeeIDIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="EmployeeID" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="EmployeeID" type="Int64" allowNulls="false" isPrimaryKey="true" label="Employee#" readOnly="true" />
+    <field name="EmpCode" type="String" label="Emp Code" length="20" showInSummary="true" />
+    <field name="EmpName" type="String" label="Emp Name" length="50" showInSummary="true" />
+    <field name="AccFundID" type="Int64" label="Acc Fund#" showInSummary="true" />
+    <field name="AccBranchCode" type="Int32" label="Acc Branch Code" showInSummary="true" />
+    <field name="DesigID" type="Int64" label="Desig#" showInSummary="true" />
+    <field name="DepartmentID" type="Int64" label="Department#" />
+    <field name="JoinDate" type="DateTime" label="Join Date" />
+    <field name="GradeID" type="Int32" label="Grade#" />
+    <field name="EmpGroupID" type="Int32" label="Emp Group#" />
+    <field name="Card_id" type="String" label="Card#" length="16" />
+    <field name="EmpGenderID" type="Int32" label="Emp Gender#" />
+    <field name="EmpTypeID" type="Int32" label="Emp Type#" />
+    <field name="EmpStatusID" type="Int32" label="Emp Status#" />
+    <field name="StaffTypeID" type="Int64" label="Staff Type#" />
+    <field name="Photo" type="Byte[]" onDemand="true" sourceFields="EmployeeID" onDemandHandler="EmployeesPhoto" onDemandStyle="Thumbnail" allowQBE="false" allowSorting="false" label="Photo" />
+    <field name="PF_JoinDate" type="DateTime" label="PF Join Date" />
+    <field name="FName" type="String" label="F Name" length="75" />
+    <field name="MName" type="String" label="M Name" length="75" />
+    <field name="SName" type="String" label="S Name" length="75" />
+    <field name="LastEdu" type="String" label="Last Edu" length="50" />
+    <field name="BirthDate" type="DateTime" label="Birth Date" />
+    <field name="PAddress" type="String" label="P Address" length="150" />
+    <field name="CAddress" type="String" label="C Address" length="150" />
+    <field name="CellNumber" type="String" label="Cell Number" length="20" />
+    <field name="BloodGrpID" type="Int32" label="Blood Grp#" />
+    <field name="ProdLineNo" type="Int32" label="Prod Line No" />
+    <field name="DegitalSign" type="Byte[]" onDemand="true" sourceFields="EmployeeID" onDemandHandler="EmployeesDegitalSign" onDemandStyle="Thumbnail" allowQBE="false" allowSorting="false" label="Degital Sign" />
+    <field name="NationalID" type="String" label="National#" length="50" />
+    <field name="TIN" type="String" label="Tin" length="25" />
+    <field name="RCNO" type="String" label="Rcno" length="50" />
+    <field name="EmpGarantor" type="String" label="Emp Garantor" length="50" />
+    <field name="EmpGarantorRel" type="String" label="Emp Garantor Rel" length="50" />
+    <field name="EmpGarantorAddress" type="String" label="Emp Garantor Address" length="50" />
+    <field name="EmpGarantorCell" type="String" label="Emp Garantor Cell" length="30" />
+    <field name="ConfirmationDate" type="DateTime" label="Confirmation Date" />
+    <field name="EmpLeft" type="Boolean" default="((0))" label="Emp Left" />
+    <field name="UserID" type="String" label="User#" length="20" />
+    <field name="LastUpdate" type="DateTime" label="Last Update" />
+    <field name="OffDay" type="DateTime" label="Off Day" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Employees">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="EmpCode" columns="20" />
+        <dataField fieldName="EmpName" columns="50" />
+        <dataField fieldName="AccFundID" columns="15" />
+        <dataField fieldName="AccBranchCode" columns="15" />
+        <dataField fieldName="DesigID" columns="15" />
+        <dataField fieldName="DepartmentID" columns="15" />
+        <dataField fieldName="JoinDate" columns="10" />
+        <dataField fieldName="GradeID" columns="15" />
+        <dataField fieldName="EmpGroupID" columns="15" />
+        <dataField fieldName="Card_id" columns="16" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Employees">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Employees" newColumn="true">
+          <description><![CDATA[$DefaultEditDescription]]></description>
+          <dataFields>
+            <dataField fieldName="EmpCode" columns="20" />
+            <dataField fieldName="EmpName" columns="50" />
+            <dataField fieldName="AccFundID" columns="15" />
+            <dataField fieldName="AccBranchCode" columns="15" />
+            <dataField fieldName="DesigID" columns="15" />
+            <dataField fieldName="DepartmentID" columns="15" />
+            <dataField fieldName="JoinDate" columns="10" />
+            <dataField fieldName="GradeID" columns="15" />
+            <dataField fieldName="EmpGroupID" columns="15" />
+            <dataField fieldName="Card_id" columns="16" />
+            <dataField fieldName="EmpGenderID" columns="15" />
+            <dataField fieldName="EmpTypeID" columns="15" />
+            <dataField fieldName="EmpStatusID" columns="15" />
+            <dataField fieldName="StaffTypeID" columns="15" />
+            <dataField fieldName="Photo" columns="15" />
+            <dataField fieldName="PF_JoinDate" columns="10" />
+            <dataField fieldName="FName" />
+            <dataField fieldName="MName" />
+            <dataField fieldName="SName" />
+            <dataField fieldName="LastEdu" columns="50" />
+            <dataField fieldName="BirthDate" columns="10" />
+            <dataField fieldName="PAddress" />
+            <dataField fieldName="CAddress" />
+            <dataField fieldName="CellNumber" columns="20" />
+            <dataField fieldName="BloodGrpID" columns="15" />
+            <dataField fieldName="ProdLineNo" columns="15" />
+            <dataField fieldName="DegitalSign" columns="15" />
+            <dataField fieldName="NationalID" columns="50" />
+            <dataField fieldName="TIN" columns="25" />
+            <dataField fieldName="RCNO" columns="50" />
+            <dataField fieldName="EmpGarantor" columns="50" />
+            <dataField fieldName="EmpGarantorRel" columns="50" />
+            <dataField fieldName="EmpGarantorAddress" columns="50" />
+            <dataField fieldName="EmpGarantorCell" columns="30" />
+            <dataField fieldName="ConfirmationDate" columns="10" />
+            <dataField fieldName="EmpLeft" />
+            <dataField fieldName="UserID" columns="20" />
+            <dataField fieldName="LastUpdate" columns="10" />
+            <dataField fieldName="OffDay" columns="10" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Employees">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="New Employees" newColumn="true">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="EmpCode" columns="20" />
+            <dataField fieldName="EmpName" columns="50" />
+            <dataField fieldName="AccFundID" columns="15" />
+            <dataField fieldName="AccBranchCode" columns="15" />
+            <dataField fieldName="DesigID" columns="15" />
+            <dataField fieldName="DepartmentID" columns="15" />
+            <dataField fieldName="JoinDate" columns="10" />
+            <dataField fieldName="GradeID" columns="15" />
+            <dataField fieldName="EmpGroupID" columns="15" />
+            <dataField fieldName="Card_id" columns="16" />
+            <dataField fieldName="EmpGenderID" columns="15" />
+            <dataField fieldName="EmpTypeID" columns="15" />
+            <dataField fieldName="EmpStatusID" columns="15" />
+            <dataField fieldName="StaffTypeID" columns="15" />
+            <dataField fieldName="Photo" columns="15" />
+            <dataField fieldName="PF_JoinDate" columns="10" />
+            <dataField fieldName="FName" />
+            <dataField fieldName="MName" />
+            <dataField fieldName="SName" />
+            <dataField fieldName="LastEdu" columns="50" />
+            <dataField fieldName="BirthDate" columns="10" />
+            <dataField fieldName="PAddress" />
+            <dataField fieldName="CAddress" />
+            <dataField fieldName="CellNumber" columns="20" />
+            <dataField fieldName="BloodGrpID" columns="15" />
+            <dataField fieldName="ProdLineNo" columns="15" />
+            <dataField fieldName="DegitalSign" columns="15" />
+            <dataField fieldName="NationalID" columns="50" />
+            <dataField fieldName="TIN" columns="25" />
+            <dataField fieldName="RCNO" columns="50" />
+            <dataField fieldName="EmpGarantor" columns="50" />
+            <dataField fieldName="EmpGarantorRel" columns="50" />
+            <dataField fieldName="EmpGarantorAddress" columns="50" />
+            <dataField fieldName="EmpGarantorCell" columns="30" />
+            <dataField fieldName="ConfirmationDate" columns="10" />
+            <dataField fieldName="EmpLeft" />
+            <dataField fieldName="UserID" columns="20" />
+            <dataField fieldName="LastUpdate" columns="10" />
+            <dataField fieldName="OffDay" columns="10" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Delete" />
+      <action id="a6" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenKeySelected="true" whenClientScript="this.get_hasDetails()" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+</dataController>

@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="ChequeBooksLeaf" conflictDetection="overwriteChanges" label="Cheque Books Leaf" plugIn="MyCompany.Data.AnnotationPlugIn" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[select
+	"ChequeBooksLeaf"."LeafID" "LeafID"
+	,"ChequeBooksLeaf"."LeafNumber" "LeafNumber"
+	,"ChequeBooksLeaf"."ChequeBookID" "ChequeBookID"
+	,"ChequeBook"."ChequeBookNo" "ChequeBookChequeBookNo"
+	,"ChequeBookAccFund"."AccFundName" "ChequeBookAccFundAccFundName"
+	,"ChequeBookCoaDetail"."AccName" "ChequeBookCoaDetailAccName"
+,"ChequeBookCoaDetail"."CoaDetailID" "ChequeBookCoaDetailCoaDetailID"
+	,"ChequeBookCoaDetailAccBalType"."AccBalType" "ChequeBookCoaDetailAccBalTypeAccBalType"
+	,"ChequeBookCoaDetailAccCurrency"."AccCurrencyName" "ChequeBookCoaDetailAccCurrencyAccCurrencyName"
+	,"ChequeBookCoaDetailAccDest"."AccDest" "ChequeBookCoaDetailAccDestAccDest"
+	,"ChequeBookCoaDetailAccFund"."AccFundName" "ChequeBookCoaDetailAccFundAccFundName"
+	,"ChequeBookCoaDetailAccSubType"."AccSubType" "ChequeBookCoaDetailAccSubTypeAccSubType"
+	,"ChequeBookCoaDetailAccType"."AccType" "ChequeBookCoaDetailAccTypeAccType"
+	,"ChequeBookCoaDetailCoaControl"."AccName" "ChequeBookCoaDetailCoaControlAccName"
+	,"ChequeBookCoaDetailCoaMain"."AccName" "ChequeBookCoaDetailCoaMainAccName"
+	,"ChequeBookCoaDetailCoaSub"."AccName" "ChequeBookCoaDetailCoaSubAccName"
+	,"ChequeBooksLeaf"."IsUsed" "IsUsed"
+	,"ChequeBooksLeaf"."IsHonour" "IsHonour"
+	,"ChequeBooksLeaf"."IsVoid" "IsVoid"
+	,"ChequeBooksLeaf"."ChequeHonourDT" "ChequeHonourDT"
+	,"ChequeBooksLeaf"."ChequeVoidDT" "ChequeVoidDT"
+	,"ChequeBooksLeaf"."UpdatedBY" "UpdatedBY"
+	,"ChequeBooksLeaf"."UpdateDT" "UpdateDT"
+from "dbo"."ChequeBooksLeaf" "ChequeBooksLeaf"
+	left join "dbo"."ChequeBooks" "ChequeBook" on "ChequeBooksLeaf"."ChequeBookID" = "ChequeBook"."ChequeBookID"
+	left join "dbo"."AccFunds" "ChequeBookAccFund" on "ChequeBook"."AccFundID" = "ChequeBookAccFund"."AccFundID"
+	left join "dbo"."CoaDetail" "ChequeBookCoaDetail" on "ChequeBook"."CoaDetailID" = "ChequeBookCoaDetail"."CoaDetailID"
+	left join "dbo"."AccBalTypes" "ChequeBookCoaDetailAccBalType" on "ChequeBookCoaDetail"."AccBalTypeID" = "ChequeBookCoaDetailAccBalType"."AccBalTypeID"
+	left join "dbo"."AccCurrencys" "ChequeBookCoaDetailAccCurrency" on "ChequeBookCoaDetail"."AccCurrency" = "ChequeBookCoaDetailAccCurrency"."AccCurrencyID"
+	left join "dbo"."AccDests" "ChequeBookCoaDetailAccDest" on "ChequeBookCoaDetail"."AccDestID" = "ChequeBookCoaDetailAccDest"."AccDestID"
+	left join "dbo"."AccFunds" "ChequeBookCoaDetailAccFund" on "ChequeBookCoaDetail"."AccFundID" = "ChequeBookCoaDetailAccFund"."AccFundID"
+	left join "dbo"."AccSubTypes" "ChequeBookCoaDetailAccSubType" on "ChequeBookCoaDetail"."AccSubTypeID" = "ChequeBookCoaDetailAccSubType"."AccSubTypeID"
+	left join "dbo"."AccTypes" "ChequeBookCoaDetailAccType" on "ChequeBookCoaDetail"."AccTypeID" = "ChequeBookCoaDetailAccType"."AccTypeID"
+	left join "dbo"."CoaControl" "ChequeBookCoaDetailCoaControl" on "ChequeBookCoaDetail"."CoaControlID" = "ChequeBookCoaDetailCoaControl"."CoaControlID"
+	left join "dbo"."CoaMain" "ChequeBookCoaDetailCoaMain" on "ChequeBookCoaDetail"."CoaMainID" = "ChequeBookCoaDetailCoaMain"."CoaMainID"
+	left join "dbo"."CoaSub" "ChequeBookCoaDetailCoaSub" on "ChequeBookCoaDetail"."CoaSubID" = "ChequeBookCoaDetailCoaSub"."CoaSubID"
+]]></text>
+    </command>
+    <command id="LeafIDIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="LeafID" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="LeafID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Leaf#" readOnly="true" />
+    <field name="LeafNumber" type="Int32" label="Leaf Number" showInSummary="true" />
+    <field name="ChequeBookID" type="Int32" label="Cheque Book No" showInSummary="true">
+      <items style="Lookup" dataController="ChequeBooks" newDataView="createForm1" />
+    </field>
+    <field name="ChequeBookCoaDetailCoaDetailID" type="Int32" allowNulls="false" label="Bank Account" allowQBE="false" allowSorting="false" htmlEncode="false" hidden="false">
+      <items letters="false" />
+    </field>
+    <field name="ChequeBookChequeBookNo" type="String" readOnly="true" label="Cheque Book No" length="50" />
+    <field name="ChequeBookAccFundAccFundName" type="String" readOnly="true" label="Cheque Book Acc Fund Name" length="100" />
+    <field name="ChequeBookCoaDetailAccName" type="String" readOnly="true" label="Cheque Book Coa Detail Acc Name" length="150" />
+    <field name="ChequeBookCoaDetailAccBalTypeAccBalType" type="String" readOnly="true" label="Cheque Book Coa Detail Acc Bal Type" length="2" />
+    <field name="ChequeBookCoaDetailAccCurrencyAccCurrencyName" type="String" readOnly="true" label="Cheque Book Coa Detail Acc Currency Name" length="10" />
+    <field name="ChequeBookCoaDetailAccDestAccDest" type="String" readOnly="true" label="Cheque Book Coa Detail Acc Dest" length="2" />
+    <field name="ChequeBookCoaDetailAccFundAccFundName" type="String" readOnly="true" label="Cheque Book Coa Detail Acc Fund Name" length="100" />
+    <field name="ChequeBookCoaDetailAccSubTypeAccSubType" type="String" readOnly="true" label="Cheque Book Coa Detail Acc Sub Type" length="2" />
+    <field name="ChequeBookCoaDetailAccTypeAccType" type="String" readOnly="true" label="Cheque Book Coa Detail Acc Type" length="2" />
+    <field name="ChequeBookCoaDetailCoaControlAccName" type="String" readOnly="true" label="Cheque Book Coa Detail Coa Control Acc Name" length="50" />
+    <field name="ChequeBookCoaDetailCoaMainAccName" type="String" readOnly="true" label="Cheque Book Coa Detail Coa Main Acc Name" length="50" />
+    <field name="ChequeBookCoaDetailCoaSubAccName" type="String" readOnly="true" label="Cheque Book Coa Detail Coa Sub Acc Name" length="50" />
+    <field name="IsUsed" type="Boolean" default="((0))" label="Is Used" showInSummary="true" />
+    <field name="IsHonour" type="Boolean" default="((0))" label="Is Honour" showInSummary="true" />
+    <field name="IsVoid" type="Boolean" default="((0))" label="Is Void" showInSummary="true" />
+    <field name="ChequeHonourDT" type="DateTime" label="Cheque Honour DT" />
+    <field name="ChequeVoidDT" type="DateTime" label="Cheque Void DT" />
+    <field name="UpdatedBY" type="String" label="Updated BY" length="50" />
+    <field name="UpdateDT" type="DateTime" label="Update DT" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Cheque Books Leaf">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="LeafNumber" columns="15" />
+        <dataField fieldName="ChequeBookID" aliasFieldName="ChequeBookChequeBookNo" hyperlinkFormatString="~/Pages/ChequeBooks.aspx?ChequeBookID={ChequeBookID}&amp;_controller=ChequeBooks&amp;_commandName=Select&amp;_commandArgument=editForm1" />
+        <dataField fieldName="ChequeBookCoaDetailCoaDetailID" columns="2" />
+        <dataField fieldName="IsUsed" />
+        <dataField fieldName="IsHonour" />
+        <dataField fieldName="IsVoid" />
+        <dataField fieldName="ChequeHonourDT" columns="10" />
+        <dataField fieldName="ChequeVoidDT" columns="10" />
+        <dataField fieldName="UpdatedBY" columns="50" />
+        <dataField fieldName="UpdateDT" columns="10" />
+        <dataField fieldName="ChequeBookAccFundAccFundName" hidden="true" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Cheque Books Leaf">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Cheque Books Leaf" newColumn="true">
+          <description><![CDATA[$DefaultEditDescription]]></description>
+          <dataFields>
+            <dataField fieldName="LeafNumber" columns="15" />
+            <dataField fieldName="ChequeBookID" aliasFieldName="ChequeBookChequeBookNo" hyperlinkFormatString="~/Pages/ChequeBooks.aspx?ChequeBookID={ChequeBookID}&amp;_controller=ChequeBooks&amp;_commandName=Select&amp;_commandArgument=editForm1" />
+            <dataField fieldName="IsUsed" />
+            <dataField fieldName="IsHonour" />
+            <dataField fieldName="IsVoid" />
+            <dataField fieldName="ChequeHonourDT" columns="10" />
+            <dataField fieldName="ChequeVoidDT" columns="10" />
+            <dataField fieldName="UpdatedBY" columns="50" />
+            <dataField fieldName="UpdateDT" columns="10" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Cheque Books Leaf">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="New Cheque Books Leaf" newColumn="true">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="LeafNumber" columns="15" />
+            <dataField fieldName="ChequeBookID" aliasFieldName="ChequeBookChequeBookNo" />
+            <dataField fieldName="IsUsed" />
+            <dataField fieldName="IsHonour" />
+            <dataField fieldName="IsVoid" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="UnUsedleafs" type="Grid" commandId="command1" label="Cheque Books Leaf">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="LeafNumber" columns="15" />
+        <dataField fieldName="ChequeBookCoaDetailCoaDetailID" columns="2" aliasFieldName="ChequeBookCoaDetailCoaDetailID" />
+        <dataField fieldName="ChequeBookID" aliasFieldName="ChequeBookChequeBookNo" hyperlinkFormatString="~/Pages/ChequeBooks.aspx?ChequeBookID={ChequeBookID}&amp;_controller=ChequeBooks&amp;_commandName=Select&amp;_commandArgument=editForm1" />
+        <dataField fieldName="IsUsed" hidden="true" />
+        <dataField fieldName="IsHonour" hidden="true" />
+        <dataField fieldName="IsVoid" hidden="true" />
+        <dataField fieldName="ChequeHonourDT" columns="10" hidden="true" />
+        <dataField fieldName="ChequeVoidDT" columns="10" hidden="true" />
+        <dataField fieldName="UpdatedBY" columns="50" hidden="true" />
+        <dataField fieldName="UpdateDT" columns="10" hidden="true" />
+        <dataField fieldName="ChequeBookAccFundAccFundName" hidden="true" />
+      </dataFields>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Delete" />
+      <action id="a6" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenKeySelected="true" whenClientScript="this.get_hasDetails()" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" whenHRef="false:" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+</dataController>

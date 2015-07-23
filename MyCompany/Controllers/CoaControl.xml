@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="CoaControl" conflictDetection="overwriteChanges" label="Coa Control" plugIn="MyCompany.Data.AnnotationPlugIn" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[select
+	"CoaControl"."CoaControlID" "CoaControlID"
+	,"CoaControl"."AccCode" "AccCode"
+	,"CoaControl"."AccName" "AccName"
+	,"CoaControl"."AccDescription" "AccDescription"
+	,"CoaControl"."AccTypeID" "AccTypeID"
+	,"AccType"."AccTypeName" "AccTypeAccTypeName"
+	,"CoaControl"."AccDestID" "AccDestID"
+	,"AccDest"."AccDestName" "AccDestAccDestName"
+	,"AccDestCompanyType"."Description" "AccDestCompanyTypeDescription"
+	,"CoaControl"."AccBalTypeID" "AccBalTypeID"
+	,"AccBalType"."AccBalTypeName" "AccBalTypeAccBalTypeName"
+	,"CoaControl"."IsSystem" "IsSystem"
+	,"CoaControl"."IsInventoryItem" "IsInventoryItem"
+	,"CoaControl"."RptSlno" "RptSlno"
+	,"CoaControl"."CompType" "CompType"
+	,"CompType"."Description" "CompTypeDescription"
+from "dbo"."CoaControl" "CoaControl"
+	left join "dbo"."AccTypes" "AccType" on "CoaControl"."AccTypeID" = "AccType"."AccTypeID"
+	left join "dbo"."AccDests" "AccDest" on "CoaControl"."AccDestID" = "AccDest"."AccDestID"
+	left join "dbo"."CompanyTypes" "AccDestCompanyType" on "AccDest"."CompanyType" = "AccDestCompanyType"."CompTypeID"
+	left join "dbo"."AccBalTypes" "AccBalType" on "CoaControl"."AccBalTypeID" = "AccBalType"."AccBalTypeID"
+	left join "dbo"."CompanyTypes" "CompType" on "CoaControl"."CompType" = "CompType"."CompTypeID"
+]]></text>
+    </command>
+    <command id="CoaControlIDIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="CoaControlID" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="CoaControlID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Coa Control#" readOnly="true" />
+    <field name="AccCode" type="String" label="Account Code" length="11" showInSummary="true" />
+    <field name="AccName" type="String" allowNulls="false" label="Account Name" length="50" showInSummary="true" />
+    <field name="AccDescription" type="String" default="('')" label="Account Description" length="75" showInSummary="true" />
+    <field name="AccTypeID" type="Int32" label="Account Type" showInSummary="true" allowNulls="false">
+      <items style="Lookup" dataController="AccTypes" newDataView="createForm1" dataView="grid1" dataTextField="AccTypeName" dataValueField="AccTypeID" />
+    </field>
+    <field name="AccTypeAccTypeName" type="String" readOnly="true" label="Account Type" length="50" />
+    <field name="AccDestID" type="Int32" label="Account Destination" showInSummary="true" allowNulls="false">
+      <items style="Lookup" dataController="AccDests" newDataView="createForm1" dataView="grid1" dataTextField="AccDestName" dataValueField="AccDestID" />
+    </field>
+    <field name="AccDestAccDestName" type="String" readOnly="true" label="Destination" length="50" />
+    <field name="AccDestCompanyTypeDescription" type="String" readOnly="true" label="Acc Dest Company Type Description" length="50" />
+    <field name="AccBalTypeID" type="Int32" label="Account Balance Type" allowNulls="false">
+      <items style="Lookup" dataController="AccBalTypes" newDataView="createForm1" dataView="grid1" dataTextField="AccBalTypeName" dataValueField="AccBalTypeID" />
+    </field>
+    <field name="AccBalTypeAccBalTypeName" type="String" readOnly="true" label="Balance Type" length="50" />
+    <field name="IsSystem" type="Boolean" default="((0))" label="Is System" />
+    <field name="IsInventoryItem" type="Byte" default="((0))" label="Is Inventory Item" />
+    <field name="RptSlno" type="Int32" default="((0))" label="Report Order Id" />
+    <field name="CompType" type="Int32" label="Comp Type">
+      <items style="Lookup" dataController="CompanyTypes" newDataView="createForm1" dataView="grid1" dataTextField="Description" dataValueField="CompTypeID" />
+    </field>
+    <field name="CompTypeDescription" type="String" readOnly="true" label="Comp Type Description" length="50" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="1st Account Group " reportLabel="1st Account Group" reportTemplate="true">
+      <headerText>1st Account Group </headerText>
+      <dataFields>
+        <dataField fieldName="AccName" columns="50" />
+        <dataField fieldName="AccCode" columns="11" />
+        <dataField fieldName="AccDescription" />
+        <dataField fieldName="RptSlno" columns="15" hidden="true" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review 1st Account Group ">
+      <headerText>Review 1st Account Group </headerText>
+      <categories>
+        <category id="c1" headerText="Review  1st Group Ledger" newColumn="true">
+          <description><![CDATA[Review  1st Group Ledger]]></description>
+          <dataFields>
+            <dataField fieldName="AccName" columns="50">
+              <headerText>Account Name</headerText>
+            </dataField>
+            <dataField fieldName="AccDescription" hidden="true" />
+            <dataField fieldName="AccTypeID" aliasFieldName="AccTypeAccTypeName" />
+            <dataField fieldName="AccDestID" aliasFieldName="AccDestAccDestName" />
+            <dataField fieldName="AccBalTypeID" aliasFieldName="AccBalTypeAccBalTypeName" />
+            <dataField fieldName="IsSystem" hidden="true" />
+            <dataField fieldName="IsInventoryItem" columns="15" hidden="true" />
+            <dataField fieldName="RptSlno" columns="15" hidden="true" />
+            <dataField fieldName="CompType" hidden="true" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New  1st Account Group ">
+      <headerText>New  1st Account Group </headerText>
+      <categories>
+        <category id="c1" headerText="New  1st Group Ledger" newColumn="true">
+          <description><![CDATA[New  1st Group Ledger]]></description>
+          <dataFields>
+            <dataField fieldName="AccName" columns="50">
+              <headerText>Account Name</headerText>
+            </dataField>
+            <dataField fieldName="AccDescription" hidden="true" />
+            <dataField fieldName="AccTypeID" aliasFieldName="AccTypeAccTypeName" />
+            <dataField fieldName="AccDestID" aliasFieldName="AccDestAccDestName" />
+            <dataField fieldName="AccBalTypeID" aliasFieldName="AccBalTypeAccBalTypeName" />
+            <dataField fieldName="IsSystem" hidden="true" />
+            <dataField fieldName="IsInventoryItem" columns="15" hidden="true" />
+            <dataField fieldName="RptSlno" columns="15" hidden="true" />
+            <dataField fieldName="CompType" hidden="true" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="coa" type="Grid" commandId="command1" label="1st Group Ledger">
+      <headerText>1st Group Ledger</headerText>
+      <dataFields>
+        <dataField fieldName="AccName" columns="50" />
+        <dataField fieldName="AccCode" columns="11" />
+        <dataField fieldName="AccDescription" hidden="true" />
+        <dataField fieldName="RptSlno" columns="15" />
+      </dataFields>
+    </view>
+    <view id="CoaConLookup" type="Grid" commandId="command1" label="1st Account Group " reportLabel="1st Account Group" reportTemplate="true">
+      <headerText>1st Account Group </headerText>
+      <dataFields>
+        <dataField fieldName="AccName" columns="50" />
+        <dataField fieldName="AccCode" columns="11" hidden="true" />
+        <dataField fieldName="AccDescription" hidden="true" />
+        <dataField fieldName="RptSlno" columns="15" hidden="true" />
+      </dataFields>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Delete" />
+      <action id="a6" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenKeySelected="true" whenClientScript="this.get_hasDetails()" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+</dataController>

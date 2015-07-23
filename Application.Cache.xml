@@ -1,0 +1,1360 @@
+<application snapshot="true" integrity="checked" xmlns="urn:schemas-codeontime-com:data-aquarium-application" xmlns:m="urn:codeontime:data-map">
+  <pages xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+    <page name="Home" title="^HomeTitle^Start^HomeTitle^" description="^HomeDesc^Application home page^HomeDesc^" path="^HomePath^Home^HomePath^" style="HomePage" customStyle="Wide" index="1000">
+      <containers>
+        <container id="container1" flow="NewColumn" width="50%" />
+        <container id="c101" flow="NewColumn" width="50%" />
+      </containers>
+      <controls>
+        <control id="control1" name="TableOfContents" container="c101" sequence="2" />
+      </controls>
+      <dataViews>
+        <dataView id="view1" container="container1" controller="AccTrnHeaderChart" sequence="1" text="Voucher Created" />
+      </dataViews>
+    </page>
+    <page name="Settings" path="Setting" index="1010" title="Settings" roles="*" useExtenders="false" generate="Always" />
+    <page name="CompanyInformation" path="Setting | Company Information" index="1020" title="Company Information" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="AccFunds" view="grid1" showInSummary="true" container="container1" activator="None" text="" showModalForms="false" />
+      </dataViews>
+    </page>
+    <page name="ChartOfAccounts" path="Setting | Chart Of Accounts" index="1030" title="Chart Of Accounts" roles="*" useExtenders="false" generate="Always" description="This is Chart of Account - Group Ledger">
+      <containers>
+        <container id="c101" flow="NewRow" width="100%" />
+      </containers>
+      <dataViews>
+        <dataView id="view2" controller="AccFunds" view="grid1" showInSummary="true" container="c101" activator="None" text="" showModalForms="false" pageSize="2" />
+        <dataView id="view4" container="c101" controller="CoaControl" pageSize="5" activator="Tab" text="1st Account Group" showRowNumber="true" />
+        <dataView id="view1" controller="CoaMain" view="grid1" showInSummary="true" container="c101" activator="Tab" text="2nd Account Group" filterFields="AccFundID" pageSize="5" autoHide="Nothing" showRowNumber="true" refreshInterval="60" filterSource="view2" />
+        <dataView id="view3" controller="CoaSub" view="grid1" container="c101" filterFields="AccFundID" pageSize="5" filterSource="view2" activator="Tab" text="3rd Account Group" showRowNumber="true" />
+        <dataView id="view5" controller="CoaDetail" view="grid1" text="G/L Accounts" container="c101" filterFields="AccFundID" activator="Tab" pageSize="5" filterSource="view3" showRowNumber="true" />
+      </dataViews>
+      <about>Group Ledger - e.g. Fixed Assets, Current Assets, Liabilities, Non-Current Assets, Investment, Inventory, Long Term Loan, Short Term Loan, Provisions.</about>
+    </page>
+    <page name="GroupLedgers1" path="Setting | Chart Of Accounts | 1st Account Group" index="1040" title="1st Account Group " roles="SystemAdmin" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" container="c101" controller="CoaControl" />
+      </dataViews>
+    </page>
+    <page name="GroupLedgers2" path="Setting | Chart Of Accounts | 2nd Account Group" index="1050" title="2nd Account Group " roles="SystemAdmin" useExtenders="false" generate="Always" description="This is Group Ledgers. ">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="CoaMain" view="grid1" showInSummary="true" container="container1" activator="None" text="" sequence="1" filterFields="AccFundID" showModalForms="true" pageSize="30" autoHide="Self" showRowNumber="true" refreshInterval="60" filterSourceController="AccFunds" filterSource="view2" />
+        <dataView id="view2" controller="AccFunds" view="grid1" showInSummary="true" container="container1" activator="None" text="" showModalForms="false" />
+      </dataViews>
+    </page>
+    <page name="GroupLedger3" path="Setting | Chart Of Accounts | 3rd Account Group" index="1060" title="3rd Account Group " roles="SystemAdmin" useExtenders="false" generate="Always">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+      </dataViews>
+    </page>
+    <page name="GLAccounts" path="Setting | Chart Of Accounts | G/L Accounts" index="1070" title="G/L Accounts" roles="SystemAdmin" useExtenders="false" generate="Always">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="AccFunds" view="grid1" showInSummary="true" container="container1" activator="None" text="" showModalForms="false" sequence="1" pageSize="3" />
+      </dataViews>
+    </page>
+    <page name="FinancialInterface" path="Setting | Financial Interface" index="1080" title="Financial Interface" roles="*" useExtenders="false" generate="Always" />
+    <page name="FiscalYearDefine" path="Setting | Financial Interface | Fiscal Year Define" index="1090" title="Fiscal Year Define" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="FinancialYear" view="grid1" showInSummary="true" container="container1" activator="None" text="" showModalForms="true" />
+      </dataViews>
+    </page>
+    <page name="PreDefineAccounts" path="Setting | Financial Interface | Ledger Interface Setup" index="1100" title="Ledger Interface Setup" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="container2" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view6" controller="AccFundAccs" view="grid1" text="Ledger Interface Setup" container="container2" filterFields="AccFundID" activator="Tab" autoHide="Self" pageSize="5" sequence="2" filterSourceController="AccFunds" />
+      </dataViews>
+    </page>
+    <page name="SubLedgerInfo" path="Setting | Sub Ledger Info" index="1110" title="Sub Ledger Info" roles="*" useExtenders="false" generate="Always" />
+    <page name="SubLedger" path="Setting | Sub Ledger Info | Sub Ledger Item" index="1120" title="Sub Ledger Item" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="AccSubTypes" view="grid1" showInSummary="true" container="container1" activator="None" text="" showModalForms="false" sequence="0" />
+      </dataViews>
+    </page>
+    <page name="CostCenters" index="1130" title="Sub Ledger Accounts" roles="*" useExtenders="false" generate="Always" path="Setting | Sub Ledger Info | Sub Ledger Accounts">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view3" controller="AccSubNames" view="grid1" text="Sub Ledger Accounts" container="container1" filterFields="AccSubTypeID" activator="Tab" autoHide="Self" pageSize="5" showModalForms="true" sequence="2" filterSourceController="AccSubTypes" />
+      </dataViews>
+    </page>
+    <page name="SystemAdmin" path="Setting | System Admin" index="1140" title="System Admin" roles="SystemAdmin,Administrators" useExtenders="false" generate="Always" />
+    <page name="Currencys" path="Setting | System Admin | Currency Setup" index="1150" title="Currency Setup" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="AccCurrencys" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+      </dataViews>
+    </page>
+    <page name="UserManagement" path="Setting | System Admin | User Management" index="1160" title="User Management" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" name="MembershipManager" container="container1" />
+      </controls>
+      <dataViews>
+      </dataViews>
+    </page>
+    <page name="Roles" title="Roles" description="View Roles" index="1170" path="Setting | System Admin | User Management | Roles" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="Roles" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+      </dataViews>
+      <controls />
+      <about>This page allows roles management.</about>
+    </page>
+    <page name="Users" title="Users" description="View Users" index="1180" path="Setting | System Admin | User Management | Users" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+        <container id="container2" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="Users" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+        <dataView id="view2" controller="UserRoles" view="grid1" text="User Roles" filterSource="view1" container="container2" filterFields="UserID" activator="Tab" autoHide="Container" pageSize="5" />
+      </dataViews>
+      <controls />
+      <about>This page allows users management.</about>
+    </page>
+    <page name="UserRoles" title="User Roles" description="View User Roles" index="1190" path="Setting | System Admin | User Management | User Roles" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="UserRoles" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+      </dataViews>
+      <controls />
+      <about>This page allows user roles management.</about>
+    </page>
+    <page name="ModulePermissions" path="Setting | System Admin | User Management | Module Permissions" index="1200" title="Module Permissions" roles="SystemAdmin" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view3" controller="Modules" view="grid1" showInSummary="true" container="c101" activator="None" text="" />
+        <dataView id="view2" controller="MenuInRule" view="grid1" showInSummary="true" container="c101" activator="None" text="" />
+        <dataView id="view1" controller="MenuInUser" view="grid1" showInSummary="true" container="c101" activator="None" text="" />
+      </dataViews>
+    </page>
+    <page name="Features" path="Setting | System Admin | Features" index="1210" title="Features" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="CompFeature" view="grid1" showInSummary="true" container="container1" activator="None" text="" searchOnStart="true" />
+      </dataViews>
+    </page>
+    <page name="VoucherTypes" path="Setting | System Admin | Voucher Types" index="1220" title="Voucher Types" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" container="c101" controller="VoucherTypes" />
+      </dataViews>
+    </page>
+    <page name="PreFixSetting" title="Prefix Setting" description="View Prefix Setting" index="1230" path="Setting | System Admin | Prefix Setting" useExtenders="false">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="PreFixSetting" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+      </dataViews>
+      <controls />
+      <about>This page allows Prefix Setting management.</about>
+    </page>
+    <page name="BankAccountEntry" path="Setting | Bank Account Entry" index="1240" title="Bank Account Entry" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" container="c101" controller="BankAccountEntry" view="grid1" />
+      </dataViews>
+    </page>
+    <page name="ModeofReceipts" title="Payment Mode" description="View Payment Mode" index="1250" path="Setting | Payment Mode" useExtenders="false">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="ModeofReceipts" view="grid1" showInSummary="true" container="container1" activator="None" text="" showViewSelector="false" />
+      </dataViews>
+      <controls />
+      <about>This page allows modeof receipts management.</about>
+    </page>
+    <page name="CoinEntry" title="Coin Entry" description="View Coin Entry" index="1260" path="Setting | Coin Entry" useExtenders="false" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="CoinEntry" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+      </dataViews>
+      <controls />
+      <about>This page allows coin entry management.</about>
+    </page>
+    <page name="AccountsPayable" path="Vendor" index="1270" title="Vendor" roles="*" useExtenders="false" generate="Always">
+      <containers>
+      </containers>
+      <dataViews>
+      </dataViews>
+    </page>
+    <page name="Suppliers" path="Vendor | Supplier A/C Opening" index="1280" title="Suppliers" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" container="c101" controller="AccountsPayable" view="grid1" />
+      </dataViews>
+    </page>
+    <page name="BillRegister" title="Bill Receive" description="View Bill Receive" index="1290" path="Vendor | Bill Receive" useExtenders="false" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" width="100%" />
+      </containers>
+      <dataViews>
+      </dataViews>
+      <controls>
+        <control id="control1" container="container1" name="BillEntry" />
+      </controls>
+      <about>This page allows bill register management.</about>
+    </page>
+    <page name="SupplierBillPayment" path="Vendor | Bill Payment" index="1300" title="Bill Payment - Due Bill List" roles="*" useExtenders="false" generate="FirstTimeOnly">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="BillPay" />
+      </controls>
+      <dataViews>
+      </dataViews>
+    </page>
+    <page name="PreviousBillSearch" path="Vendor | Bill Search" index="1310" title="Bill Search" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" container="c101" controller="BillRegisterSearch" />
+      </dataViews>
+    </page>
+    <page name="SupllierLedgerReport" path="Vendor | Supplier Ledger" index="1320" title="Supplier Ledger" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="SupplierLedger" />
+      </controls>
+    </page>
+    <page name="AccountsReceivable" path="Customer" index="1330" title="Customer" roles="*" useExtenders="false" generate="Always">
+      <containers>
+      </containers>
+      <dataViews>
+      </dataViews>
+    </page>
+    <page name="Customers" path="Customer | Customer A/C Opening" index="1340" title="Customers" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" container="c101" controller="AccountsReceivable" />
+      </dataViews>
+    </page>
+    <page name="SalesJournalVoucher" path="Customer | Sales Journal Voucher" index="1350" title="Sales Journal Voucher" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="SalesJournal" />
+      </controls>
+    </page>
+    <page name="MoneyReceipts_1" title="Money Receipts" description="View Money Receipts" index="1360" path="Customer | Money Receipts (Sales)">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MoneyReceipts" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+      </dataViews>
+      <controls />
+      <about>This page allows money receipts management.</about>
+    </page>
+    <page name="CustomerLedger_1" path="Customer | Customer Ledger" index="1370" title="Customer Ledger" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="CustomerLedger" />
+      </controls>
+    </page>
+    <page name="CustomerLedgerSchedule_1" path="Customer | Customer Trial Balance" index="1380" title="Customer Trial Balance" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="CustomerLedgerSchedule" />
+      </controls>
+    </page>
+    <page name="GeneralLedgerMenu" path="General Ledger" index="1390" title="General Ledger" roles="*" useExtenders="false" generate="Always" />
+    <page name="JournalVoucher" path="General Ledger | Journal Voucher" index="1400" title="Journal Voucher" roles="*" useExtenders="false" generate="FirstTimeOnly">
+      <containers>
+        <container id="c101" flow="NewRow" width="100%" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="VoucherForm" />
+      </controls>
+    </page>
+    <page name="LedgerReport_1" path="General Ledger | G/Ledger" index="1410" title="G/Ledger Report" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="LedgerControl" />
+      </controls>
+    </page>
+    <page name="TrialBalance_1" path="General Ledger | Trial Balance" index="1420" title="Trial Balance" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+      </dataViews>
+      <controls>
+        <control id="control1" container="c101" name="TrialBalance" />
+      </controls>
+    </page>
+    <page name="OpenningBalanceEntry" path="General Ledger | Openning Balance Entry" index="1430" title="Openning Balance Entry" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+      </dataViews>
+      <controls>
+        <control id="control1" container="c101" name="OpeningBalanceEntry" />
+      </controls>
+    </page>
+    <page name="OpeningBalanceEntryOther" path="General Ledger | Opening Balance Entry (Sub.Ledger)" index="1440" title="Opening Balance Entry(Other)" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="OpeningBalanceEntryOther" />
+      </controls>
+    </page>
+    <page name="Banking" path="Banking" index="1450" title="Banking" roles="*" useExtenders="false" generate="Always" />
+    <page name="CashPayment" path="Banking | Cash Voucher" index="1460" title="Cash Voucher" roles="*" useExtenders="false" generate="FirstTimeOnly">
+      <containers>
+        <container id="c101" flow="NewRow" width="100%" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="CashPayment" />
+      </controls>
+    </page>
+    <page name="trnWithdrawCash" path="Banking | Bank Voucher" index="1470" title="Bank Voucher" roles="*" useExtenders="false" generate="FirstTimeOnly">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+      </dataViews>
+      <controls>
+        <control id="control1" container="c101" name="BankPayment" />
+      </controls>
+    </page>
+    <page name="MoneyReceipts" title="Money Receipts" description="View Money Receipts" index="1480" path="Banking | Money Receipts (Sales)" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MoneyReceipts" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+      </dataViews>
+      <controls />
+      <about>This page allows money receipts management.</about>
+    </page>
+    <page name="MoneyReceiptsSales" path="Banking | Money Receipts (General)" index="1490" title="Money Receipts (General)" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" container="c101" controller="MoneyReceiptsGeneral" />
+      </dataViews>
+    </page>
+    <page name="ReverseVoucher" path="Banking | Reverse Voucher" index="1500" title="Reverse Voucher" roles="*" useExtenders="false" generate="FirstTimeOnly">
+      <containers>
+        <container id="c101" flow="NewRow" width="100%" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="ReverseVoucher" />
+      </controls>
+    </page>
+    <page name="BankReconciliation" index="1510" title="Bank Reconciliation" roles="*" useExtenders="false" generate="Always" path="Banking | Bank Reconciliation">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="BankReconciliation" />
+      </controls>
+    </page>
+    <page name="ImprestFund" title="Imprest Fund(Assign Person)" description="View Imprest Fund" index="1520" path="Banking | Imprest Fund(Assign Person)" roles="*" useExtenders="true" generate="FirstTimeOnly" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="ImpresstFund" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+      </dataViews>
+      <controls />
+      <about>This page allows imprest fund management.</about>
+    </page>
+    <page name="ImprestFundTrans" title="Imprest Fund Transaction" description="View Imprest Fund Transaction" index="1530" path="Banking | Imprest Fund Transaction" useExtenders="true" roles="*" generate="FirstTimeOnly" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view2" controller="ImpresstFundTrans" view="grid1" showInSummary="true" container="c101" activator="None" text="" />
+      </dataViews>
+      <controls />
+      <about>This page allows imprest fund transaction management.</about>
+    </page>
+    <page name="ImpresstFundIOU" title="IOU Manager" description="View Imprest Fund IOU" index="1540" path="Banking | IOU Manager" roles="*" useExtenders="false" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="c102" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view3" controller="ImpresstFundIOU" view="grid1" showInSummary="true" container="c102" activator="None" text="" />
+      </dataViews>
+      <controls />
+      <about>This page allows imprest fund IOU management.</about>
+    </page>
+    <page name="PhysicalNotes_CashCounter" path="Banking | Notes/Cash Counter" index="1550" title="Notes/Cash Counter" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="CashCounter" />
+      </controls>
+    </page>
+    <page name="ImpresstFundCoins" title="Impresst Fund Coins" description="View Impresst Fund Coins" index="1560" path="Banking | Impresst Fund Coins" roles="*" useExtenders="false" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="c104" flow="NewColumn" width="50%" />
+        <container id="c103" flow="NewColumn" width="50%" />
+      </containers>
+      <dataViews>
+        <dataView id="view5" container="c104" controller="ImpresstFundCoinsview" refreshInterval="3" />
+        <dataView id="view4" controller="ImpresstFundCoins" view="grid1" showInSummary="true" container="c103" activator="None" text="" startCommandName="New" />
+      </dataViews>
+      <controls />
+      <about>This page allows impresst fund coins management.</about>
+    </page>
+    <page name="allVoucher" path="Banking | Voucher" index="1570" title="Voucher Entry (One Form)" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="ContraVoucher" />
+      </controls>
+    </page>
+    <page name="ChequeManagement" path="Cheque Management" index="1580" title="Cheque Management" roles="*" useExtenders="false" generate="Always" />
+    <page name="ChequeBooks" title="Cheque Book Receive" description="View Cheque Book Receive" index="1590" path="Cheque Management | Cheque Book Receive" useExtenders="false" roles="*" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="ChequeBooks" view="grid1" showInSummary="true" container="container1" activator="None" text="" showModalForms="false" />
+        <dataView id="view2" container="container1" controller="ChequeBooksLeaf" view="grid1" filterSource="view1" filterFields="ChequeBookID" showModalForms="true" pageSize="5" autoHide="Self" />
+      </dataViews>
+      <controls />
+      <about>This page allows cheque books management.</about>
+    </page>
+    <page name="ChequeIssue" path="Cheque Management | Cheque Issue" index="1600" description="Cheque Issue" title="Cheque Issue" useExtenders="false" generate="FirstTimeOnly" roles="*">
+      <about>Cheque Issue</about>
+      <containers>
+        <container id="c101" flow="NewRow" width="100%" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="ChequeIssue" />
+      </controls>
+    </page>
+    <page name="ChequePrint" path="Cheque Management | Cheque Print" index="1610" description="Cheque Print" title="Cheque Print" useExtenders="false" generate="Always" roles="*">
+      <about>Cheque Print</about>
+      <containers>
+        <container id="c101" flow="NewRow" width="100%" />
+      </containers>
+      <controls>
+      </controls>
+      <dataViews>
+        <dataView id="view1" container="c101" controller="ChequePrint" view="grid1" />
+      </dataViews>
+    </page>
+    <page name="ChequeVoid" path="Cheque Management | Cheque Void / Cancellation" index="1620" description="Cheque Void / Cancellation" title="Cheque Void / Cancellation" roles="*" useExtenders="false" generate="FirstTimeOnly">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+      </dataViews>
+      <controls>
+        <control id="control1" container="c101" name="ChequeVoid" />
+      </controls>
+    </page>
+    <page name="PDCReceive" title="PDC Receive" description="View PDC Receipt" index="1630" path="Cheque Management | PDC Receive" useExtenders="false" roles="*" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="PDCReceive" view="grid1" showInSummary="true" container="container1" activator="None" text="" showModalForms="false" />
+        <dataView id="view2" container="c101" controller="PDCReceiveDetails" view="grid1" filterSource="view1" filterFields="PDCRNO" showModalForms="true" pageSize="5" autoHide="Container" text="PDCReceive Details" />
+      </dataViews>
+      <controls />
+      <about>This page allows pdc receipt management.</about>
+    </page>
+    <page name="ChequeRegisterNew" path="Cheque Management | Cheque Register" index="1640" title="Cheque Register" roles="*" useExtenders="false" generate="Always" />
+    <page name="ChequeBookWiseChequeRegister" path="Cheque Management | Cheque Register | Cheque Book Wise Cheque Register" index="1650" title="Cheque Book Wise Cheque Register" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="ChequeBookWiseChequeRegister" />
+      </controls>
+    </page>
+    <page name="PayeeWiseChequeRegister" path="Cheque Management | Cheque Register | Payee Wise Cheque Register" index="1660" title="Payee Wise Cheque Register" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="PayeeWiseChequeRegister" />
+      </controls>
+    </page>
+    <page name="ChequeIssuRegister" path="Cheque Management | Cheque Register | Cheque Issue Register" index="1670" title="Cheque Issue Register" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" width="100%" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="ChequeIssueRegister" />
+      </controls>
+    </page>
+    <page name="ChequeUtilizationSummary" path="Cheque Management | Cheque Register | Cheque Utilization Summary" index="1680" description="Cheque Utilization Summary" title="Cheque Utilization Summary" roles="*" useExtenders="false" generate="Always">
+      <about>Cheque Utilization Summary</about>
+      <containers>
+        <container id="c101" flow="NewRow" width="100%" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="ChequeUtilizationSummary" />
+      </controls>
+    </page>
+    <page name="ChequeIssueReport" path="Cheque Management | Cheque Register | Cheque Issue Report" index="1690" description="Cheque Issue Report" title="Cheque Issue Report" roles="*" useExtenders="false" generate="Always">
+      <about>Cheque Issue Report</about>
+    </page>
+    <page name="ChequeBook_wiseReport" path="Cheque Management | Cheque Register | Cheque Issue Report | Cheque Book-wise Report" index="1700" description="Cheque Book-wise Report" title="Cheque Book-wise Report" roles="*" useExtenders="false" generate="Always">
+      <about>Cheque Book-wise Report</about>
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="ChequeBookWiseChequeRegister" />
+      </controls>
+    </page>
+    <page name="Payee_wiseReport" path="Cheque Management | Cheque Register | Cheque Issue Report | Payee-wise Report" index="1710" description="Cheque Book-wise Report" title="Payee-wise Report" roles="*" useExtenders="false" generate="Always">
+      <about>Cheque Book-wise Report</about>
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="PayeeWiseChequeRegister" />
+      </controls>
+    </page>
+    <page name="BankA_C_wiseReport" path="Cheque Management | Cheque Register | Cheque Issue Report | Bank A/C-wise Report" index="1720" description="Bank A/C-wise Report" title="Bank A/C-wise Report" roles="*" useExtenders="false" generate="Always">
+      <about>Bank A/C-wise Report</about>
+    </page>
+    <page name="PDCIssueReport" path="Cheque Management | Cheque Register | Cheque Issue Report | PDC Issue Report" index="1730" description="PDC Issue Report" title="PDC Issue Report" roles="*" useExtenders="false" generate="Always">
+      <about>PDC Issue Report</about>
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="ChequeIssueRegister" />
+      </controls>
+    </page>
+    <page name="ChequeVoidReport" path="Cheque Management | Cheque Register | Cheque Void Report" index="1740" title="Cheque Void Report" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" width="100%" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="ChequeVoidReport" />
+      </controls>
+    </page>
+    <page name="ChequeHonour" path="Cheque Management | Customer Cheque Management" index="1750" title="Customer Cheque Management" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="ChequeHonour" />
+      </controls>
+    </page>
+    <page name="InwardPDCEntry" path="Cheque Management | Inward PDC Entry" index="1760" title="Inward PDC Entry" roles="*" useExtenders="false" generate="Always" description="Inward PDC Entry">
+      <about>Inward PDC Entry</about>
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" container="c101" controller="PDCIssue" showModalForms="false" />
+        <dataView id="view2" container="c101" controller="PDCIssueDetails" view="grid1" filterSource="view1" filterFields="PDCRNO" showModalForms="true" pageSize="5" autoHide="Self" />
+      </dataViews>
+    </page>
+    <page name="InwardPDCReport" path="Cheque Management | Inward PDC Report" index="1770" description="Inward PDC Report" title="Inward PDC Report" roles="*" useExtenders="false" generate="Always">
+      <about>Inward PDC Report</about>
+    </page>
+    <page name="CreateDepositForm" path="Cheque Management | Create Deposit Form" index="1780" title="Create Deposit Form" roles="*" useExtenders="false" generate="FirstTimeOnly">
+      <containers>
+        <container id="c101" flow="NewRow" width="100%" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="CreateDeposit" />
+      </controls>
+    </page>
+    <page name="Reports" path="Reports" index="1790" title="Reports" roles="*" useExtenders="false" generate="Always" />
+    <page name="ChartsOfAccounts2nd" path="Reports | Charts Of Accounts" index="1800" title="Charts Of Accounts" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="ChartOFAccounts2nd" />
+      </controls>
+    </page>
+    <page name="rptBankBook" path="Reports | Bank Book" index="1810" title="Bank Book" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="BankBook" />
+      </controls>
+    </page>
+    <page name="CashBook" path="Reports | Cash Book" index="1820" title="Cash Book" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="CashBook" />
+      </controls>
+    </page>
+    <page name="LedgerReport" path="Reports | G/Ledger Report" index="1830" title="Ledger Report" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="LedgerControl" />
+      </controls>
+    </page>
+    <page name="SubLedgerByGroup" path="Reports | Sub Ledger By Group" index="1840" title="Sub Ledger By Group" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" width="100%" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="SubLedgerByGroup" />
+      </controls>
+    </page>
+    <page name="rptAccountsPayable" path="Reports | Accounts Payable" index="1850" title="Accounts Payable" roles="*" useExtenders="false" generate="Always" />
+    <page name="SupplierLedger" path="Reports | Accounts Payable | Supplier Ledger" index="1860" title="Supplier Ledger" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="SupplierLedger" />
+      </controls>
+    </page>
+    <page name="SupplierLedgerShedule" path="Reports | Accounts Payable | Supplier Trial Balance" index="1870" title="Supplier Trial Balance" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="SubsidiaryLedgerShedule" />
+      </controls>
+    </page>
+    <page name="SubsidiaryAgingReport" path="Reports | Accounts Payable | Supplier Aging Report" index="1880" title="Supplier Aging Report" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" width="100%" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="SubsidiaryAgingReport" />
+      </controls>
+    </page>
+    <page name="rptAccountsReceivable" path="Reports | Accounts Receivable" index="1890" title="Accounts Receivable" roles="*" useExtenders="false" generate="Always" />
+    <page name="CustomerLedger" path="Reports | Accounts Receivable | Customer Ledger" index="1900" title="Customer Ledger" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="CustomerLedger" />
+      </controls>
+    </page>
+    <page name="CustomerLedgerSchedule" path="Reports | Accounts Receivable | Customer Trial Balance" index="1910" title="Customer Trial Balance" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="CustomerLedgerSchedule" />
+      </controls>
+    </page>
+    <page name="SubsidiaryCustomerAgingReport" path="Reports | Accounts Receivable | Customer Aging Report" index="1920" title="Customer Aging Report" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="SubsidiaryCustomerAgingReport" />
+      </controls>
+    </page>
+    <page name="ReceiptsAndPayments" index="1930" title="Receipts and Payments" roles="*" useExtenders="false" generate="Always" path="Reports | Receipts and Payments">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+      </dataViews>
+      <controls>
+        <control id="control1" container="c101" name="ReceiptPayment" />
+      </controls>
+    </page>
+    <page name="Financials" path="Reports | Financial Statements" index="1940" title="Financial Statements" roles="*" useExtenders="false" generate="Always" />
+    <page name="StandardReports" path="Reports | Financial Statements | Standard Reports" index="1950" title="Standard Reports" roles="*" useExtenders="false" generate="Always" />
+    <page name="TrialBalance" path="Reports | Financial Statements | Standard Reports | Trial Balance" index="1960" title="Trial Balance" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+      </dataViews>
+      <controls>
+        <control id="control1" container="c101" name="TrialBalance" />
+      </controls>
+    </page>
+    <page name="ProfitAndLoss" path="Reports | Financial Statements | Standard Reports | Profit and Loss" index="1970" title="Profit and Loss" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c102" flow="NewRow" style="padding-top:8px" />
+      </containers>
+      <dataViews>
+      </dataViews>
+      <controls>
+        <control id="control1" container="c102" name="ProfitAndLoss" />
+      </controls>
+    </page>
+    <page name="BalanceSheet" path="Reports | Financial Statements | Standard Reports | Balance Sheet" index="1980" title="Balance Sheet" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="balancesheet1" />
+      </controls>
+    </page>
+    <page name="CustomizeReports" path="Reports | Financial Statements | Customized Reports" index="1990" title="Customized Reports" roles="*" useExtenders="false" generate="Always" />
+    <page name="ImprestFundReport" path="Reports | Imprest Fund Reimbursment Bill" index="2000" title="Imprest Fund Reimbursment Bill" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="ImprestFundReimbursmentBill" />
+      </controls>
+    </page>
+    <page name="LCLedgerReport" path="Reports | Ledger Report" index="2010" title="Ledger Report" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" width="100%" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="LCLedgerReport" />
+      </controls>
+    </page>
+    <page name="Help" path="Help" index="2020" description="About the software" title="?" roles="*" useExtenders="false" generate="Always" />
+    <page name="AccountsNature" index="2030" title="Accounts Nature" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" container="c101" controller="CoaControl" />
+      </dataViews>
+    </page>
+    <page name="Voucher" index="2040" title="Voucher" roles="SystemAdmin" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="VoucherForm" />
+      </controls>
+    </page>
+    <page name="NotesFormulas" index="2050" title="Notes Formulas" roles="*" useExtenders="false" generate="Always" />
+    <page name="GeneralLedger" index="2060" title="General Ledger" roles="*" useExtenders="false" generate="FirstTimeOnly">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" container="c101" controller="GeneralLedgerReport" />
+      </dataViews>
+    </page>
+    <page name="trnDepositCash" index="2070" title="Deposit Cash" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="BankReceipt" />
+      </controls>
+    </page>
+    <page name="trnTransferMoney" index="2080" title="Transfer Money" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="BankPayment" />
+      </controls>
+    </page>
+    <page name="ChequeRegister" index="2090" title="Cheque Register" roles="*" useExtenders="false" generate="Always" />
+    <page name="ControlLedgerReport" index="2100" title="Control Ledger" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="ControlLedger" />
+      </controls>
+    </page>
+    <page name="AccBillRegisterD" title="Acc Bill Register D" description="View Acc Bill Register D" index="2110">
+      <containers>
+        <container id="container1" flow="NewRow" />
+        <container id="container2" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="AccBillRegisterD" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+        <dataView id="view2" controller="AccBillRegisterD" view="grid1" text="Acc Bill Register D" filterSource="view1" container="container2" filterFields="RegDetailsID" activator="Tab" autoHide="Container" pageSize="5" />
+      </dataViews>
+      <controls />
+      <about>This page allows acc bill register d management.</about>
+    </page>
+    <page name="AccBillRegisterH" title="Acc Bill Register H" description="View Acc Bill Register H" index="2120">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="AccBillRegisterH" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+      </dataViews>
+      <controls />
+      <about>This page allows acc bill register h management.</about>
+    </page>
+    <page name="p150614034831" title="New Pages" externalUrl="about:blank" index="2130" />
+    <page name="Employees" title="Employees" description="View Employees" index="2140">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="Employees" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+      </dataViews>
+      <controls />
+      <about>This page allows employees management.</about>
+    </page>
+    <page name="Prefix" title="Prefix" description="View Prefix" index="2150">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="Prefix" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+      </dataViews>
+      <controls />
+      <about>This page allows prefix management.</about>
+    </page>
+    <page name="p150614034109" title="New Pages" externalUrl="about:blank" index="2160" />
+    <page name="p150614033906" title="New Pages" externalUrl="about:blank" index="2170" />
+    <page name="trnBanking" index="2180" description="Cash withdrawn, Deposit Cash, Transfer Money" title="Banking" roles="SystemAdmin" useExtenders="false" generate="Always" />
+    <page name="trnExpenseIncome" index="2190" title="Expense/Income" roles="SystemAdmin" useExtenders="false" generate="Always" />
+    <page name="trnIncomes" index="2200" description="Record business income earned" title="Incomes" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+      </controls>
+    </page>
+    <page name="trnExpenses" index="2210" description="Record business incurred" title="Expenses" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="CashPayment" />
+      </controls>
+    </page>
+    <page name="trnSales" index="2220" title="Sales" roles="SystemAdmin" useExtenders="false" generate="Always" />
+    <page name="SalesOrder" index="2230" title="Sales Order" roles="*" useExtenders="false" generate="Always" description="Issue sales order to customers" />
+    <page name="trnInvoice" index="2240" title="Invoice" roles="*" useExtenders="false" generate="Always" description="Record sale of goods to customers" />
+    <page name="ReceiptfromCustomer" index="2250" title="Receipt From Customer" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+      </controls>
+    </page>
+    <page name="trnSalesReturn" index="2260" title="Sales Return" roles="*" useExtenders="false" generate="Always" description="Records goods returned by customers" />
+    <page name="trnPurchase" index="2270" title="Purchase" roles="SystemAdmin" useExtenders="false" generate="Always" />
+    <page name="trnPurchaseOrder" index="2280" description="Issue purchase order to suppliers" title="Purchase Order" roles="*" useExtenders="false" generate="Always" />
+    <page name="Purchase" index="2290" description="Record purchase of goods from suppliers" title="Purchase" roles="*" useExtenders="false" generate="Always" />
+    <page name="PaymenttoSuppliers" index="2300" title="Payment to Suppliers" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="BankPayment" />
+      </controls>
+    </page>
+    <page name="trnPurchaseReturn" index="2310" description="Record goods returned to Suppliers" title="Purchase Return" roles="*" useExtenders="false" generate="Always" />
+    <page name="trnVouchers" index="2320" title="Vouchers" roles="*" useExtenders="false" generate="Always" />
+    <page name="BankPayment" index="2330" title="Bank Payment" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="BankPayment" />
+      </controls>
+    </page>
+    <page name="BankReceipts" index="2340" title="Bank Receipts" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="BankReceipt" />
+      </controls>
+    </page>
+    <page name="ContraTransferVoucher" index="2350" title="Contra/Transfer Voucher" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="CashPayment" />
+      </controls>
+    </page>
+    <page name="Transactions" index="2360" title="Transactions" roles="*" useExtenders="false" generate="Always" />
+    <page name="CashReceipt" index="2370" title="Cash Receipt" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="CashReceipts" />
+      </controls>
+    </page>
+    <page name="CheckPrint" index="2380" title="Check Print" roles="*" useExtenders="false" generate="Always" />
+    <page name="MoneyReceiptReportView" index="2390" title="Money Receipt Report View" roles="*" useExtenders="false" generate="FirstTimeOnly">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="MoneyReceiptView" />
+      </controls>
+    </page>
+    <page name="p150615124119" title="New Pages" externalUrl="about:blank" index="2400" />
+    <page name="AccountTransactions" title="Account Transactions" description="View Account Transactions" index="2410">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="AccountTransactions" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+      </dataViews>
+      <controls />
+      <about>This page allows account transactions management.</about>
+    </page>
+    <page name="p150618033631" title="New Pages" externalUrl="about:blank" index="2420" />
+    <page name="LedgerGL" index="2430" title="Ledger G/L" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" container="c101" controller="GeneralLedgers" />
+      </dataViews>
+    </page>
+    <page name="Ledgers" index="2440" title="Ledgers" roles="*" useExtenders="false" generate="Always" />
+    <page name="MonthlyLedger" index="2450" title="Monthly Ledger" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" container="c101" controller="MonthlyLedgerReport" />
+      </dataViews>
+    </page>
+    <page name="Subsidiary_Accounts" title="Subsidiary Accounts" description="View Subsidiary Accounts" index="2460">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="Subsidiary_Accounts" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+      </dataViews>
+      <controls />
+      <about>This page allows subsidiary accounts management.</about>
+    </page>
+    <page name="PDCReceiveDetails" title="PDC Receive Details" description="View PDC Receive Details" index="2470">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="PDCReceiveDetails" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+      </dataViews>
+      <controls />
+      <about>This page allows pdc receive details management.</about>
+    </page>
+    <page name="p150622102115" title="New Pages" externalUrl="about:blank" index="2480" />
+    <page name="p150622115449" title="New Pages" externalUrl="about:blank" index="2490" />
+    <page name="PDCRReportVeiw" index="2500" title="PDCRReport Veiw" roles="*" useExtenders="false" generate="FirstTimeOnly">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="PDCRReportVeiw" />
+      </controls>
+    </page>
+    <page name="PDCRPreFormat" index="2510" title="PDCR Pre Format" roles="*" useExtenders="false" generate="FirstTimeOnly">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="PDCRPrint" />
+      </controls>
+    </page>
+    <page name="SalesInvoice" index="2520" title="Sales Invoice" roles="*" useExtenders="false" generate="Always" />
+    <page name="BankWiseChequeRegister" index="2530" title="Bank Wise Cheque Register" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="BankWiseChequeRegister" />
+      </controls>
+    </page>
+    <page name="MoneyReceiptsSales_1" index="2540" title="Money Receipts Sales" roles="*" useExtenders="false" generate="Always" />
+    <page name="rptChartOfAccounts" index="2550" title="Chart Of Accounts" roles="*" useExtenders="false" generate="FirstTimeOnly">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view2" controller="ChartOfAccountReport" view="grid1" text="G/L Accounts" container="container1" activator="Tab" autoHide="Self" pageSize="20" showModalForms="true" sequence="2" filterSourceController="AccFunds" />
+      </dataViews>
+    </page>
+    <page name="MoneyReceiptReport" index="2560" title="Money Receipt Report" roles="*" useExtenders="false" generate="FirstTimeOnly">
+      <containers>
+        <container id="c101" flow="NewRow" width="100%" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="MoneyReceiptReport" />
+      </controls>
+    </page>
+    <page name="Paycategory" title="Paycategory" description="View Paycategory" index="2570">
+      <containers>
+        <container id="container1" flow="NewRow" />
+        <container id="container2" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="Paycategory" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+        <dataView id="view2" controller="MoneyReceipts" view="grid1" text="Money Receipts" filterSource="view1" container="container2" filterFields="PayCatID" activator="Tab" autoHide="Container" pageSize="5" />
+      </dataViews>
+      <controls />
+      <about>This page allows paycategory management.</about>
+    </page>
+    <page name="PrintCheque1" index="2580" title="Print Cheque 1" roles="*" useExtenders="false" generate="FirstTimeOnly">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="ChequePrint" />
+      </controls>
+    </page>
+    <page name="PDCIssueDetails" title="PDC Issue Details" description="View PDC Issue Details" index="2590">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="PDCIssueDetails" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+      </dataViews>
+      <controls />
+      <about>This page allows pdc issue details management.</about>
+    </page>
+    <page name="VoucherVoid" index="2600" title="Voucher Void" roles="SystemAdmin" useExtenders="false" generate="Always" />
+  </pages>
+  <userControls>
+    <userControl name="TableOfContents" prefix="uc" generate="Always">
+      <body>
+                
+&lt;div class="ParaInfo"&gt;
+        ^TocInstruction^Please select a page link in the table of contents below.^TocInstruction^&lt;/div&gt;
+&lt;div class="ParaHeader"&gt;
+    ^TocHeader^Site Map^TocHeader^
+&lt;/div&gt;
+&lt;asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" ShowStartingNode="false" /&gt;
+&lt;asp:TreeView ID="TreeView1" runat="server" DataSourceID="SiteMapDataSource1" CssClass="TreeView"&gt;
+&lt;/asp:TreeView&gt;
+
+&lt;div id="app-sitemap" data-app-role="page" data-activator="Button|^TocHeader^Site Map^TocHeader^"&gt;
+    &lt;p&gt;
+      &lt;span&gt;^TocInstruction^Please select a page link in the table of contents below.^TocInstruction^&lt;/span&gt;
+    &lt;/p&gt;
+    &lt;div data-app-role="sitemap"&gt;&lt;/div&gt;
+    &lt;p&gt;
+      &lt;br /&gt;
+    &lt;/p&gt;
+&lt;/div&gt;
+              </body>
+    </userControl>
+    <userControl name="Welcome" prefix="uc" generate="Always">
+      <body>
+&lt;div style="padding-left:8px"&gt;&lt;div class="ParaInfo"&gt;
+        ^SignInInstruction^Sign in to access the protected site content.^SignInInstruction^&lt;/div&gt;
+&lt;div class="ParaHeader"&gt;
+    ^SignInHeader^Instructions^SignInHeader^
+&lt;/div&gt;
+&lt;div class="ParaText"&gt;
+    ^SignInPara1^Two standard user accounts are automatically created when application is initialized
+    if membership option has been selected for this application.^SignInPara1^
+&lt;/div&gt;
+&lt;div class="ParaText"&gt;
+    &lt;div style="border: solid 1px black; background-color: InfoBackground; padding: 8px;
+        float: left;"&gt;
+        ^AdminDesc^Administrative account^AdminDesc^:&lt;br /&gt;
+        &lt;b title="User Name"&gt;admin&lt;/b&gt; / &lt;b title="Password"&gt;admin123%&lt;/b&gt;
+        &lt;br /&gt;
+        &lt;br /&gt;
+        ^UserDesc^Standard user account^UserDesc^:&lt;br /&gt;
+        &lt;b title="User Name"&gt;user&lt;/b&gt; / &lt;b title="Password"&gt;user123%&lt;/b&gt;
+    &lt;/div&gt;
+    &lt;div style="clear:both;margin-bottom:8px"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div id="app-welcome" data-app-role="page" data-activator="Button|^SignInHeader^Instructions^SignInHeader^" data-activator-description="^SignInInstruction^Sign in to access the protected site content.^SignInInstruction^"&gt;
+      &lt;p&gt;^SignInInstruction^Sign in to access the protected site content.^SignInInstruction^&lt;/p&gt;
+      &lt;p&gt;
+          ^SignInPara1^Two standard user accounts are automatically created when application is initialized
+  if membership option has been selected for this application.^SignInPara1^
+      &lt;/p&gt;
+
+      &lt;p&gt;
+          ^SignInPara2^The administrative account &lt;b&gt;admin&lt;/b&gt; is authorized to access all areas of the
+  web site and membership manager. The standard &lt;b&gt;user&lt;/b&gt; account is allowed to
+  access all areas of the web site with the exception of membership manager.^SignInPara2^
+      &lt;/p&gt;
+      &lt;p&gt;
+          ^AdminDesc^Administrative account^AdminDesc^:&lt;br /&gt;
+          &lt;b title="User Name"&gt;admin&lt;/b&gt; / &lt;b title="Password"&gt;admin123%&lt;/b&gt;
+      &lt;/p&gt;
+      &lt;p&gt;
+          ^UserDesc^Standard user account^UserDesc^:&lt;br /&gt;
+          &lt;b title="User Name"&gt;user&lt;/b&gt; / &lt;b title="Password"&gt;user123%&lt;/b&gt;
+      &lt;/p&gt;
+      &lt;p&gt;&lt;a href="#" data-role="button" data-inline="true" data-theme="b" data-app-role="loginstatus" data-icon="lock"&gt;Login Status&lt;/a&gt;&lt;/p&gt;
+
+&lt;/div&gt;</body>
+    </userControl>
+    <userControl name="Login" prefix="uc" generate="FirstTimeOnly">
+      <body>
+              
+&lt;div data-app-role="page" data-content-framework="bootstrap"&gt;
+      &lt;div class="navbar navbar-default navbar-static-top" role="navigation"&gt;
+          &lt;div class="container"&gt;
+              &lt;div class="navbar-header"&gt;
+                  &lt;span class="navbar-brand"&gt;Standalone Login Page&lt;/span&gt;
+              &lt;/div&gt;
+              &lt;div class="navbar-collapse"&gt;
+                  &lt;div class="navbar-form navbar-right" role="form"&gt;
+                      &lt;div class="form-group"&gt;
+                          &lt;input id="login-user-name" type="text" placeholder="Username" class="form-control" autocapitalize="off"&gt;
+                      &lt;/div&gt;
+                      &lt;div class="form-group"&gt;
+                          &lt;input id="login-password" type="password" placeholder="Password" class="form-control"&gt;
+                      &lt;/div&gt;
+                      &lt;button id="login-button" class="btn btn-success"&gt;Sign in&lt;/button&gt;
+                  &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;!--/.navbar-collapse --&gt;
+          &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;!-- Main jumbotron for a primary marketing message or call to action --&gt;
+      &lt;div class="jumbotron"&gt;
+          &lt;div class="container"&gt;
+              &lt;h1&gt;&lt;span class="glyphicon glyphicon-globe"&gt;&lt;/span&gt;&amp;nbsp;Hello, world!&lt;/h1&gt;
+              &lt;p&gt;
+                  This is a template for a custom login screen. It includes a large callout called a jumbotron and three supporting content blocks. 
+                  &lt;%--Use it as a starting point to create something more unique.&lt;/p&gt;--%&gt;
+                  Edit the "Login" control in Visual Studio to create something more unique.
+              &lt;/p&gt;
+
+              &lt;p&gt;&lt;a href="http://codeontime.com/learn/user-controls/extending-pages" class="btn btn-primary btn-lg" role="button"&gt;Learn more &amp;raquo;&lt;/a&gt;&lt;/p&gt;
+          &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div class="container"&gt;
+
+          &lt;div class="row"&gt;
+              &lt;div class="col-sm-8"&gt;
+                  &lt;h2&gt;^SignInInstruction^Sign in to access the protected site content.^SignInInstruction^&lt;/h2&gt;
+                  &lt;p&gt;
+                      ^SignInPara1^Two standard user accounts are automatically created when application is initialized
+  if membership option has been selected for this application.^SignInPara1^
+                  &lt;/p&gt;
+
+                  &lt;p&gt;
+                      ^SignInPara2^The administrative account &lt;b&gt;admin&lt;/b&gt; is authorized to access all areas of the
+  web site and membership manager. The standard &lt;b&gt;user&lt;/b&gt; account is allowed to
+  access all areas of the web site with the exception of membership manager.^SignInPara2^
+                  &lt;/p&gt;
+              &lt;/div&gt;
+              &lt;div class="col-sm-4"&gt;
+                  &lt;div class="panel panel-success"&gt;
+                      &lt;div class="panel-heading"&gt;
+                          &lt;span&gt;^AdminDesc^Administrative account^AdminDesc^&lt;/span&gt;
+                      &lt;/div&gt;
+                      &lt;div class="panel-body"&gt;
+                          User Name: &lt;b title="User Name"&gt;admin&lt;/b&gt;&lt;br /&gt;
+                          Password: &lt;b title="Password"&gt;admin123%&lt;/b&gt;
+                      &lt;/div&gt;
+                  &lt;/div&gt;
+
+                  &lt;div class="panel panel-default"&gt;
+                      &lt;div class="panel-heading"&gt;
+                          &lt;span&gt;^UserDesc^Standard user account^UserDesc^&lt;/span&gt;
+                      &lt;/div&gt;
+                      &lt;div class="panel-body"&gt;
+                          User Name: &lt;b title="User Name"&gt;user&lt;/b&gt;&lt;br /&gt;
+                          Password: &lt;b title="Password"&gt;user123%&lt;/b&gt;
+                      &lt;/div&gt;
+                  &lt;/div&gt;
+              &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;hr /&gt;
+          &lt;!-- Example row of columns --&gt;
+          &lt;div class="row"&gt;
+              &lt;div class="col-sm-4"&gt;
+                  &lt;h2&gt;Heading&lt;/h2&gt;
+                  &lt;p&gt;Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. &lt;/p&gt;
+                  &lt;p&gt;&lt;a class="btn btn-default" href="#" role="button"&gt;View details &amp;raquo;&lt;/a&gt;&lt;/p&gt;
+              &lt;/div&gt;
+              &lt;div class="col-sm-4"&gt;
+                  &lt;h2&gt;Heading&lt;/h2&gt;
+                  &lt;p&gt;Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. &lt;/p&gt;
+                  &lt;p&gt;&lt;a class="btn btn-default" href="#" role="button"&gt;View details &amp;raquo;&lt;/a&gt;&lt;/p&gt;
+              &lt;/div&gt;
+              &lt;div class="col-sm-4"&gt;
+                  &lt;h2&gt;Heading&lt;/h2&gt;
+                  &lt;p&gt;Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.&lt;/p&gt;
+                  &lt;p&gt;&lt;a class="btn btn-default" href="#" role="button"&gt;View details &amp;raquo;&lt;/a&gt;&lt;/p&gt;
+              &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;hr /&gt;
+      &lt;/div&gt;
+      &lt;!-- /container --&gt;
+&lt;/div&gt;
+
+
+&lt;script type="text/javascript"&gt;
+    (function () {
+        var resources = Web.MembershipResources.Messages;
+
+        function performLogin() {
+
+            var userName = $('#login-user-name'),
+                password = $('#login-password');
+            if (!userName.val())
+                $app.alert(resources.BlankUserName, function () {
+                    userName.focus();
+                });
+            else if (!password.val())
+                $app.alert(resources.BlankPassword, function () {
+                    password.focus();
+                });
+            else
+                $app.login(userName.val(), password.val(), true,
+                    function () {
+                        var returnUrl = window.location.href.match(/\?ReturnUrl=(.+)$/);
+                        window.location.replace(returnUrl &amp;&amp; decodeURIComponent(returnUrl[1]) || __baseUrl);
+                    },
+                    function () {
+                        $app.alert(resources.InvalidUserNameAndPassword, function () {
+                            userName.focus();
+                        });
+                    });
+            return false;
+        }
+
+        // remove any other "app" pages 
+        $('div.SettingsPanel div[data-app-role="page"]').remove();
+        // register event handlers
+        $(document)
+            .on('click', '#login-button', performLogin)
+            .on('keydown', '#login-user-name,#login-password', function (event) {
+                if (event.which == 13) {
+                    performLogin();
+                    return false;
+                }
+            });
+    })();
+&lt;/script&gt;
+
+            </body>
+    </userControl>
+    <userControl name="VoucherForm" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="BankPayment" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="BankReceipt" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="CashPayment" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="JournalVoucher" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="BankBook" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="CashBook" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="LedgerControl" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="ControlLedger" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="SubsidiaryLedger" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="SubsidiaryLedgerShedule" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="ProfitAndLoss" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="balancesheet1" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="CashReceipts" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="BillRegHeader" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="BillRegDetails" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="CustomerLedger" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="CustomerLedgerSchedule" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="SupplierBillPayment" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="MoneyReceiptView" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="SupplierLedger" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="BillPay" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="SalesJournal" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="BankReconciliation" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="OpeningBalanceEntry" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="OpeningBalanceEntryOther" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="SubsidiaryAgingReport" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="SubsidiaryCustomerAgingReport" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="ChequeHonour" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="ReceiptPayment" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="BankWiseChequeRegister" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="ChequeBookWiseChequeRegister" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="PayeeWiseChequeRegister" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="PDCRPrint" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="PDCRReportVeiw" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="BillEntry" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="ReverseVoucher" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="TrialBalance" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="ChequeIssueRegister" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="ChequeReceiptRegister" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="ChartOFAccounts2nd" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="ForgotPassword" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="SubLedgerByGroup" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="MoneyReceiptReport" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="ChequeIssue" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="ChequePrint" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="ImprestFundReimbursmentBill" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="CashCounter" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="ChequeVoid" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="ChequeVoidReport" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="ChequeUtilizationSummary" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="CreateDeposit" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="ContraVoucher" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="LCLedgerReport" prefix="uc" generate="FirstTimeOnly" />
+  </userControls>
+</application>

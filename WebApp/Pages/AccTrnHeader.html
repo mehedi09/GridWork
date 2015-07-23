@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Acc Trn Header</title>
+    <meta name="description" content="This page allows acc trn header management." />
+  </head>
+  <body>
+    <div data-flow="row">
+      <div id="view1" data-controller="AccTrnHeader" data-view="grid1" data-show-in-summary="true" data-search-on-start="true"> </div>
+    </div>
+    <div data-flow="row">
+      <div data-activator="Tab|Acc Trn Detail">
+        <div id="view2" data-controller="AccTrnDetail" data-view="grid1" data-filter-source="view1" data-filter-fields="AccVoucherTranID" data-page-size="5" data-auto-hide="container"> </div>
+      </div>
+    </div>
+  </body>
+</html>

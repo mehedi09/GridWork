@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="FilterLedgers" label="FilterLedgers" conflictDetection="overwriteChanges" plugIn="MyCompany.Data.AnnotationPlugIn" handler="MyCompany.Rules.FilterLedgersBusinessRules" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <fields>
+    <field name="AccFundID" type="Int32" allowNulls="false" label="Company" allowQBE="false" allowSorting="false" htmlEncode="false" hidden="false" contextFields="AccFundID=3">
+      <items letters="false" style="DropDownList" dataController="AccFunds" dataView="grid1" dataTextField="AccFundName" dataValueField="AccFundID" />
+    </field>
+    <field name="LedAccCode" type="Int32" allowNulls="false" label="Ledger Name:" allowQBE="false" allowSorting="false" htmlEncode="false" hidden="false">
+      <items style="Lookup" dataController="CoaDetail" dataView="grid1" dataTextField="CoaDetailID" dataValueField="CoaDetailID" pageSize="30" letters="true" />
+    </field>
+    <field name="Start_date" type="DateTime" allowNulls="false" label="Start date" allowQBE="false" allowSorting="false" htmlEncode="false" hidden="false" dataFormatString="g">
+      <items letters="false" />
+    </field>
+    <field name="To_Date" type="DateTime" allowNulls="false" label="To Date" allowQBE="false" allowSorting="false" htmlEncode="false" hidden="false" dataFormatString="g">
+      <items letters="false" />
+    </field>
+  </fields>
+</dataController>

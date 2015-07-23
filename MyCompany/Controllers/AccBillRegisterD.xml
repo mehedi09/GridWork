@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="AccBillRegisterD" conflictDetection="overwriteChanges" label="Acc Bill Register D" plugIn="MyCompany.Data.AnnotationPlugIn" handler="MyCompany.Rules.AccBillRegisterDBusinessRules" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"AccBillRegisterD"."RegDetailsID" "RegDetailsID"
+	,"AccBillRegisterD"."RegID" "RegID"
+	,"Reg"."RegisterPrefix" "RegRegisterPrefix"
+	,"AccBillRegisterD"."RegisterNo" "RegisterNo"
+	,"AccBillRegisterD"."Perpose" "Perpose"
+	,"AccBillRegisterD"."Remaks" "Remaks"
+	,"AccBillRegisterD"."Amount" "Amount"
+from "dbo"."AccBillRegisterD" "AccBillRegisterD"
+	left join "dbo"."AccBillRegisterH" "Reg" on "AccBillRegisterD"."RegID" = "Reg"."RegID"
+]]></text>
+    </command>
+    <command id="RegDetailsIDIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="RegDetailsID" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="RegDetailsID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Reg Details#" readOnly="true" />
+    <field name="RegID" type="Int32" label="Reg#" showInSummary="true">
+      <items style="Lookup" dataController="AccBillRegisterH" newDataView="createForm1" copy="RegisterNo=RegisterNo" />
+    </field>
+    <field name="RegRegisterPrefix" type="String" readOnly="true" label="Reg Register Prefix" length="50" />
+    <field name="RegisterNo" type="String" allowNulls="false" label="Register No" length="50" showInSummary="true" />
+    <field name="Perpose" type="String" label="Perpose" length="50" showInSummary="true" />
+    <field name="Remaks" type="String" label="Remaks" length="50" showInSummary="true" />
+    <field name="Amount" type="Decimal" label="Amount" showInSummary="true" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Acc Bill Register D">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="RegisterNo" columns="50" />
+        <dataField fieldName="RegID" aliasFieldName="RegRegisterPrefix" hyperlinkFormatString="~/Pages/AccBillRegisterH.aspx?RegID={RegID}&amp;_controller=AccBillRegisterH&amp;_commandName=Select&amp;_commandArgument=editForm1" />
+        <dataField fieldName="Perpose" columns="50" />
+        <dataField fieldName="Remaks" columns="50" />
+        <dataField fieldName="Amount" columns="15" aggregate="Sum" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Acc Bill Register D">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Acc Bill Register D" newColumn="true">
+          <description><![CDATA[$DefaultEditDescription]]></description>
+          <dataFields>
+            <dataField fieldName="RegID" aliasFieldName="RegRegisterPrefix" hyperlinkFormatString="~/Pages/AccBillRegisterH.aspx?RegID={RegID}&amp;_controller=AccBillRegisterH&amp;_commandName=Select&amp;_commandArgument=editForm1" />
+            <dataField fieldName="RegisterNo" columns="15" />
+            <dataField fieldName="Amount" columns="15" />
+            <dataField fieldName="Perpose" columns="20" rows="2" />
+            <dataField fieldName="Remaks" columns="20" rows="2" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Acc Bill Register D">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="New Acc Bill Register D" newColumn="true">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="RegID" aliasFieldName="RegRegisterPrefix" />
+            <dataField fieldName="RegisterNo" columns="15" />
+            <dataField fieldName="Amount" columns="15" />
+            <dataField fieldName="Perpose" columns="20" rows="2" />
+            <dataField fieldName="Remaks" columns="20" rows="2" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Delete" />
+      <action id="a6" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenKeySelected="true" whenClientScript="this.get_hasDetails()" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+</dataController>

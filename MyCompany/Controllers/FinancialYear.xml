@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="FinancialYear" conflictDetection="overwriteChanges" label="Financial Year" plugIn="MyCompany.Data.AnnotationPlugIn" handler="MyCompany.Rules.FinancialYearBusinessRules" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"FinancialYear"."FinancialYearID" "FinancialYearID"
+	,"FinancialYear"."AccFundCode" "AccFundCode"
+	,"AccFund"."AccFundName" "AccFundAccFundName"
+	,"FinancialYear"."StartDate" "StartDate"
+	,"FinancialYear"."EndDate" "EndDate"
+	,"FinancialYear"."FiscalYear" "FiscalYear"
+	,"FinancialYear"."Qtr1" "Qtr1"
+	,"FinancialYear"."Qtr2" "Qtr2"
+	,"FinancialYear"."Qtr3" "Qtr3"
+	,"FinancialYear"."Qtr4" "Qtr4"
+	,"FinancialYear"."ActivateYear" "ActivateYear"
+	,"FinancialYear"."ActiveQtr" "ActiveQtr"
+	,"FinancialYear"."YearIsClosed" "YearIsClosed"
+	,"FinancialYear"."YearCloseControl" "YearCloseControl"
+from "dbo"."FinancialYear" "FinancialYear"
+	left join "dbo"."AccFunds" "AccFund" on "FinancialYear"."AccFundCode" = "AccFund"."AccFundID"
+]]></text>
+    </command>
+    <command id="FinancialYearIDIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="FinancialYearID" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="FinancialYearID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Financial Year#" readOnly="true" />
+    <field name="AccFundCode" type="Int32" label="Company" showInSummary="true" contextFields="AccFundID=@Session_CompanyID">
+      <items style="DropDownList" dataController="AccFunds" newDataView="createForm1" dataView="grid1" dataTextField="AccFundName" dataValueField="AccFundID" />
+    </field>
+    <field name="AccFundAccFundName" type="String" readOnly="true" label="Acc Fund Name" length="100" />
+    <field name="StartDate" type="DateTime" allowNulls="false" label="Start Date" showInSummary="true" />
+    <field name="EndDate" type="DateTime" allowNulls="false" label="End Date" showInSummary="true" />
+    <field name="FiscalYear" type="String" allowNulls="false" label="Fiscal Year" length="8" showInSummary="true" contextFields="@StartDate,@EndDate,@FiscalYear,@Qtr1,@Qtr2,@Qtr3,@Qtr4" computed="true" calculated="true">
+      <formula>Convert(Nvarchar(4),Year(FinancialYear.StartDate))+
+Convert(Nvarchar(4),Year(FinancialYear.EndDate))</formula>
+    </field>
+    <field name="Qtr1" type="DateTime" label="Ist Quarter Start" showInSummary="true" />
+    <field name="Qtr2" type="DateTime" label="2nd Quarter Start" />
+    <field name="Qtr3" type="DateTime" label="3rd Quarter Start" />
+    <field name="Qtr4" type="DateTime" label="4th Quarter Start" />
+    <field name="ActivateYear" type="Boolean" allowNulls="false" default="((0))" label="Activate Year">
+      <items style="CheckBox" />
+    </field>
+    <field name="ActiveQtr" type="Byte" default="((0))" label="Active Qtr" />
+    <field name="YearIsClosed" type="Boolean" default="('False')" label="Year Closed?" />
+    <field name="YearCloseControl" type="Boolean" default="((0))" label="Year Close Applicable ?" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Financial Year">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="AccFundCode" hyperlinkFormatString="~/Pages/AccFunds.aspx?AccFundID={AccFundCode}&amp;_controller=AccFunds&amp;_commandName=Select&amp;_commandArgument=editForm1" hidden="true" />
+        <dataField fieldName="StartDate" columns="10" />
+        <dataField fieldName="EndDate" columns="10" />
+        <dataField fieldName="FiscalYear" columns="8" />
+        <dataField fieldName="Qtr1" columns="10" />
+        <dataField fieldName="Qtr2" columns="10" />
+        <dataField fieldName="Qtr3" columns="10" />
+        <dataField fieldName="Qtr4" columns="10" />
+        <dataField fieldName="ActivateYear" />
+        <dataField fieldName="YearIsClosed" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Financial Year">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Financial Year" newColumn="true">
+          <description><![CDATA[$DefaultEditDescription]]></description>
+          <dataFields>
+            <dataField fieldName="AccFundCode" aliasFieldName="AccFundAccFundName" hyperlinkFormatString="~/Pages/AccFunds.aspx?AccFundID={AccFundCode}&amp;_controller=AccFunds&amp;_commandName=Select&amp;_commandArgument=editForm1" />
+            <dataField fieldName="StartDate" columns="10" />
+            <dataField fieldName="EndDate" columns="10" />
+            <dataField fieldName="FiscalYear" columns="8" />
+            <dataField fieldName="Qtr1" columns="10" />
+            <dataField fieldName="Qtr2" columns="10" />
+            <dataField fieldName="Qtr3" columns="10" />
+            <dataField fieldName="Qtr4" columns="10" />
+            <dataField fieldName="ActivateYear" />
+            <dataField fieldName="YearIsClosed" />
+            <dataField fieldName="YearCloseControl" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Year">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="New Year" newColumn="true">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="AccFundCode">
+              <headerText>Company Name</headerText>
+            </dataField>
+            <dataField fieldName="StartDate" columns="10" />
+            <dataField fieldName="EndDate" columns="10" />
+            <dataField fieldName="FiscalYear" columns="8" />
+            <dataField fieldName="Qtr1" columns="10" />
+            <dataField fieldName="Qtr2" columns="10" />
+            <dataField fieldName="Qtr3" columns="10" />
+            <dataField fieldName="Qtr4" columns="10" />
+            <dataField fieldName="YearIsClosed" />
+            <dataField fieldName="YearCloseControl" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Delete" />
+      <action id="a6" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenKeySelected="true" whenClientScript="this.get_hasDetails()" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+  <businessRules>
+    <rule id="r100" commandName="Calculate" type="Sql" phase="Execute"><![CDATA[set @Qtr1 = @StartDate
+set @Qtr2 = DateAdd(m,3,@StartDate)
+set @Qtr3 = DateAdd(m,6,@StartDate)
+set @Qtr4 = DateAdd(m,9,@StartDate)
+set @EndDate = DateAdd(day,-1,DateAdd(m,12,@StartDate))
+set @FiscalYear = Convert(Nvarchar(4),Year(@StartDate))+Convert(Nvarchar(4),Year(@EndDate))
+]]></rule>
+  </businessRules>
+</dataController>

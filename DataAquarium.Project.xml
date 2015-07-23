@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?><!-- 
+  This file is provided to store the settings for your Data Aquarium project. 
+  You can safely delete this file if no further code generation is planned.
+--><project xmlns="urn:schemas-codeontime-com:data-aquarium-project" compatibility="20111118" subscriptionLevel="Unlimited" name="IPACERPNEW" prettyName="IPACERPNEW" type="Web App Factory" codeDomProvider="CSharp" targetFramework="4.5" userInterface="Desktop" pageImplementation="aspx">
+  <connectionString hostDatabaseSharing="false" sessionStateMode="Custom">Data Source=WIN-IQSF93V01L0;Initial Catalog=IPACSoft;Persist Security Info=True;User ID=appacc;Password=accipac@786#;</connectionString>
+  <providerName>System.Data.SqlClient</providerName>
+  <namespace>MyCompany</namespace>
+  <webServer run="true" port="40126"><webConfig></webConfig></webServer>
+  <features pageHeader="IPAC ERP - Financial Management Module" copyright="" annotations="true" annotationsPath="" newColumn="true" floating="false" maxGridFields="10" multiSelect="false" batchEdit="false" advancedSearch="false" advancedLookup="false" relationshipExplorer="true" enablePermalinks="false" enableHistory="false" enableTransactions="false" showModalForms="false" tabViewSelection="9">
+    <navigation detectUnderscoreSeparatedSchema="false"/>
+    <blob allowUploadOnInsert="true"/>
+    <framework scriptOnly="true" useExtenders="false"/>
+  <grid actionColumn="false"/><touch desktopDisplayDensity="Condensed" mobileDisplayDensity="Auto" transitions="" sidebar="Landscape" labelsInForm="AlignedLeft" buttonShapes="true" labelsInList="DisplayedBelow" initialListMode="SeeAll" promoteActions="true" mapApiIdentifier=""/><cms searchEngine="" analysisEngine="" analysisOnDataPages="false"/><ease urlHashing="false"><auditing></auditing></ease><packageProperties></packageProperties><smtp deliveryMethod="Network" deliveryFormat="" from="" clientDomain="" targetName="" host="" port="" defaultCredentials="true" enableSsl="false" username="" password=""/></features>
+<host path="" url=""/><databaseObjectFilter generate="ControllersAndPages">dbo.AccBalTypes;dbo.AccBillRegisterD;dbo.AccBillRegisterH;dbo.AccCurrencys;dbo.AccDests;dbo.AccFundAccs;dbo.AccFunds;dbo.AccountTransactions;dbo.AccSubNames;dbo.AccSubTypes;dbo.AccTrnDetail;dbo.AccTrnHeader;dbo.AccTypes;dbo.Bank;dbo.BillRegister;dbo.ChequeBooks;dbo.ChequeBooksLeaf;dbo.CoaControl;dbo.CoaDetail;dbo.CoaMain;dbo.CoaSub;dbo.CoinEntry;dbo.Company;dbo.CompanyTypes;dbo.CompFeature;dbo.Employees;dbo.FinancialYear;dbo.ImpresstFund;dbo.ImpresstFundCoins;dbo.ImpresstFundIOU;dbo.ImpresstFundTrans;dbo.MenuInRule;dbo.MenuInUser;dbo.ModeofReceipts;dbo.Modules;dbo.MoneyReceipts;dbo.Paycategory;dbo.PDCIssue;dbo.PDCIssueDetails;dbo.PDCReceive;dbo.PDCReceiveDetails;dbo.Prefix;dbo.PreFixSetting;dbo.Roles;dbo.Subsidiary_Accounts;dbo.UserRoles;dbo.Users;dbo.VoucherTypes</databaseObjectFilter><bll discoveryDepth="3" labelFormatExpression="" generate="true" selectMethod="Select" selectSingleMethod="SelectSingle" insertMethod="Insert" updateMethod="Update" deleteMethod="Delete" generateSharedBusinessRules="true" includeViews="true" tabViewSelection="6"><fieldMap></fieldMap><keys></keys><fieldsToIgnore></fieldsToIgnore><fieldsToHide></fieldsToHide><customLabels></customLabels></bll><reports enabled="true"/><membership enabled="false" providerName="System.Data.SqlClient" connectionString="" windowsAuthentication="false" activeDirectory="false" customSecurity="true" dedicatedLogin="true" displayRememberMe="true" rememberMeSet="false" displaySignUp="false" displayPasswordRecovery="false" displayMyAccount="false" displayHelp="true" idleUserDetectionTimeout="-1" tabViewSelection="0" validationKey="93E9A93A23D20E15894D6AF003F0976C8778D9371B26ED2A2D392E84EC93A53F1CFAA7EC06BC01EAEE6208BA3BEADD595AF8A4567D798437574BDE09C71F954C"><adConfig></adConfig><config>table Users = Users
+column [int|uiid] UserID = UserID
+column [text] UserName = UserName
+column [text] Password = Password
+column [text] Email = Email
+column [text] Comment = Comment
+column [text] PasswordQuestion = PasswordQuestion
+column [text] PasswordAnswer = PasswordAnswer
+column [bool] IsApproved = IsApproved
+column [date] LastActivityDate = LastActivityDate
+column [date] LastLoginDate = LastLoginDate
+column [date] LastPasswordChangedDate = LastPasswordChangedDate
+column [date] CreationDate = CreationDate
+column [bool] IsLockedOut = IsLockedOut
+column [date] LastLockedOutDate = LastLockedOutDate
+column [int]  FailedPasswordAttemptCount = FailedPasswordAttemptCount
+column [date] FailedPasswordAttemptWindowStart = FailedPasswordAttemptWindowStart
+column [int]  FailedPasswordAnswerAttemptCount = FailedPasswordAnswerAttemptCount
+column [date] FailedPasswordAnswerAttemptWindowStart = FailedPasswordAnswerAttemptWindowStart
+
+table Roles = Roles
+column [int|uiid] RoleID = RoleID
+column [text] RoleName = RoleName
+
+table UserRoles = UserRoles
+column [int|uiid] UserID = UserID
+column [int|uiid] RoleID =  RoleID
+
+</config></membership><globalization uiCulture="en-US" culture="en-US" enableClientBasedCulture="false" supportedCultures="en-US,en-US; " googleTranslateApiKey=""/><layout name="Classic" menuStyle="MultiLevel"/><theme name="Aquarium"/></project>

@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="ImpresstFund" conflictDetection="overwriteChanges" label="Impresst Fund" plugIn="MyCompany.Data.AnnotationPlugIn" handler="MyCompany.Rules.ImpresstFundBusinessRules" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[select
+	"ImpresstFund"."ImpresstFundID" "ImpresstFundID"
+	,"ImpresstFund"."AccSubTypeID" "AccSubTypeID"
+	,"AccSubType"."AccSubType" "AccSubTypeAccSubType"
+
+	,"ImpresstFund"."AccSubCode" "AccSubCode"
+	,"AccSub"."AccSubName" "AccSubAccSubName"
+	,"AccSubAccSubType"."AccSubType" "AccSubAccSubTypeAccSubType"
+	,"ImpresstFund"."CoaDetailID" "CoaDetailID"
+	,"CoaDetail"."AccName" "CoaDetailAccName"
+	,"CoaDetailAccBalType"."AccBalType" "CoaDetailAccBalTypeAccBalType"
+	,"CoaDetailAccCurrency"."AccCurrencyName" "CoaDetailAccCurrencyAccCurrencyName"
+	,"CoaDetailAccDest"."AccDest" "CoaDetailAccDestAccDest"
+	,"CoaDetailAccDestCompanyType"."Description" "CoaDetailAccDestCompanyTypeDescription"
+	,"CoaDetailAccFund"."AccFundName" "CoaDetailAccFundAccFundName"
+	,"CoaDetailAccSubType"."AccSubType" "CoaDetailAccSubTypeAccSubType"
+	,"CoaDetailAccType"."AccType" "CoaDetailAccTypeAccType"
+	,"CoaDetailCoaControl"."AccName" "CoaDetailCoaControlAccName"
+	,"CoaDetailCoaControlAccBalType"."AccBalType" "CoaDetailCoaControlAccBalTypeAccBalType"
+	,"CoaDetailCoaControlAccDest"."AccDest" "CoaDetailCoaControlAccDestAccDest"
+	,"CoaDetailCoaControlAccType"."AccType" "CoaDetailCoaControlAccTypeAccType"
+	,"CoaDetailCoaControlCompType"."Description" "CoaDetailCoaControlCompTypeDescription"
+	,"CoaDetailCoaMain"."AccName" "CoaDetailCoaMainAccName"
+	,"CoaDetailCoaMainAccBalType"."AccBalType" "CoaDetailCoaMainAccBalTypeAccBalType"
+	,"CoaDetailCoaMainAccDest"."AccDest" "CoaDetailCoaMainAccDestAccDest"
+	,"CoaDetailCoaMainAccFund"."AccFundName" "CoaDetailCoaMainAccFundAccFundName"
+	,"CoaDetailCoaMainAccType"."AccType" "CoaDetailCoaMainAccTypeAccType"
+	,"CoaDetailCoaMainCoaControl"."AccName" "CoaDetailCoaMainCoaControlAccName"
+	,"CoaDetailCoaSub"."AccName" "CoaDetailCoaSubAccName"
+	,"CoaDetailCoaSubAccBalType"."AccBalType" "CoaDetailCoaSubAccBalTypeAccBalType"
+	,"CoaDetailCoaSubAccDest"."AccDest" "CoaDetailCoaSubAccDestAccDest"
+	,"CoaDetailCoaSubAccFund"."AccFundName" "CoaDetailCoaSubAccFundAccFundName"
+	,"CoaDetailCoaSubAccType"."AccType" "CoaDetailCoaSubAccTypeAccType"
+	,"CoaDetailCoaSubCoaControl"."AccName" "CoaDetailCoaSubCoaControlAccName"
+	,"CoaDetailCoaSubCoaMain"."AccName" "CoaDetailCoaSubCoaMainAccName"
+	,"ImpresstFund"."OpenDate" "OpenDate"
+	,"ImpresstFund"."OpenAmount" "OpenAmount"
+,"ImpresstFund"."Reference" "Reference"
+
+
+
+from "dbo"."ImpresstFund" "ImpresstFund"
+	left join "dbo"."AccSubTypes" "AccSubType" on "ImpresstFund"."AccSubTypeID" = "AccSubType"."AccSubTypeID"
+	left join "dbo"."AccSubNames" "AccSub" on "ImpresstFund"."AccSubCode" = "AccSub"."AccSubCode"
+	left join "dbo"."AccSubTypes" "AccSubAccSubType" on "AccSub"."AccSubTypeID" = "AccSubAccSubType"."AccSubTypeID"
+	left join "dbo"."CoaDetail" "CoaDetail" on "ImpresstFund"."CoaDetailID" = "CoaDetail"."CoaDetailID"
+	left join "dbo"."AccBalTypes" "CoaDetailAccBalType" on "CoaDetail"."AccBalTypeID" = "CoaDetailAccBalType"."AccBalTypeID"
+	left join "dbo"."AccCurrencys" "CoaDetailAccCurrency" on "CoaDetail"."AccCurrency" = "CoaDetailAccCurrency"."AccCurrencyID"
+	left join "dbo"."AccDests" "CoaDetailAccDest" on "CoaDetail"."AccDestID" = "CoaDetailAccDest"."AccDestID"
+	left join "dbo"."CompanyTypes" "CoaDetailAccDestCompanyType" on "CoaDetailAccDest"."CompanyType" = "CoaDetailAccDestCompanyType"."CompTypeID"
+	left join "dbo"."AccFunds" "CoaDetailAccFund" on "CoaDetail"."AccFundID" = "CoaDetailAccFund"."AccFundID"
+	left join "dbo"."AccSubTypes" "CoaDetailAccSubType" on "CoaDetail"."AccSubTypeID" = "CoaDetailAccSubType"."AccSubTypeID"
+	left join "dbo"."AccTypes" "CoaDetailAccType" on "CoaDetail"."AccTypeID" = "CoaDetailAccType"."AccTypeID"
+	left join "dbo"."CoaControl" "CoaDetailCoaControl" on "CoaDetail"."CoaControlID" = "CoaDetailCoaControl"."CoaControlID"
+	left join "dbo"."AccBalTypes" "CoaDetailCoaControlAccBalType" on "CoaDetailCoaControl"."AccBalTypeID" = "CoaDetailCoaControlAccBalType"."AccBalTypeID"
+	left join "dbo"."AccDests" "CoaDetailCoaControlAccDest" on "CoaDetailCoaControl"."AccDestID" = "CoaDetailCoaControlAccDest"."AccDestID"
+	left join "dbo"."AccTypes" "CoaDetailCoaControlAccType" on "CoaDetailCoaControl"."AccTypeID" = "CoaDetailCoaControlAccType"."AccTypeID"
+	left join "dbo"."CompanyTypes" "CoaDetailCoaControlCompType" on "CoaDetailCoaControl"."CompType" = "CoaDetailCoaControlCompType"."CompTypeID"
+	left join "dbo"."CoaMain" "CoaDetailCoaMain" on "CoaDetail"."CoaMainID" = "CoaDetailCoaMain"."CoaMainID"
+	left join "dbo"."AccBalTypes" "CoaDetailCoaMainAccBalType" on "CoaDetailCoaMain"."AccBalTypeID" = "CoaDetailCoaMainAccBalType"."AccBalTypeID"
+	left join "dbo"."AccDests" "CoaDetailCoaMainAccDest" on "CoaDetailCoaMain"."AccDestID" = "CoaDetailCoaMainAccDest"."AccDestID"
+	left join "dbo"."AccFunds" "CoaDetailCoaMainAccFund" on "CoaDetailCoaMain"."AccFundID" = "CoaDetailCoaMainAccFund"."AccFundID"
+	left join "dbo"."AccTypes" "CoaDetailCoaMainAccType" on "CoaDetailCoaMain"."AccTypeID" = "CoaDetailCoaMainAccType"."AccTypeID"
+	left join "dbo"."CoaControl" "CoaDetailCoaMainCoaControl" on "CoaDetailCoaMain"."CoaControlID" = "CoaDetailCoaMainCoaControl"."CoaControlID"
+	left join "dbo"."CoaSub" "CoaDetailCoaSub" on "CoaDetail"."CoaSubID" = "CoaDetailCoaSub"."CoaSubID"
+	left join "dbo"."AccBalTypes" "CoaDetailCoaSubAccBalType" on "CoaDetailCoaSub"."AccBalTypeID" = "CoaDetailCoaSubAccBalType"."AccBalTypeID"
+	left join "dbo"."AccDests" "CoaDetailCoaSubAccDest" on "CoaDetailCoaSub"."AccDestID" = "CoaDetailCoaSubAccDest"."AccDestID"
+	left join "dbo"."AccFunds" "CoaDetailCoaSubAccFund" on "CoaDetailCoaSub"."AccFundID" = "CoaDetailCoaSubAccFund"."AccFundID"
+	left join "dbo"."AccTypes" "CoaDetailCoaSubAccType" on "CoaDetailCoaSub"."AccTypeID" = "CoaDetailCoaSubAccType"."AccTypeID"
+	left join "dbo"."CoaControl" "CoaDetailCoaSubCoaControl" on "CoaDetailCoaSub"."CoaControlID" = "CoaDetailCoaSubCoaControl"."CoaControlID"
+	left join "dbo"."CoaMain" "CoaDetailCoaSubCoaMain" on "CoaDetailCoaSub"."CoaMainID" = "CoaDetailCoaSubCoaMain"."CoaMainID"
+]]></text>
+    </command>
+    <command id="ImpresstFundIDIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="ImpresstFundID" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="ImpresstFundID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Impresst Fund#" readOnly="true" />
+    <field name="AccSubTypeID" type="Int32" label="Acc Sub Type#" showInSummary="true">
+      <items style="Lookup" dataController="AccSubTypes" newDataView="createForm1" dataView="grid1" dataTextField="AccSubTypeName" dataValueField="AccSubTypeID" />
+    </field>
+    <field name="AccSubTypeAccSubType" type="String" readOnly="true" label="Acc Sub Type" length="2" />
+    <field name="AccSubCode" type="Int32" label="Employee Code" showInSummary="true" contextFields="AccSubTypeID=AccSubTypeID">
+      <items style="AutoComplete" dataController="AccSubNames" newDataView="createForm1" dataView="grid1" dataTextField="AccSubName" dataValueField="AccSubCode" />
+    </field>
+    <field name="AccSubAccSubName" type="String" readOnly="true" label="Assign Person" length="75" />
+    <field name="AccSubAccSubTypeAccSubType" type="String" readOnly="true" label="Acc Sub Type" length="2" />
+    <field name="CoaDetailID" type="Int32" label="Transaction (HOA)" showInSummary="true" contextFields="AccSubTypeID=AccSubTypeID">
+      <items style="AutoComplete" dataController="CoaDetail" newDataView="createForm1" dataView="grid1" dataTextField="AccName" dataValueField="CoaDetailID" />
+    </field>
+    <field name="CoaDetailAccName" type="String" readOnly="true" label="Transaction (HOA)" length="150" />
+    <field name="CoaDetailAccBalTypeAccBalType" type="String" readOnly="true" label="Coa Detail Acc Bal Type" length="2" />
+    <field name="CoaDetailAccCurrencyAccCurrencyName" type="String" readOnly="true" label="Coa Detail Acc Currency Name" length="10" />
+    <field name="CoaDetailAccDestAccDest" type="String" readOnly="true" label="Coa Detail Acc Dest" length="2" />
+    <field name="CoaDetailAccDestCompanyTypeDescription" type="String" readOnly="true" label="Coa Detail Acc Dest Company Type Description" length="50" />
+    <field name="CoaDetailAccFundAccFundName" type="String" readOnly="true" label="Coa Detail Acc Fund Name" length="100" />
+    <field name="CoaDetailAccSubTypeAccSubType" type="String" readOnly="true" label="Coa Detail Acc Sub Type" length="2" />
+    <field name="CoaDetailAccTypeAccType" type="String" readOnly="true" label="Coa Detail Acc Type" length="2" />
+    <field name="CoaDetailCoaControlAccName" type="String" readOnly="true" label="Coa Detail Coa Control Acc Name" length="50" />
+    <field name="CoaDetailCoaControlAccBalTypeAccBalType" type="String" readOnly="true" label="Coa Detail Coa Control Acc Bal Type" length="2" />
+    <field name="CoaDetailCoaControlAccDestAccDest" type="String" readOnly="true" label="Coa Detail Coa Control Acc Dest" length="2" />
+    <field name="CoaDetailCoaControlAccTypeAccType" type="String" readOnly="true" label="Coa Detail Coa Control Acc Type" length="2" />
+    <field name="CoaDetailCoaControlCompTypeDescription" type="String" readOnly="true" label="Coa Detail Coa Control Comp Type Description" length="50" />
+    <field name="CoaDetailCoaMainAccName" type="String" readOnly="true" label="Coa Detail Coa Main Acc Name" length="50" />
+    <field name="CoaDetailCoaMainAccBalTypeAccBalType" type="String" readOnly="true" label="Coa Detail Coa Main Acc Bal Type" length="2" />
+    <field name="CoaDetailCoaMainAccDestAccDest" type="String" readOnly="true" label="Coa Detail Coa Main Acc Dest" length="2" />
+    <field name="CoaDetailCoaMainAccFundAccFundName" type="String" readOnly="true" label="Coa Detail Coa Main Acc Fund Name" length="100" />
+    <field name="CoaDetailCoaMainAccTypeAccType" type="String" readOnly="true" label="Coa Detail Coa Main Acc Type" length="2" />
+    <field name="CoaDetailCoaMainCoaControlAccName" type="String" readOnly="true" label="Coa Detail Coa Main Coa Control Acc Name" length="50" />
+    <field name="CoaDetailCoaSubAccName" type="String" readOnly="true" label="Coa Detail Coa Sub Acc Name" length="50" />
+    <field name="CoaDetailCoaSubAccBalTypeAccBalType" type="String" readOnly="true" label="Coa Detail Coa Sub Acc Bal Type" length="2" />
+    <field name="CoaDetailCoaSubAccDestAccDest" type="String" readOnly="true" label="Coa Detail Coa Sub Acc Dest" length="2" />
+    <field name="CoaDetailCoaSubAccFundAccFundName" type="String" readOnly="true" label="Coa Detail Coa Sub Acc Fund Name" length="100" />
+    <field name="CoaDetailCoaSubAccTypeAccType" type="String" readOnly="true" label="Coa Detail Coa Sub Acc Type" length="2" />
+    <field name="CoaDetailCoaSubCoaControlAccName" type="String" readOnly="true" label="Coa Detail Coa Sub Coa Control Acc Name" length="50" />
+    <field name="CoaDetailCoaSubCoaMainAccName" type="String" readOnly="true" label="Coa Detail Coa Sub Coa Main Acc Name" length="50" />
+    <field name="OpenDate" type="DateTime" label="Assign From" showInSummary="true" />
+    <field name="OpenAmount" type="Decimal" default="((0))" label="Imprest Limit" showInSummary="true" />
+    <field name="Reference" type="String" label="Reference(Office Order)" length="50" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Imprest Fund(Assign Person)">
+      <headerText>Imprest Fund(Assign Person)</headerText>
+      <dataFields>
+        <dataField fieldName="AccSubCode" columns="15" />
+        <dataField fieldName="AccSubTypeID" aliasFieldName="AccSubAccSubName" />
+        <dataField fieldName="OpenDate" columns="10" />
+        <dataField fieldName="OpenAmount" columns="15" />
+        <dataField fieldName="Reference" columns="50" />
+        <dataField fieldName="CoaDetailID" aliasFieldName="CoaDetailAccName" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Impresst Fund">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Imprest Fund(Assign Person)" newColumn="true">
+          <description />
+          <dataFields>
+            <dataField fieldName="AccSubTypeID" aliasFieldName="AccSubTypeAccSubType" hidden="true" />
+            <dataField fieldName="AccSubCode" aliasFieldName="AccSubAccSubName" />
+            <dataField fieldName="CoaDetailID" aliasFieldName="CoaDetailAccName" />
+            <dataField fieldName="OpenDate" columns="15" />
+            <dataField fieldName="OpenAmount" columns="15" />
+            <dataField fieldName="Reference" columns="50" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Impresst Fund">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="New Imprest Fund" newColumn="true">
+          <description />
+          <dataFields>
+            <dataField fieldName="AccSubTypeID" aliasFieldName="AccSubTypeAccSubType" hidden="true" />
+            <dataField fieldName="AccSubCode" aliasFieldName="AccSubAccSubName" />
+            <dataField fieldName="CoaDetailID" aliasFieldName="CoaDetailAccName" />
+            <dataField fieldName="OpenDate" columns="15" />
+            <dataField fieldName="OpenAmount" columns="15" />
+            <dataField fieldName="Reference" columns="50" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Delete" />
+      <action id="a6" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenKeySelected="true" whenClientScript="this.get_hasDetails()" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+</dataController>

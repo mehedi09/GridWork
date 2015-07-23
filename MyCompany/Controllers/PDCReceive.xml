@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="PDCReceive" conflictDetection="overwriteChanges" label="PDC Receive" plugIn="MyCompany.Data.AnnotationPlugIn" handler="MyCompany.Rules.PDCReceiveBusinessRules" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"PDCReceive"."PDCRID" "PDCRID"
+	,"PDCReceive"."PDCType" "PDCType"
+	,"PDCReceive"."PDCNO" "PDCNO"
+	,"PDCReceive"."PDCPreFix" "PDCPreFix"
+	,"PDCReceive"."PDCDate" "PDCDate"
+	,"PDCReceive"."ApplicantId" "ApplicantId"
+	,"PDCReceive"."Address" "Address"
+	,"PDCReceive"."PlotSaleID" "PlotSaleID"
+	,"PDCReceive"."PayCatID" "PayCatID"
+	,"PayCat"."Category" "PayCatCategory"
+	,"PDCReceive"."ModeofReceiptID" "ModeofReceiptID"
+	,"ModeofReceipt"."Description" "ModeofReceiptDescription"
+	,"PDCReceive"."ChequeNo" "ChequeNo"
+	,"PDCReceive"."BankName" "BankName"
+	,"PDCReceive"."BranchName" "BranchName"
+	,"PDCReceive"."Amount" "Amount"
+	,"PDCReceive"."IsSameAmount" "IsSameAmount"
+	,"PDCReceive"."NoOfPdc" "NoOfPdc"
+	,"PDCReceive"."allotmentNo" "allotmentNo"
+	,"PDCReceive"."Gname" "Gname"
+	,"PDCReceive"."GFathersname" "GFathersname"
+	,"PDCReceive"."GAddress" "GAddress"
+	,"PDCReceive"."OtherRemarks" "OtherRemarks"
+	,"PDCReceive"."DisplayAction" "DisplayAction"
+	,"PDCReceive"."AccFundID" "AccFundID"
+	,"PDCReceive"."PayeeCode" "PayeeCode"
+	,"Payee"."AccSubName" "PayeeAccSubName"
+	,"PayeeAccSubType"."AccSubType" "PayeeAccSubTypeAccSubType"
+from "dbo"."PDCReceive" "PDCReceive"
+	left join "dbo"."Paycategory" "PayCat" on "PDCReceive"."PayCatID" = "PayCat"."PayCatID"
+	left join "dbo"."ModeofReceipts" "ModeofReceipt" on "PDCReceive"."ModeofReceiptID" = "ModeofReceipt"."ModeofReceiptID"
+	left join "dbo"."AccSubNames" "Payee" on "PDCReceive"."PayeeCode" = "Payee"."AccSubCode"
+	left join "dbo"."AccSubTypes" "PayeeAccSubType" on "Payee"."AccSubTypeID" = "PayeeAccSubType"."AccSubTypeID"
+]]></text>
+    </command>
+    <command id="PDCRIDIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="PDCRID" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="PDCRID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Pdcrid" readOnly="true" />
+    <field name="PDCType" type="Boolean" label="PDC Type" showInSummary="true" />
+    <field name="PDCNO" type="String" label="Pdcno" length="30" showInSummary="true" />
+    <field name="PDCPreFix" type="String" label="PDC Pre Fix" length="20" showInSummary="true" />
+    <field name="PDCDate" type="DateTime" label="PDC Date" showInSummary="true" />
+    <field name="ApplicantId" type="Int32" label="Applicant" showInSummary="true">
+      <items style="Lookup" dataController="AccSubNames" dataView="GridApplicant" dataTextField="AccSubName" dataValueField="AccSubCode" newDataView="createForm1" />
+    </field>
+    <field name="Address" type="String" label="Address" length="250" />
+    <field name="PlotSaleID" type="Int64" label="Plot Sale#" />
+    <field name="PayCatID" type="Int32" label="Pay Cat#">
+      <items style="Lookup" dataController="Paycategory" newDataView="createForm1" />
+    </field>
+    <field name="PayCatCategory" type="String" readOnly="true" label="Payment Category" length="50" />
+    <field name="ModeofReceiptID" type="Int32" label="Modeof Receipt#" contextFields="ModeofReceiptID ==1">
+      <items style="Lookup" dataController="ModeofReceipts" dataView="ChequeGrid" dataTextField="Description" dataValueField="ModeofReceiptID" />
+    </field>
+    <field name="ModeofReceiptDescription" type="String" readOnly="true" label="Receipt Mode" length="50" />
+    <field name="ChequeNo" type="String" label="Cheque No" length="50" />
+    <field name="BankName" type="String" label="Bank Name" length="50" />
+    <field name="BranchName" type="String" label="Branch Name" length="50" />
+    <field name="Amount" type="Decimal" label="Amount" />
+    <field name="IsSameAmount" type="Boolean" default="((0))" label="Is Same Amount" allowNulls="false">
+      <items style="CheckBox" />
+    </field>
+    <field name="NoOfPdc" type="String" label="No Of PDC" length="10" />
+    <field name="allotmentNo" type="String" label="allotment No" length="50" />
+    <field name="Gname" type="String" label="Gname" length="50" />
+    <field name="GFathersname" type="String" label="G Fathersname" length="50" />
+    <field name="GAddress" type="String" label="G Address" length="50" />
+    <field name="OtherRemarks" type="String" label="Remarks" length="100" />
+    <field name="DisplayAction" type="Boolean" default="((0))" label="Display Action" />
+    <field name="AccFundID" type="Int32" label="Acc Fund#" />
+    <field name="PayeeCode" type="Int32" label="Payee Code">
+      <items style="Lookup" dataController="AccSubNames" newDataView="createForm1" dataView="GridApplicant" dataTextField="AccSubName" dataValueField="AccSubCode" />
+    </field>
+    <field name="PayeeAccSubName" type="String" readOnly="true" label="Payee Name" length="75" />
+    <field name="PayeeAccSubTypeAccSubType" type="String" readOnly="true" label="Payee Acc Sub Type" length="2" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="PDC Receive" filter="AccFundID=@BusinessRules_CompanyID" sortExpression="PDCRID desc">
+      <headerText>PDC Receive</headerText>
+      <dataFields>
+        <dataField fieldName="PDCNO" columns="30" />
+        <dataField fieldName="PayeeCode" aliasFieldName="PayeeAccSubName" />
+        <dataField fieldName="PDCDate" columns="10" />
+        <dataField fieldName="ChequeNo" columns="50" />
+        <dataField fieldName="BankName" columns="30" />
+        <dataField fieldName="BranchName" columns="30" />
+        <dataField fieldName="Amount" columns="15" />
+        <dataField fieldName="NoOfPdc" columns="15" />
+        <dataField fieldName="AccFundID" columns="15" hidden="true" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review PDC Receive">
+      <headerText>Review PDC Receive</headerText>
+      <categories>
+        <category id="c2" headerText="Update PDC Receive" newColumn="true">
+          <description><![CDATA[$DefaultReferenceDescription]]></description>
+          <dataFields>
+            <dataField fieldName="PDCDate" columns="10" />
+            <dataField fieldName="PayeeCode" aliasFieldName="PayeeAccSubName" />
+            <dataField fieldName="PayCatID" aliasFieldName="PayCatCategory" />
+            <dataField fieldName="OtherRemarks" rows="2" columns="28">
+              <visibility>
+                <expression test="[PayCatID]==4" type="ClientScript" />
+              </visibility>
+            </dataField>
+            <dataField fieldName="ModeofReceiptID" aliasFieldName="ModeofReceiptDescription" />
+            <dataField fieldName="ChequeNo" columns="30" />
+            <dataField fieldName="BankName" columns="30" />
+            <dataField fieldName="BranchName" columns="30" />
+            <dataField fieldName="Amount" columns="15" />
+            <dataField fieldName="IsSameAmount" />
+            <dataField fieldName="NoOfPdc" columns="15" />
+            <dataField fieldName="AccFundID" columns="15" hidden="true" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New PDC Receive">
+      <headerText>New PDC Receive</headerText>
+      <categories>
+        <category id="c1" headerText="New PDC Receive" newColumn="true">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="PDCDate" columns="10" />
+            <dataField fieldName="PayeeCode" aliasFieldName="PayeeAccSubName" />
+            <dataField fieldName="PayCatID" aliasFieldName="PayCatCategory" />
+            <dataField fieldName="OtherRemarks" rows="2" columns="28">
+              <visibility>
+                <expression test="[PayCatID]==4" type="ClientScript" />
+              </visibility>
+            </dataField>
+            <dataField fieldName="ModeofReceiptID" aliasFieldName="ModeofReceiptDescription" hidden="true" />
+            <dataField fieldName="ChequeNo" columns="30" />
+            <dataField fieldName="BankName" columns="30" />
+            <dataField fieldName="BranchName" columns="30" />
+            <dataField fieldName="Amount" columns="15" />
+            <dataField fieldName="IsSameAmount" />
+            <dataField fieldName="NoOfPdc" columns="15" />
+            <dataField fieldName="AccFundID" columns="15" hidden="true" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Delete" />
+      <action id="a6" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a7" whenLastCommandName="New" commandName="SQL" headerText="OK">
+        <data><![CDATA[   declare @pdcrreceiptRef nvarchar(50)
+exec UPS_PDCInsertUpdateGMR_Account  @PDCDate, @PayeeCode, @PayCatID,@ModeofReceiptID, @Amount,  @NoOfPdc, @OtherRemarks,@IsSameAmount,@ChequeNo,@BankName, @BranchName,@AccFundID, @pdcrreceiptRef output
+  if (@pdcrreceiptRef is not null ) 
+begin
+set @Result_ShowAlert =  @pdcrreceiptRef+' is saved'
+set @Result_NavigateUrl ='PDCReceive.aspx'
+
+
+end
+
+
+
+]]></data>
+      </action>
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenKeySelected="true" whenClientScript="this.get_hasDetails()" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+      <action commandName="Navigate" commandArgument="PDCRPreFormat.aspx?PDCRID={PDCRID}&amp;_controller=PDCReceive" headerText="Print PDCR" whenKeySelected="true" id="a100" />
+      <action commandName="Navigate" commandArgument="PDCRReportVeiw.aspx?PDCRID={PDCRID}&amp;_controller=PDCReceive" headerText="View PDCR" whenKeySelected="true" id="a101" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" whenHRef="false:" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" whenHRef="false:" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+</dataController>

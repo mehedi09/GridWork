@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="GeneralLedgerReport" conflictDetection="overwriteChanges" label="GeneralLedgerReport" plugIn="MyCompany.Data.AnnotationPlugIn" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands />
+  <fields>
+    <field name="Status" type="String" allowNulls="false" label="Status" readOnly="true" length="4" showInSummary="true" />
+    <field name="AccCode" type="String" label="Acc Code" readOnly="true" length="75" showInSummary="true" />
+    <field name="AccName" type="String" label="Acc Name" readOnly="true" length="150" showInSummary="true" />
+    <field name="Openbal" type="Decimal" allowNulls="false" label="Openbal" readOnly="true" showInSummary="true" />
+    <field name="TranDate" type="DateTime" label="Tran Date" readOnly="true" showInSummary="true" />
+    <field name="Vchr_no" type="String" allowNulls="false" label="Vchr no" readOnly="true" length="50" />
+    <field name="TrnSL_no" type="Int32" allowNulls="false" label="Trn SL no" readOnly="true" />
+    <field name="Refno" type="String" label="Refno" readOnly="true" length="50" />
+    <field name="v_Type" type="String" label="v Type" readOnly="true" length="30" />
+    <field name="Remarks" type="String" label="Remarks" readOnly="true" length="150" />
+    <field name="Debit" type="Decimal" allowNulls="false" label="Debit" readOnly="true" />
+    <field name="TrnDebit" type="Decimal" label="Trn Debit" readOnly="true" />
+    <field name="Drcur" type="String" label="Drcur" readOnly="true" length="3" />
+    <field name="Credit" type="Decimal" allowNulls="false" label="Credit" readOnly="true" />
+    <field name="TrnCredit" type="Decimal" label="Trn Credit" readOnly="true" />
+    <field name="CrCur" type="String" label="Cr Cur" readOnly="true" length="3" />
+    <field name="AccFundCode" type="Int32" label="Acc Fund Code" readOnly="true" />
+    <field name="AccCompany" type="String" label="Acc Company" readOnly="true" length="150" />
+    <field name="LedCode" type="Int32" label="Led Code" readOnly="true" />
+    <field name="LedgerName" type="String" label="Ledger Name" readOnly="true" length="50" />
+    <field name="BalType" type="Int32" label="Bal Type" readOnly="true" />
+    <field name="LedCurrency" type="String" label="Led Currency" readOnly="true" length="3" />
+    <field name="AccNature" type="Byte" label="Acc Nature" readOnly="true" />
+    <field name="FundName" type="String" label="Fund Name" readOnly="true" length="100" />
+    <field name="AccSubTypeID" type="Int32" label="Acc Sub Type#" readOnly="true" />
+    <field name="AccSubCode" type="Int32" label="Acc Sub Code" readOnly="true" />
+    <field name="SubName" type="String" label="Sub Name" readOnly="true" length="50" />
+    <field name="Voucher" type="String" label="Voucher" readOnly="true" length="30" />
+    <field name="Tran_Comment" type="String" label="Tran Comment" readOnly="true" length="100" />
+    <field name="TrStat" type="String" label="Tr Stat" readOnly="true" length="2" />
+    <field name="PaidTo" type="String" label="Paid To" readOnly="true" length="150" />
+    <field name="MainName" type="String" label="Main Name" readOnly="true" length="50" />
+    <field name="LedAccCodeName" type="String" label="Led Acc Code Name" readOnly="true" length="75" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="General Ledger Report">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="Status" columns="4" />
+        <dataField fieldName="AccCode" />
+        <dataField fieldName="AccName" />
+        <dataField fieldName="Openbal" columns="15" />
+        <dataField fieldName="TranDate" columns="10" />
+        <dataField fieldName="Vchr_no" columns="50" />
+        <dataField fieldName="TrnSL_no" columns="15" />
+        <dataField fieldName="Refno" columns="50" />
+        <dataField fieldName="v_Type" columns="30" />
+        <dataField fieldName="Remarks" />
+        <dataField fieldName="Debit" columns="15" />
+        <dataField fieldName="TrnDebit" columns="15" />
+        <dataField fieldName="Drcur" columns="3" />
+        <dataField fieldName="Credit" columns="15" />
+        <dataField fieldName="TrnCredit" columns="15" />
+        <dataField fieldName="CrCur" columns="3" />
+        <dataField fieldName="AccFundCode" columns="15" />
+        <dataField fieldName="AccCompany" />
+        <dataField fieldName="LedCode" columns="15" />
+        <dataField fieldName="LedgerName" columns="50" />
+        <dataField fieldName="BalType" columns="15" />
+        <dataField fieldName="LedCurrency" columns="3" />
+        <dataField fieldName="AccNature" columns="15" />
+        <dataField fieldName="FundName" />
+        <dataField fieldName="AccSubTypeID" columns="15" />
+        <dataField fieldName="AccSubCode" columns="15" />
+        <dataField fieldName="SubName" columns="50" />
+        <dataField fieldName="Voucher" columns="30" />
+        <dataField fieldName="Tran_Comment" />
+        <dataField fieldName="TrStat" columns="2" />
+        <dataField fieldName="PaidTo" />
+        <dataField fieldName="MainName" columns="50" />
+        <dataField fieldName="LedAccCodeName" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review General Ledger Report">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="General Ledger Report" newColumn="true">
+          <description><![CDATA[$DefaultEditDescription]]></description>
+          <dataFields>
+            <dataField fieldName="Status" columns="4" />
+            <dataField fieldName="AccCode" />
+            <dataField fieldName="AccName" />
+            <dataField fieldName="Openbal" columns="15" />
+            <dataField fieldName="TranDate" columns="10" />
+            <dataField fieldName="Vchr_no" columns="50" />
+            <dataField fieldName="TrnSL_no" columns="15" />
+            <dataField fieldName="Refno" columns="50" />
+            <dataField fieldName="v_Type" columns="30" />
+            <dataField fieldName="Remarks" />
+            <dataField fieldName="Debit" columns="15" />
+            <dataField fieldName="TrnDebit" columns="15" />
+            <dataField fieldName="Drcur" columns="3" />
+            <dataField fieldName="Credit" columns="15" />
+            <dataField fieldName="TrnCredit" columns="15" />
+            <dataField fieldName="CrCur" columns="3" />
+            <dataField fieldName="AccFundCode" columns="15" />
+            <dataField fieldName="AccCompany" />
+            <dataField fieldName="LedCode" columns="15" />
+            <dataField fieldName="LedgerName" columns="50" />
+            <dataField fieldName="BalType" columns="15" />
+            <dataField fieldName="LedCurrency" columns="3" />
+            <dataField fieldName="AccNature" columns="15" />
+            <dataField fieldName="FundName" />
+            <dataField fieldName="AccSubTypeID" columns="15" />
+            <dataField fieldName="AccSubCode" columns="15" />
+            <dataField fieldName="SubName" columns="50" />
+            <dataField fieldName="Voucher" columns="30" />
+            <dataField fieldName="Tran_Comment" />
+            <dataField fieldName="TrStat" columns="2" />
+            <dataField fieldName="PaidTo" />
+            <dataField fieldName="MainName" columns="50" />
+            <dataField fieldName="LedAccCodeName" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New General Ledger Report">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="New General Ledger Report" newColumn="true">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields />
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Delete" />
+      <action id="a6" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenKeySelected="true" whenClientScript="this.get_hasDetails()" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+  <businessRules>
+    <rule type="Sql" id="enableResultSet" commandName="Select" phase="Before"><![CDATA[set @BusinessRules_EnableResultSet = 1
+-- Enable caching of the result set. Duration is specified in seconds.
+-- set @BusinessRules_ResultSetCacheDuration = 30 ]]></rule>
+    <rule type="Sql" id="getData" commandName="Select" phase="Before"><![CDATA[-- debug
+DECLARE @Session_Start_date datetime,
+        @Session_To_Date datetime,
+       @Session_AccFundID int,
+@Session_LedAccCode int,
+@Session_CoaMainID int
+-- end debug
+
+if (@Session_LedAccCode is null)
+set @Session_LedAccCode = 75
+
+if (@Session_CoaMainID is null)
+set @Session_CoaMainID = 0
+
+if (@Session_AccFundID is null)
+set @Session_AccFundID = 3
+
+if (@Session_Start_date is null)
+    set @Session_Start_date= '2015'
+
+if (@Session_To_Date is null)
+    set @Session_To_Date= '2015-12-31'
+
+Exec USP_LedgerFund @Session_LedAccCode,@Session_Start_date,@Session_To_Date,@Session_AccFundID,@Session_CoaMainID]]></rule>
+    <rule type="Sql" id="insert" commandName="Insert" phase="Before"><![CDATA[set @BusinessRules_PreventDefault = 1
+-- implement insert here]]></rule>
+    <rule type="Sql" id="update" commandName="Update" phase="Before"><![CDATA[set @BusinessRules_PreventDefault = 1
+-- implement update here]]></rule>
+    <rule type="Sql" id="delete" commandName="Delete" phase="Before"><![CDATA[set @BusinessRules_PreventDefault = 1
+-- implement delete here]]></rule>
+  </businessRules>
+</dataController>

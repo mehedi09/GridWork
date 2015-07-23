@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="ImpresstFundIOU" conflictDetection="overwriteChanges" label="Impresst Fund IOU" plugIn="MyCompany.Data.AnnotationPlugIn" handler="MyCompany.Rules.ImpresstFundIOUBusinessRules" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"ImpresstFundIOU"."ImpFundIOUID" "ImpFundIOUID"
+	,"ImpresstFundIOU"."ImpresstFundID" "ImpresstFundID"
+	,"ImpresstFund"."Reference" "ImpresstFundReference"
+	,"ImpresstFundAccSub"."AccSubName" "ImpresstFundAccSubAccSubName"
+	,"ImpresstFundAccSubAccSubType"."AccSubType" "ImpresstFundAccSubAccSubTypeAccSubType"
+	,"ImpresstFundAccSubType"."AccSubType" "ImpresstFundAccSubTypeAccSubType"
+	,"ImpresstFundCoaDetail"."AccName" "ImpresstFundCoaDetailAccName"
+	,"ImpresstFundCoaDetailAccBalType"."AccBalType" "ImpresstFundCoaDetailAccBalTypeAccBalType"
+	,"ImpresstFundCoaDetailAccCurrency"."AccCurrencyName" "ImpresstFundCoaDetailAccCurrencyAccCurrencyName"
+	,"ImpresstFundCoaDetailAccDest"."AccDest" "ImpresstFundCoaDetailAccDestAccDest"
+	,"ImpresstFundCoaDetailAccFund"."AccFundName" "ImpresstFundCoaDetailAccFundAccFundName"
+	,"ImpresstFundCoaDetailAccSubType"."AccSubType" "ImpresstFundCoaDetailAccSubTypeAccSubType"
+	,"ImpresstFundCoaDetailAccType"."AccType" "ImpresstFundCoaDetailAccTypeAccType"
+	,"ImpresstFundCoaDetailCoaControl"."AccName" "ImpresstFundCoaDetailCoaControlAccName"
+	,"ImpresstFundCoaDetailCoaMain"."AccName" "ImpresstFundCoaDetailCoaMainAccName"
+	,"ImpresstFundCoaDetailCoaSub"."AccName" "ImpresstFundCoaDetailCoaSubAccName"
+	,"ImpresstFundIOU"."AccSubTypeID" "AccSubTypeID"
+	,"AccSubType"."AccSubType" "AccSubTypeAccSubType"
+	,"ImpresstFundIOU"."AccSubCode" "AccSubCode"
+	,"AccSub"."AccSubName" "AccSubAccSubName"
+	,"AccSubAccSubType"."AccSubType" "AccSubAccSubTypeAccSubType"
+	,"ImpresstFundIOU"."IUODate" "IUODate"
+	,"ImpresstFundIOU"."IUOName" "IUOName"
+	,"ImpresstFundIOU"."Amount" "Amount"
+	,"ImpresstFundIOU"."TransactionType" "TransactionType"
+	,"ImpresstFundIOU"."PaymentMode" "PaymentMode"
+from "dbo"."ImpresstFundIOU" "ImpresstFundIOU"
+	left join "dbo"."ImpresstFund" "ImpresstFund" on "ImpresstFundIOU"."ImpresstFundID" = "ImpresstFund"."ImpresstFundID"
+	left join "dbo"."AccSubNames" "ImpresstFundAccSub" on "ImpresstFund"."AccSubCode" = "ImpresstFundAccSub"."AccSubCode"
+	left join "dbo"."AccSubTypes" "ImpresstFundAccSubAccSubType" on "ImpresstFundAccSub"."AccSubTypeID" = "ImpresstFundAccSubAccSubType"."AccSubTypeID"
+	left join "dbo"."AccSubTypes" "ImpresstFundAccSubType" on "ImpresstFund"."AccSubTypeID" = "ImpresstFundAccSubType"."AccSubTypeID"
+	left join "dbo"."CoaDetail" "ImpresstFundCoaDetail" on "ImpresstFund"."CoaDetailID" = "ImpresstFundCoaDetail"."CoaDetailID"
+	left join "dbo"."AccBalTypes" "ImpresstFundCoaDetailAccBalType" on "ImpresstFundCoaDetail"."AccBalTypeID" = "ImpresstFundCoaDetailAccBalType"."AccBalTypeID"
+	left join "dbo"."AccCurrencys" "ImpresstFundCoaDetailAccCurrency" on "ImpresstFundCoaDetail"."AccCurrency" = "ImpresstFundCoaDetailAccCurrency"."AccCurrencyID"
+	left join "dbo"."AccDests" "ImpresstFundCoaDetailAccDest" on "ImpresstFundCoaDetail"."AccDestID" = "ImpresstFundCoaDetailAccDest"."AccDestID"
+	left join "dbo"."AccFunds" "ImpresstFundCoaDetailAccFund" on "ImpresstFundCoaDetail"."AccFundID" = "ImpresstFundCoaDetailAccFund"."AccFundID"
+	left join "dbo"."AccSubTypes" "ImpresstFundCoaDetailAccSubType" on "ImpresstFundCoaDetail"."AccSubTypeID" = "ImpresstFundCoaDetailAccSubType"."AccSubTypeID"
+	left join "dbo"."AccTypes" "ImpresstFundCoaDetailAccType" on "ImpresstFundCoaDetail"."AccTypeID" = "ImpresstFundCoaDetailAccType"."AccTypeID"
+	left join "dbo"."CoaControl" "ImpresstFundCoaDetailCoaControl" on "ImpresstFundCoaDetail"."CoaControlID" = "ImpresstFundCoaDetailCoaControl"."CoaControlID"
+	left join "dbo"."CoaMain" "ImpresstFundCoaDetailCoaMain" on "ImpresstFundCoaDetail"."CoaMainID" = "ImpresstFundCoaDetailCoaMain"."CoaMainID"
+	left join "dbo"."CoaSub" "ImpresstFundCoaDetailCoaSub" on "ImpresstFundCoaDetail"."CoaSubID" = "ImpresstFundCoaDetailCoaSub"."CoaSubID"
+	left join "dbo"."AccSubTypes" "AccSubType" on "ImpresstFundIOU"."AccSubTypeID" = "AccSubType"."AccSubTypeID"
+	left join "dbo"."AccSubNames" "AccSub" on "ImpresstFundIOU"."AccSubCode" = "AccSub"."AccSubCode"
+	left join "dbo"."AccSubTypes" "AccSubAccSubType" on "AccSub"."AccSubTypeID" = "AccSubAccSubType"."AccSubTypeID"
+]]></text>
+    </command>
+    <command id="ImpFundIOUIDIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="ImpFundIOUID" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="ImpFundIOUID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Imp Fund IOUID" readOnly="true" />
+    <field name="ImpresstFundID" type="Int32" allowNulls="false" label="Imprest Fund" showInSummary="true">
+      <items style="AutoComplete" dataController="ImpresstFund" newDataView="createForm1" dataView="grid1" dataTextField="AccSubAccSubName" dataValueField="ImpresstFundID" />
+    </field>
+    <field name="ImpresstFundReference" type="String" readOnly="true" label="Impresst Fund " length="50" />
+    <field name="ImpresstFundAccSubAccSubName" type="String" readOnly="true" label="Assign Person" length="75" />
+    <field name="ImpresstFundAccSubAccSubTypeAccSubType" type="String" readOnly="true" label="Impresst Fund Acc Sub Type" length="2" />
+    <field name="ImpresstFundAccSubTypeAccSubType" type="String" readOnly="true" label="Impresst Fund Acc Sub Type" length="2" />
+    <field name="ImpresstFundCoaDetailAccName" type="String" readOnly="true" label="Impresst Fund Coa Detail Acc Name" length="150" />
+    <field name="ImpresstFundCoaDetailAccBalTypeAccBalType" type="String" readOnly="true" label="Impresst Fund Coa Detail Acc Bal Type" length="2" />
+    <field name="ImpresstFundCoaDetailAccCurrencyAccCurrencyName" type="String" readOnly="true" label="Impresst Fund Coa Detail Acc Currency Name" length="10" />
+    <field name="ImpresstFundCoaDetailAccDestAccDest" type="String" readOnly="true" label="Impresst Fund Coa Detail Acc Dest" length="2" />
+    <field name="ImpresstFundCoaDetailAccFundAccFundName" type="String" readOnly="true" label="Impresst Fund Coa Detail Acc Fund Name" length="100" />
+    <field name="ImpresstFundCoaDetailAccSubTypeAccSubType" type="String" readOnly="true" label="Impresst Fund Coa Detail Acc Sub Type" length="2" />
+    <field name="ImpresstFundCoaDetailAccTypeAccType" type="String" readOnly="true" label="Impresst Fund Coa Detail Acc Type" length="2" />
+    <field name="ImpresstFundCoaDetailCoaControlAccName" type="String" readOnly="true" label="Impresst Fund Coa Detail Coa Control Acc Name" length="50" />
+    <field name="ImpresstFundCoaDetailCoaMainAccName" type="String" readOnly="true" label="Impresst Fund Coa Detail Coa Main Acc Name" length="50" />
+    <field name="ImpresstFundCoaDetailCoaSubAccName" type="String" readOnly="true" label="Impresst Fund Coa Detail Coa Sub Acc Name" length="50" />
+    <field name="AccSubTypeID" type="Int32" label="Acc Sub Type#" showInSummary="true">
+      <items style="Lookup" dataController="AccSubTypes" newDataView="createForm1" dataView="grid1" dataTextField="AccSubTypeName" dataValueField="AccSubTypeID" />
+    </field>
+    <field name="AccSubTypeAccSubType" type="String" readOnly="true" label="Account Sub Type" length="2" />
+    <field name="AccSubCode" type="Int32" label="Acc Sub Code" showInSummary="true" contextFields="AccSubTypeID=AccSubTypeID">
+      <items style="AutoComplete" dataController="AccSubNames" newDataView="createForm1" dataView="grid1" dataTextField="AccSubName" dataValueField="AccSubCode" />
+    </field>
+    <field name="AccSubAccSubName" type="String" readOnly="true" label="Payee" length="75" />
+    <field name="AccSubAccSubTypeAccSubType" type="String" readOnly="true" label="Acc Sub Type" length="2" />
+    <field name="IUODate" type="DateTime" label="Probable Refund Date" showInSummary="true" />
+    <field name="IUOName" type="String" label="IOU Purpose" length="50" showInSummary="true" />
+    <field name="Amount" type="Decimal" label="Amount" />
+    <field name="TransactionType" type="Int32" label="Transaction Type">
+      <items style="DropDownList">
+        <item value="0" text="Payment" />
+        <item value="1" text="Received" />
+      </items>
+    </field>
+    <field name="PaymentMode" type="Int32" label="Payment Mode">
+      <items style="DropDownList">
+        <item value="0" text="Cash" />
+        <item value="1" text="Cheque" />
+      </items>
+    </field>
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Imprest Fund IOU">
+      <headerText>Imprest Fund IOU</headerText>
+      <dataFields>
+        <dataField fieldName="ImpresstFundAccSubAccSubName" />
+        <dataField fieldName="AccSubTypeID" aliasFieldName="AccSubTypeAccSubType" hyperlinkFormatString="~/Pages/AccSubTypes.aspx?AccSubTypeID={AccSubTypeID}&amp;_controller=AccSubTypes&amp;_commandName=Select&amp;_commandArgument=editForm1" hidden="true" />
+        <dataField fieldName="AccSubCode" aliasFieldName="AccSubAccSubName" hyperlinkFormatString="~/Pages/AccSubNames.aspx?AccSubCode={AccSubCode}&amp;_controller=AccSubNames&amp;_commandName=Select&amp;_commandArgument=editForm1" />
+        <dataField fieldName="IUOName" columns="50" />
+        <dataField fieldName="Amount" columns="15" />
+        <dataField fieldName="ImpresstFundID" aliasFieldName="ImpresstFundReference" hidden="true" />
+        <dataField fieldName="IUODate" columns="10" />
+        <dataField fieldName="TransactionType" columns="15" hidden="true" />
+        <dataField fieldName="PaymentMode" columns="15" hidden="true" />
+        <dataField fieldName="ImpresstFundAccSubAccSubTypeAccSubType" columns="2" hidden="true" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Impresst Fund IOU">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Review Imprest Fund IOU" newColumn="true">
+          <description><![CDATA[Review Imprest Fund IOU]]></description>
+          <dataFields>
+            <dataField fieldName="TransactionType" columns="15" />
+            <dataField fieldName="PaymentMode" columns="15" />
+            <dataField fieldName="ImpresstFundID" aliasFieldName="ImpresstFundAccSubAccSubName" />
+            <dataField fieldName="AccSubTypeID" aliasFieldName="AccSubTypeAccSubType" hidden="true" />
+            <dataField fieldName="AccSubCode" aliasFieldName="AccSubAccSubName" />
+            <dataField fieldName="IUODate" columns="10" />
+            <dataField fieldName="Amount" columns="10" />
+            <dataField fieldName="IUOName" columns="30" rows="2" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Impresst Fund IOU">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="New Imprest Fund IOU" newColumn="true">
+          <description />
+          <dataFields>
+            <dataField fieldName="TransactionType" columns="15" aliasFieldName="TransactionType" />
+            <dataField fieldName="PaymentMode" columns="15" aliasFieldName="PaymentMode" />
+            <dataField fieldName="ImpresstFundID" aliasFieldName="ImpresstFundAccSubAccSubName" />
+            <dataField fieldName="AccSubTypeID" aliasFieldName="AccSubTypeAccSubType" hidden="true" />
+            <dataField fieldName="AccSubCode" aliasFieldName="AccSubAccSubName" />
+            <dataField fieldName="IUODate" columns="10" />
+            <dataField fieldName="Amount" columns="10" />
+            <dataField fieldName="IUOName" columns="30" rows="2" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Delete" />
+      <action id="a6" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenKeySelected="true" whenClientScript="this.get_hasDetails()" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+  <businessRules>
+    <rule id="r100" commandName="Insert" type="Sql" phase="Before"><![CDATA[Declare 
+@ImpressFundAmt decimal(18,2),
+@ImpTrans decimal(18,2),
+@Totamt decimal(18,2),
+@ImpRec decimal(18,2),
+@ImpRecTot decimal(18,2),
+@impIOU decimal(18,2),
+@CashAmt decimal(18,2)
+
+Select @ImpressFundAmt=ISNULL(OpenAmount,0) from dbo.ImpresstFund where ImpresstFundID=@ImpresstFundID
+Select @ImpRec=ISNULL(Sum(Amount),0) from ImpresstFundTrans where ImpresstFundID=@ImpresstFundID and IsPayReceived=1
+
+Select @ImpTrans=ISNULL(Sum(Amount),0) from ImpresstFundTrans where ImpresstFundID=@ImpresstFundID and IsPayReceived=0
+Select @impIOU=ISNULL(Sum(Amount),0) from dbo.ImpresstFundIOU where ImpresstFundID=@ImpresstFundID
+
+
+Set @ImpRecTot=@ImpressFundAmt+@ImpRec
+Set @CashAmt=@ImpRecTot-(@ImpTrans+@impIOU)+1
+
+If(@CashAmt<=@Amount)
+	BEGIN
+                                set @BusinessRules_PreventDefault = 1
+		set @Result_ShowAlert =  'Transection Grater then Cash.'
+	END
+]]></rule>
+    <rule id="r101" commandName="Update" type="Sql" phase="Before"><![CDATA[Declare 
+@ImpressFundAmt decimal(18,2),
+@ImpTrans decimal(18,2),
+@Totamt decimal(18,2),
+@ImpRec decimal(18,2),
+@ImpRecTot decimal(18,2),
+@impIOU decimal(18,2),
+@CashAmt decimal(18,2),
+@CurrentValue decimal(18,2)
+
+Select @ImpressFundAmt=ISNULL(OpenAmount,0) from dbo.ImpresstFund where ImpresstFundID=@ImpresstFundID
+Select @ImpRec=ISNULL(Sum(Amount),0) from ImpresstFundTrans where ImpresstFundID=@ImpresstFundID and IsPayReceived=1
+
+Select @ImpTrans=ISNULL(Sum(Amount),0) from ImpresstFundTrans where ImpresstFundID=@ImpresstFundID and IsPayReceived=0
+Select @impIOU=ISNULL(Sum(Amount),0) from dbo.ImpresstFundIOU where ImpresstFundID=@ImpresstFundID
+Select @CurrentValue=ISNULL(Amount,0) from ImpresstFundIOU where ImpFundIOUID=@ImpFundIOUID
+
+
+Set @ImpRecTot=@ImpressFundAmt+@ImpRec
+Set @CashAmt=@ImpRecTot-(@ImpTrans+@impIOU)+1
+
+If(@CashAmt<=(@Amount-@CurrentValue))
+	BEGIN
+                                set @BusinessRules_PreventDefault = 1
+		set @Result_ShowAlert =  'Transection Grater then Cash.'
+	END
+]]></rule>
+  </businessRules>
+</dataController>

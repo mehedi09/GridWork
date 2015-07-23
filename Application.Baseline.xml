@@ -1,0 +1,805 @@
+<application snapshot="false" xmlns="urn:schemas-codeontime-com:data-aquarium-application" xmlns:m="urn:codeontime:data-map">
+  <pages xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+    <page name="Home" title="^HomeTitle^Start^HomeTitle^" description="^HomeDesc^Application home page^HomeDesc^" path="^HomePath^Home^HomePath^" style="HomePage" customStyle="Wide" index="1000">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" name="TableOfContents" container="container1" />
+      </controls>
+    </page>
+    <page name="AccFunds" title="Acc Funds" description="View Acc Funds" index="1010" path="Acc Funds">
+      <containers>
+        <container id="container1" flow="NewRow" />
+        <container id="container2" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="AccFunds" view="grid1" showInSummary="true" container="container1" activator="None" text="" searchOnStart="true" />
+        <dataView id="view2" controller="CoaDetail" view="grid1" text="Coa Detail" filterSource="view1" container="container2" filterFields="AccFundID" activator="Tab" autoHide="Container" pageSize="5" />
+        <dataView id="view3" controller="CoaMain" view="grid1" text="Coa Main" filterSource="view1" container="container2" filterFields="AccFundID" activator="Tab" autoHide="Container" pageSize="5" />
+        <dataView id="view4" controller="AccTrnHeader" view="grid1" text="Acc Trn Header" filterSource="view1" container="container2" filterFields="AccFundCode" activator="Tab" autoHide="Container" pageSize="5" />
+        <dataView id="view5" controller="CoaSub" view="grid1" text="Coa Sub" filterSource="view1" container="container2" filterFields="AccFundID" activator="Tab" autoHide="Container" pageSize="5" />
+        <dataView id="view6" controller="AccFundAccs" view="grid1" text="Acc Fund Accs" filterSource="view1" container="container2" filterFields="AccFundID" activator="Tab" autoHide="Container" pageSize="5" />
+        <dataView id="view7" controller="AccTrnDetail" view="grid1" text="Acc Trn Detail" filterSource="view1" container="container2" filterFields="AccFundID" activator="Tab" autoHide="Container" pageSize="5" />
+        <dataView id="view8" controller="FinancialYear" view="grid1" text="Financial Year" filterSource="view1" container="container2" filterFields="AccFundCode" activator="Tab" autoHide="Container" pageSize="5" />
+      </dataViews>
+      <controls />
+      <about>This page allows acc funds management.</about>
+    </page>
+    <page name="CoaDetail" title="Coa Detail" description="View Coa Detail" index="1020" path="Acc Funds | Coa Detail">
+      <containers>
+        <container id="container1" flow="NewRow" />
+        <container id="container2" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="CoaDetail" view="grid1" showInSummary="true" container="container1" activator="None" text="" searchOnStart="true" />
+        <dataView id="view2" controller="AccFundAccs" view="grid1" text="Acc Fund Accs" filterSource="view1" container="container2" filterFields="CashCode" activator="Tab" autoHide="Container" pageSize="5" />
+        <dataView id="view3" controller="AccTrnDetail" view="grid1" text="Acc Trn Detail" filterSource="view1" container="container2" filterFields="AccCode" activator="Tab" autoHide="Container" pageSize="5" />
+      </dataViews>
+      <controls />
+      <about>This page allows coa detail management.</about>
+    </page>
+    <page name="CoaMain" title="Coa Main" description="View Coa Main" index="1030" path="Acc Funds | Coa Main">
+      <containers>
+        <container id="container1" flow="NewRow" />
+        <container id="container2" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="CoaMain" view="grid1" showInSummary="true" container="container1" activator="None" text="" searchOnStart="true" />
+        <dataView id="view2" controller="CoaDetail" view="grid1" text="Coa Detail" filterSource="view1" container="container2" filterFields="CoaMainID" activator="Tab" autoHide="Container" pageSize="5" />
+        <dataView id="view3" controller="CoaSub" view="grid1" text="Coa Sub" filterSource="view1" container="container2" filterFields="CoaMainID" activator="Tab" autoHide="Container" pageSize="5" />
+      </dataViews>
+      <controls />
+      <about>This page allows coa main management.</about>
+    </page>
+    <page name="AccTrnHeader" title="Acc Trn Header" description="View Acc Trn Header" index="1040" path="Acc Funds | Acc Trn Header">
+      <containers>
+        <container id="container1" flow="NewRow" />
+        <container id="container2" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="AccTrnHeader" view="grid1" showInSummary="true" container="container1" activator="None" text="" searchOnStart="true" />
+        <dataView id="view2" controller="AccTrnDetail" view="grid1" text="Acc Trn Detail" filterSource="view1" container="container2" filterFields="AccVoucherTranID" activator="Tab" autoHide="Container" pageSize="5" />
+      </dataViews>
+      <controls />
+      <about>This page allows acc trn header management.</about>
+    </page>
+    <page name="CoaSub" title="Coa Sub" description="View Coa Sub" index="1050" path="Acc Funds | Coa Sub">
+      <containers>
+        <container id="container1" flow="NewRow" />
+        <container id="container2" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="CoaSub" view="grid1" showInSummary="true" container="container1" activator="None" text="" searchOnStart="true" />
+        <dataView id="view2" controller="CoaDetail" view="grid1" text="Coa Detail" filterSource="view1" container="container2" filterFields="CoaSubID" activator="Tab" autoHide="Container" pageSize="5" />
+      </dataViews>
+      <controls />
+      <about>This page allows coa sub management.</about>
+    </page>
+    <page name="AccFundAccs" title="Acc Fund Accs" description="View Acc Fund Accs" index="1060" path="Acc Funds | Acc Fund Accs">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="AccFundAccs" view="grid1" showInSummary="true" container="container1" activator="None" text="" searchOnStart="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows acc fund accs management.</about>
+    </page>
+    <page name="AccTrnDetail" title="Acc Trn Detail" description="View Acc Trn Detail" index="1070" path="Acc Funds | Acc Trn Detail">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="AccTrnDetail" view="grid1" showInSummary="true" container="container1" activator="None" text="" searchOnStart="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows acc trn detail management.</about>
+    </page>
+    <page name="FinancialYear" title="Financial Year" description="View Financial Year" index="1080" path="Acc Funds | Financial Year">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="FinancialYear" view="grid1" showInSummary="true" container="container1" activator="None" text="" searchOnStart="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows financial year management.</about>
+    </page>
+    <page name="AccBalTypes" title="Acc Bal Types" description="View Acc Bal Types" index="1090" path="Acc Bal Types">
+      <containers>
+        <container id="container1" flow="NewRow" />
+        <container id="container2" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="AccBalTypes" view="grid1" showInSummary="true" container="container1" activator="None" text="" searchOnStart="true" />
+        <dataView id="view2" controller="CoaControl" view="grid1" text="Coa Control" filterSource="view1" container="container2" filterFields="AccBalTypeID" activator="Tab" autoHide="Container" pageSize="5" />
+        <dataView id="view3" controller="CoaDetail" view="grid1" text="Coa Detail" filterSource="view1" container="container2" filterFields="AccBalTypeID" activator="Tab" autoHide="Container" pageSize="5" />
+        <dataView id="view4" controller="CoaMain" view="grid1" text="Coa Main" filterSource="view1" container="container2" filterFields="AccBalTypeID" activator="Tab" autoHide="Container" pageSize="5" />
+        <dataView id="view5" controller="CoaSub" view="grid1" text="Coa Sub" filterSource="view1" container="container2" filterFields="AccBalTypeID" activator="Tab" autoHide="Container" pageSize="5" />
+      </dataViews>
+      <controls />
+      <about>This page allows acc bal types management.</about>
+    </page>
+    <page name="CoaControl" title="Coa Control" description="View Coa Control" index="1100" path="Acc Bal Types | Coa Control">
+      <containers>
+        <container id="container1" flow="NewRow" />
+        <container id="container2" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="CoaControl" view="grid1" showInSummary="true" container="container1" activator="None" text="" searchOnStart="true" />
+        <dataView id="view2" controller="CoaDetail" view="grid1" text="Coa Detail" filterSource="view1" container="container2" filterFields="CoaControlID" activator="Tab" autoHide="Container" pageSize="5" />
+        <dataView id="view3" controller="CoaMain" view="grid1" text="Coa Main" filterSource="view1" container="container2" filterFields="CoaControlID" activator="Tab" autoHide="Container" pageSize="5" />
+        <dataView id="view4" controller="CoaSub" view="grid1" text="Coa Sub" filterSource="view1" container="container2" filterFields="CoaControlID" activator="Tab" autoHide="Container" pageSize="5" />
+      </dataViews>
+      <controls />
+      <about>This page allows coa control management.</about>
+    </page>
+    <page name="AccDests" title="Acc Dests" description="View Acc Dests" index="1110" path="Acc Dests">
+      <containers>
+        <container id="container1" flow="NewRow" />
+        <container id="container2" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="AccDests" view="grid1" showInSummary="true" container="container1" activator="None" text="" searchOnStart="true" />
+        <dataView id="view2" controller="CoaControl" view="grid1" text="Coa Control" filterSource="view1" container="container2" filterFields="AccDestID" activator="Tab" autoHide="Container" pageSize="5" />
+        <dataView id="view3" controller="CoaDetail" view="grid1" text="Coa Detail" filterSource="view1" container="container2" filterFields="AccDestID" activator="Tab" autoHide="Container" pageSize="5" />
+        <dataView id="view4" controller="CoaMain" view="grid1" text="Coa Main" filterSource="view1" container="container2" filterFields="AccDestID" activator="Tab" autoHide="Container" pageSize="5" />
+        <dataView id="view5" controller="CoaSub" view="grid1" text="Coa Sub" filterSource="view1" container="container2" filterFields="AccDestID" activator="Tab" autoHide="Container" pageSize="5" />
+      </dataViews>
+      <controls />
+      <about>This page allows acc dests management.</about>
+    </page>
+    <page name="AccTypes" title="Acc Types" description="View Acc Types" index="1120" path="Acc Types">
+      <containers>
+        <container id="container1" flow="NewRow" />
+        <container id="container2" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="AccTypes" view="grid1" showInSummary="true" container="container1" activator="None" text="" searchOnStart="true" />
+        <dataView id="view2" controller="CoaControl" view="grid1" text="Coa Control" filterSource="view1" container="container2" filterFields="AccTypeID" activator="Tab" autoHide="Container" pageSize="5" />
+        <dataView id="view3" controller="CoaDetail" view="grid1" text="Coa Detail" filterSource="view1" container="container2" filterFields="AccTypeID" activator="Tab" autoHide="Container" pageSize="5" />
+        <dataView id="view4" controller="CoaMain" view="grid1" text="Coa Main" filterSource="view1" container="container2" filterFields="AccTypeID" activator="Tab" autoHide="Container" pageSize="5" />
+        <dataView id="view5" controller="CoaSub" view="grid1" text="Coa Sub" filterSource="view1" container="container2" filterFields="AccTypeID" activator="Tab" autoHide="Container" pageSize="5" />
+      </dataViews>
+      <controls />
+      <about>This page allows acc types management.</about>
+    </page>
+    <page name="AccSubTypes" title="Acc Sub Types" description="View Acc Sub Types" index="1130" path="Acc Sub Types">
+      <containers>
+        <container id="container1" flow="NewRow" />
+        <container id="container2" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="AccSubTypes" view="grid1" showInSummary="true" container="container1" activator="None" text="" searchOnStart="true" />
+        <dataView id="view2" controller="CoaDetail" view="grid1" text="Coa Detail" filterSource="view1" container="container2" filterFields="AccSubTypeID" activator="Tab" autoHide="Container" pageSize="5" />
+        <dataView id="view3" controller="AccSubNames" view="grid1" text="Acc Sub Names" filterSource="view1" container="container2" filterFields="AccSubTypeID" activator="Tab" autoHide="Container" pageSize="5" />
+        <dataView id="view4" controller="AccTrnDetail" view="grid1" text="Acc Trn Detail" filterSource="view1" container="container2" filterFields="AccSubTypeID" activator="Tab" autoHide="Container" pageSize="5" />
+      </dataViews>
+      <controls />
+      <about>This page allows acc sub types management.</about>
+    </page>
+    <page name="AccSubNames" title="Acc Sub Names" description="View Acc Sub Names" index="1140" path="Acc Sub Types | Acc Sub Names">
+      <containers>
+        <container id="container1" flow="NewRow" />
+        <container id="container2" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="AccSubNames" view="grid1" showInSummary="true" container="container1" activator="None" text="" searchOnStart="true" />
+        <dataView id="view2" controller="AccTrnDetail" view="grid1" text="Acc Trn Detail" filterSource="view1" container="container2" filterFields="AccSubCode" activator="Tab" autoHide="Container" pageSize="5" />
+      </dataViews>
+      <controls />
+      <about>This page allows acc sub names management.</about>
+    </page>
+    <page name="CompanyTypes" title="Company Types" description="View Company Types" index="1150" path="Acc Sub Types | Company Types">
+      <containers>
+        <container id="container1" flow="NewRow" />
+        <container id="container2" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="CompanyTypes" view="grid1" showInSummary="true" container="container1" activator="None" text="" searchOnStart="true" />
+        <dataView id="view2" controller="AccDests" view="grid1" text="Acc Dests" filterSource="view1" container="container2" filterFields="CompanyType" activator="Tab" autoHide="Container" pageSize="5" />
+        <dataView id="view3" controller="CoaControl" view="grid1" text="Coa Control" filterSource="view1" container="container2" filterFields="CompType" activator="Tab" autoHide="Container" pageSize="5" />
+        <dataView id="view4" controller="Company" view="grid1" text="Company" filterSource="view1" container="container2" filterFields="CompanyTypeID" activator="Tab" autoHide="Container" pageSize="5" />
+      </dataViews>
+      <controls />
+      <about>This page allows company types management.</about>
+    </page>
+    <page name="Company" title="Company" description="View Company" index="1160" path="Acc Sub Types | Company Types | Company">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="Company" view="grid1" showInSummary="true" container="container1" activator="None" text="" searchOnStart="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows company management.</about>
+    </page>
+    <page name="AccCurrencys" title="Acc Currencys" description="View Acc Currencys" index="1170" path="Acc Sub Types | Acc Currencys">
+      <containers>
+        <container id="container1" flow="NewRow" />
+        <container id="container2" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="AccCurrencys" view="grid1" showInSummary="true" container="container1" activator="None" text="" searchOnStart="true" />
+        <dataView id="view2" controller="CoaDetail" view="grid1" text="Coa Detail" filterSource="view1" container="container2" filterFields="AccCurrency" activator="Tab" autoHide="Container" pageSize="5" />
+        <dataView id="view3" controller="AccTrnDetail" view="grid1" text="Acc Trn Detail" filterSource="view1" container="container2" filterFields="AccCurrency" activator="Tab" autoHide="Container" pageSize="5" />
+      </dataViews>
+      <controls />
+      <about>This page allows acc currencys management.</about>
+    </page>
+    <page name="VoucherTypes" title="Voucher Types" description="View Voucher Types" index="1180" path="Acc Sub Types | Voucher Types">
+      <containers>
+        <container id="container1" flow="NewRow" />
+        <container id="container2" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="VoucherTypes" view="grid1" showInSummary="true" container="container1" activator="None" text="" searchOnStart="true" />
+        <dataView id="view2" controller="AccTrnDetail" view="grid1" text="Acc Trn Detail" filterSource="view1" container="container2" filterFields="VchrTypeID" activator="Tab" autoHide="Container" pageSize="5" />
+      </dataViews>
+      <controls />
+      <about>This page allows voucher types management.</about>
+    </page>
+    <page name="Bank" title="Bank" description="View Bank" index="1190" path="Acc Sub Types | Bank">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="Bank" view="grid1" showInSummary="true" container="container1" activator="None" text="" searchOnStart="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows bank management.</about>
+    </page>
+    <page name="CompFeature" title="Comp Feature" description="View Comp Feature" index="1200" path="Acc Sub Types | Comp Feature">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="CompFeature" view="grid1" showInSummary="true" container="container1" activator="None" text="" searchOnStart="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows comp feature management.</about>
+    </page>
+    <page name="MenuInRule" title="Menu In Rule" description="View Menu In Rule" index="1210" path="Acc Sub Types | Menu In Rule">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MenuInRule" view="grid1" showInSummary="true" container="container1" activator="None" text="" searchOnStart="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows menu in rule management.</about>
+    </page>
+    <page name="MenuInUser" title="Menu In User" description="View Menu In User" index="1220" path="Acc Sub Types | Menu In User">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MenuInUser" view="grid1" showInSummary="true" container="container1" activator="None" text="" searchOnStart="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows menu in user management.</about>
+    </page>
+    <page name="Modules" title="Modules" description="View Modules" index="1230" path="Acc Sub Types | Modules">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="Modules" view="grid1" showInSummary="true" container="container1" activator="None" text="" searchOnStart="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows modules management.</about>
+    </page>
+    <page name="Membership" title="^MembershipTitle^Membership Manager^MembershipTitle^" description="^MembershipDesc^User and role manager^MembershipDesc^" roles="Administrators" path="^MembershipPath^Membership^MembershipPath^" style="UsersPage" index="1240">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <about>^MembershipAbout^This page allows to manage roles and users.^MembershipAbout^</about>
+      <controls>
+        <control id="control1" name="MembershipManager" container="container1" />
+      </controls>
+    </page>
+    <page name="p150614033906" title="New Pages" externalUrl="about:blank" index="1340" path="New Pages" />
+    <page name="AccBillRegisterD" title="Acc Bill Register D" description="View Acc Bill Register D" index="1440" path="New Pages | Acc Bill Register D" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+        <container id="container2" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="AccBillRegisterD" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+        <dataView id="view2" controller="AccBillRegisterD" view="grid1" text="Acc Bill Register D" filterSource="view1" container="container2" filterFields="RegDetailsID" activator="Tab" autoHide="Container" pageSize="5" />
+      </dataViews>
+      <controls />
+      <about>This page allows acc bill register d management.</about>
+    </page>
+    <page name="AccBillRegisterH" title="Acc Bill Register H" description="View Acc Bill Register H" index="1540" path="New Pages | Acc Bill Register H" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="AccBillRegisterH" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+      </dataViews>
+      <controls />
+      <about>This page allows acc bill register h management.</about>
+    </page>
+    <page name="p150614034109" title="New Pages" externalUrl="about:blank" index="1640" path="New Pages" />
+    <page name="Prefix" title="Prefix" description="View Prefix" index="1740" path="New Pages | Prefix" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="Prefix" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+      </dataViews>
+      <controls />
+      <about>This page allows prefix management.</about>
+    </page>
+    <page name="p150614034831" title="New Pages" externalUrl="about:blank" index="1840" path="New Pages" />
+    <page name="Employees" title="Employees" description="View Employees" index="1940" path="New Pages | Employees" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="Employees" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+      </dataViews>
+      <controls />
+      <about>This page allows employees management.</about>
+    </page>
+    <page name="p150615121751" title="New Pages" externalUrl="about:blank" index="2040" path="New Pages" />
+    <page name="MoneyReceipts" title="Money Receipts" description="View Money Receipts" index="2140" path="New Pages | Money Receipts" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MoneyReceipts" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+      </dataViews>
+      <controls />
+      <about>This page allows money receipts management.</about>
+    </page>
+    <page name="p150615124119" title="New Pages" externalUrl="about:blank" index="2240" path="New Pages" />
+    <page name="AccountTransactions" title="Account Transactions" description="View Account Transactions" index="2340" path="New Pages | Account Transactions" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="AccountTransactions" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+      </dataViews>
+      <controls />
+      <about>This page allows account transactions management.</about>
+    </page>
+    <page name="ModeofReceipts" title="Modeof Receipts" description="View Modeof Receipts" index="2440" path="New Pages | Modeof Receipts" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+        <container id="container2" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="ModeofReceipts" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+        <dataView id="view2" controller="MoneyReceipts" view="grid1" text="Money Receipts" filterSource="view1" container="container2" filterFields="ModeofReceiptID" activator="Tab" autoHide="Container" pageSize="5" />
+      </dataViews>
+      <controls />
+      <about>This page allows modeof receipts management.</about>
+    </page>
+    <page name="Paycategory" title="Paycategory" description="View Paycategory" index="2540" path="New Pages | Paycategory" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+        <container id="container2" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="Paycategory" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+        <dataView id="view2" controller="MoneyReceipts" view="grid1" text="Money Receipts" filterSource="view1" container="container2" filterFields="PayCatID" activator="Tab" autoHide="Container" pageSize="5" />
+      </dataViews>
+      <controls />
+      <about>This page allows paycategory management.</about>
+    </page>
+    <page name="p150616041248" title="New Pages" externalUrl="about:blank" index="2640" path="New Pages" />
+    <page name="Roles" title="Roles" description="View Roles" index="2740" path="New Pages | Roles" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+        <container id="container2" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="Roles" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+        <dataView id="view2" controller="UserRoles" view="grid1" text="User Roles" filterSource="view1" container="container2" filterFields="RoleID" activator="Tab" autoHide="Container" pageSize="5" />
+      </dataViews>
+      <controls />
+      <about>This page allows roles management.</about>
+    </page>
+    <page name="UserRoles" title="User Roles" description="View User Roles" index="2840" path="New Pages | User Roles" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="UserRoles" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+      </dataViews>
+      <controls />
+      <about>This page allows user roles management.</about>
+    </page>
+    <page name="Users" title="Users" description="View Users" index="2940" path="New Pages | Users" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+        <container id="container2" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="Users" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+        <dataView id="view2" controller="UserRoles" view="grid1" text="User Roles" filterSource="view1" container="container2" filterFields="UserID" activator="Tab" autoHide="Container" pageSize="5" />
+      </dataViews>
+      <controls />
+      <about>This page allows users management.</about>
+    </page>
+    <page name="p150617101106" title="New Pages" externalUrl="about:blank" index="3040" path="New Pages" />
+    <page name="BillRegister" title="Bill Register" description="View Bill Register" index="3140" path="New Pages | Bill Register" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="BillRegister" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+      </dataViews>
+      <controls />
+      <about>This page allows bill register management.</about>
+    </page>
+    <page name="p150617101144" title="New Pages" externalUrl="about:blank" index="3240" path="New Pages" />
+    <page name="Subsidiary_Accounts" title="Subsidiary Accounts" description="View Subsidiary Accounts" index="3340" path="New Pages | Subsidiary Accounts" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="Subsidiary_Accounts" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+      </dataViews>
+      <controls />
+      <about>This page allows subsidiary accounts management.</about>
+    </page>
+    <page name="p150618033631" title="New Pages" externalUrl="about:blank" index="3440" path="New Pages" />
+    <page name="PreFixSetting" title="Pre Fix Setting" description="View Pre Fix Setting" index="3540" path="New Pages | Pre Fix Setting" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="PreFixSetting" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+      </dataViews>
+      <controls />
+      <about>This page allows pre fix setting management.</about>
+    </page>
+    <page name="p150621115032" title="New Pages" externalUrl="about:blank" index="3640" path="New Pages" />
+    <page name="ChequeBooks" title="Cheque Books" description="View Cheque Books" index="3740" path="New Pages | Cheque Books" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="ChequeBooks" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+      </dataViews>
+      <controls />
+      <about>This page allows cheque books management.</about>
+    </page>
+    <page name="ChequeBooksLeaf" title="Cheque Books Leaf" description="View Cheque Books Leaf" index="3840" path="New Pages | Cheque Books Leaf" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="ChequeBooksLeaf" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+      </dataViews>
+      <controls />
+      <about>This page allows cheque books leaf management.</about>
+    </page>
+    <page name="p150622102115" title="New Pages" externalUrl="about:blank" index="3940" path="New Pages" />
+    <page name="PDCReceive" title="PDC Receive" description="View PDC Receive" index="4040" path="New Pages | PDC Receive" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="PDCReceive" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+      </dataViews>
+      <controls />
+      <about>This page allows pdc receive management.</about>
+    </page>
+    <page name="p150622115449" title="New Pages" externalUrl="about:blank" index="4140" path="New Pages" />
+    <page name="PDCReceiveDetails" title="PDC Receive Details" description="View PDC Receive Details" index="4240" path="New Pages | PDC Receive Details" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="PDCReceiveDetails" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+      </dataViews>
+      <controls />
+      <about>This page allows pdc receive details management.</about>
+    </page>
+    <page name="p150702091010" title="New Pages" externalUrl="about:blank" index="4340" path="New Pages" />
+    <page name="ImpresstFund" title="Impresst Fund" description="View Impresst Fund" index="4440" path="New Pages | Impresst Fund" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+        <container id="container2" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="ImpresstFund" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+        <dataView id="view2" controller="ImpresstFundIOU" view="grid1" text="Impresst Fund IOU" filterSource="view1" container="container2" filterFields="ImpresstFundID" activator="Tab" autoHide="Container" pageSize="5" />
+        <dataView id="view3" controller="ImpresstFundTrans" view="grid1" text="Impresst Fund Trans" filterSource="view1" container="container2" filterFields="ImpresstFundID" activator="Tab" autoHide="Container" pageSize="5" />
+      </dataViews>
+      <controls />
+      <about>This page allows impresst fund management.</about>
+    </page>
+    <page name="ImpresstFundCoins" title="Impresst Fund Coins" description="View Impresst Fund Coins" index="4540" path="New Pages | Impresst Fund Coins" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="ImpresstFundCoins" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+      </dataViews>
+      <controls />
+      <about>This page allows impresst fund coins management.</about>
+    </page>
+    <page name="ImpresstFundIOU" title="Impresst Fund IOU" description="View Impresst Fund IOU" index="4640" path="New Pages | Impresst Fund IOU" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="ImpresstFundIOU" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+      </dataViews>
+      <controls />
+      <about>This page allows impresst fund iou management.</about>
+    </page>
+    <page name="ImpresstFundTrans" title="Impresst Fund Trans" description="View Impresst Fund Trans" index="4740" path="New Pages | Impresst Fund Trans" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="ImpresstFundTrans" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+      </dataViews>
+      <controls />
+      <about>This page allows impresst fund trans management.</about>
+    </page>
+    <page name="p150708114534" title="New Pages" externalUrl="about:blank" index="4840" path="New Pages" />
+    <page name="CoinEntry" title="Coin Entry" description="View Coin Entry" index="4940" path="New Pages | Coin Entry" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="CoinEntry" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+      </dataViews>
+      <controls />
+      <about>This page allows coin entry management.</about>
+    </page>
+    <page name="p150709013512" title="New Pages" externalUrl="about:blank" index="5040" path="New Pages" />
+    <page name="PDCIssue" title="PDC Issue" description="View PDC Issue" index="5140" path="New Pages | PDC Issue" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+        <container id="container2" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="PDCIssue" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+        <dataView id="view2" controller="PDCIssueDetails" view="grid1" text="PDC Issue Details" filterSource="view1" container="container2" filterFields="PDCRNO" activator="Tab" autoHide="Container" pageSize="5" />
+      </dataViews>
+      <controls />
+      <about>This page allows pdc issue management.</about>
+    </page>
+    <page name="PDCIssueDetails" title="PDC Issue Details" description="View PDC Issue Details" index="5240" path="New Pages | PDC Issue Details" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="PDCIssueDetails" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+      </dataViews>
+      <controls />
+      <about>This page allows pdc issue details management.</about>
+    </page>
+  </pages>
+  <userControls>
+    <userControl name="TableOfContents" prefix="uc" generate="Always">
+      <body>
+                
+&lt;div class="ParaInfo"&gt;
+        ^TocInstruction^Please select a page link in the table of contents below.^TocInstruction^&lt;/div&gt;
+&lt;div class="ParaHeader"&gt;
+    ^TocHeader^Site Map^TocHeader^
+&lt;/div&gt;
+&lt;asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" ShowStartingNode="false" /&gt;
+&lt;asp:TreeView ID="TreeView1" runat="server" DataSourceID="SiteMapDataSource1" CssClass="TreeView"&gt;
+&lt;/asp:TreeView&gt;
+
+&lt;div id="app-sitemap" data-app-role="page" data-activator="Button|^TocHeader^Site Map^TocHeader^"&gt;
+    &lt;p&gt;
+      &lt;span&gt;^TocInstruction^Please select a page link in the table of contents below.^TocInstruction^&lt;/span&gt;
+    &lt;/p&gt;
+    &lt;div data-app-role="sitemap"&gt;&lt;/div&gt;
+    &lt;p&gt;
+      &lt;br /&gt;
+    &lt;/p&gt;
+&lt;/div&gt;
+              </body>
+    </userControl>
+    <userControl name="Welcome" prefix="uc" generate="Always">
+      <body>
+&lt;div style="padding-left:8px"&gt;&lt;div class="ParaInfo"&gt;
+        ^SignInInstruction^Sign in to access the protected site content.^SignInInstruction^&lt;/div&gt;
+&lt;div class="ParaHeader"&gt;
+    ^SignInHeader^Instructions^SignInHeader^
+&lt;/div&gt;
+&lt;div class="ParaText"&gt;
+    ^SignInPara1^Two standard user accounts are automatically created when application is initialized
+    if membership option has been selected for this application.^SignInPara1^
+&lt;/div&gt;
+&lt;div class="ParaText"&gt;
+    &lt;div style="border: solid 1px black; background-color: InfoBackground; padding: 8px;
+        float: left;"&gt;
+        ^AdminDesc^Administrative account^AdminDesc^:&lt;br /&gt;
+        &lt;b title="User Name"&gt;admin&lt;/b&gt; / &lt;b title="Password"&gt;admin123%&lt;/b&gt;
+        &lt;br /&gt;
+        &lt;br /&gt;
+        ^UserDesc^Standard user account^UserDesc^:&lt;br /&gt;
+        &lt;b title="User Name"&gt;user&lt;/b&gt; / &lt;b title="Password"&gt;user123%&lt;/b&gt;
+    &lt;/div&gt;
+    &lt;div style="clear:both;margin-bottom:8px"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div id="app-welcome" data-app-role="page" data-activator="Button|^SignInHeader^Instructions^SignInHeader^" data-activator-description="^SignInInstruction^Sign in to access the protected site content.^SignInInstruction^"&gt;
+      &lt;p&gt;^SignInInstruction^Sign in to access the protected site content.^SignInInstruction^&lt;/p&gt;
+      &lt;p&gt;
+          ^SignInPara1^Two standard user accounts are automatically created when application is initialized
+  if membership option has been selected for this application.^SignInPara1^
+      &lt;/p&gt;
+
+      &lt;p&gt;
+          ^SignInPara2^The administrative account &lt;b&gt;admin&lt;/b&gt; is authorized to access all areas of the
+  web site and membership manager. The standard &lt;b&gt;user&lt;/b&gt; account is allowed to
+  access all areas of the web site with the exception of membership manager.^SignInPara2^
+      &lt;/p&gt;
+      &lt;p&gt;
+          ^AdminDesc^Administrative account^AdminDesc^:&lt;br /&gt;
+          &lt;b title="User Name"&gt;admin&lt;/b&gt; / &lt;b title="Password"&gt;admin123%&lt;/b&gt;
+      &lt;/p&gt;
+      &lt;p&gt;
+          ^UserDesc^Standard user account^UserDesc^:&lt;br /&gt;
+          &lt;b title="User Name"&gt;user&lt;/b&gt; / &lt;b title="Password"&gt;user123%&lt;/b&gt;
+      &lt;/p&gt;
+      &lt;p&gt;&lt;a href="#" data-role="button" data-inline="true" data-theme="b" data-app-role="loginstatus" data-icon="lock"&gt;Login Status&lt;/a&gt;&lt;/p&gt;
+
+&lt;/div&gt;</body>
+    </userControl>
+    <userControl name="Login" prefix="uc" generate="FirstTimeOnly">
+      <body>
+              
+&lt;div data-app-role="page" data-content-framework="bootstrap"&gt;
+      &lt;div class="navbar navbar-default navbar-static-top" role="navigation"&gt;
+          &lt;div class="container"&gt;
+              &lt;div class="navbar-header"&gt;
+                  &lt;span class="navbar-brand"&gt;Standalone Login Page&lt;/span&gt;
+              &lt;/div&gt;
+              &lt;div class="navbar-collapse"&gt;
+                  &lt;div class="navbar-form navbar-right" role="form"&gt;
+                      &lt;div class="form-group"&gt;
+                          &lt;input id="login-user-name" type="text" placeholder="Username" class="form-control" autocapitalize="off"&gt;
+                      &lt;/div&gt;
+                      &lt;div class="form-group"&gt;
+                          &lt;input id="login-password" type="password" placeholder="Password" class="form-control"&gt;
+                      &lt;/div&gt;
+                      &lt;button id="login-button" class="btn btn-success"&gt;Sign in&lt;/button&gt;
+                  &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;!--/.navbar-collapse --&gt;
+          &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;!-- Main jumbotron for a primary marketing message or call to action --&gt;
+      &lt;div class="jumbotron"&gt;
+          &lt;div class="container"&gt;
+              &lt;h1&gt;&lt;span class="glyphicon glyphicon-globe"&gt;&lt;/span&gt;&amp;nbsp;Hello, world!&lt;/h1&gt;
+              &lt;p&gt;
+                  This is a template for a custom login screen. It includes a large callout called a jumbotron and three supporting content blocks. 
+                  &lt;%--Use it as a starting point to create something more unique.&lt;/p&gt;--%&gt;
+                  Edit the "Login" control in Visual Studio to create something more unique.
+              &lt;/p&gt;
+
+              &lt;p&gt;&lt;a href="http://codeontime.com/learn/user-controls/extending-pages" class="btn btn-primary btn-lg" role="button"&gt;Learn more &amp;raquo;&lt;/a&gt;&lt;/p&gt;
+          &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div class="container"&gt;
+
+          &lt;div class="row"&gt;
+              &lt;div class="col-sm-8"&gt;
+                  &lt;h2&gt;^SignInInstruction^Sign in to access the protected site content.^SignInInstruction^&lt;/h2&gt;
+                  &lt;p&gt;
+                      ^SignInPara1^Two standard user accounts are automatically created when application is initialized
+  if membership option has been selected for this application.^SignInPara1^
+                  &lt;/p&gt;
+
+                  &lt;p&gt;
+                      ^SignInPara2^The administrative account &lt;b&gt;admin&lt;/b&gt; is authorized to access all areas of the
+  web site and membership manager. The standard &lt;b&gt;user&lt;/b&gt; account is allowed to
+  access all areas of the web site with the exception of membership manager.^SignInPara2^
+                  &lt;/p&gt;
+              &lt;/div&gt;
+              &lt;div class="col-sm-4"&gt;
+                  &lt;div class="panel panel-success"&gt;
+                      &lt;div class="panel-heading"&gt;
+                          &lt;span&gt;^AdminDesc^Administrative account^AdminDesc^&lt;/span&gt;
+                      &lt;/div&gt;
+                      &lt;div class="panel-body"&gt;
+                          User Name: &lt;b title="User Name"&gt;admin&lt;/b&gt;&lt;br /&gt;
+                          Password: &lt;b title="Password"&gt;admin123%&lt;/b&gt;
+                      &lt;/div&gt;
+                  &lt;/div&gt;
+
+                  &lt;div class="panel panel-default"&gt;
+                      &lt;div class="panel-heading"&gt;
+                          &lt;span&gt;^UserDesc^Standard user account^UserDesc^&lt;/span&gt;
+                      &lt;/div&gt;
+                      &lt;div class="panel-body"&gt;
+                          User Name: &lt;b title="User Name"&gt;user&lt;/b&gt;&lt;br /&gt;
+                          Password: &lt;b title="Password"&gt;user123%&lt;/b&gt;
+                      &lt;/div&gt;
+                  &lt;/div&gt;
+              &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;hr /&gt;
+          &lt;!-- Example row of columns --&gt;
+          &lt;div class="row"&gt;
+              &lt;div class="col-sm-4"&gt;
+                  &lt;h2&gt;Heading&lt;/h2&gt;
+                  &lt;p&gt;Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. &lt;/p&gt;
+                  &lt;p&gt;&lt;a class="btn btn-default" href="#" role="button"&gt;View details &amp;raquo;&lt;/a&gt;&lt;/p&gt;
+              &lt;/div&gt;
+              &lt;div class="col-sm-4"&gt;
+                  &lt;h2&gt;Heading&lt;/h2&gt;
+                  &lt;p&gt;Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. &lt;/p&gt;
+                  &lt;p&gt;&lt;a class="btn btn-default" href="#" role="button"&gt;View details &amp;raquo;&lt;/a&gt;&lt;/p&gt;
+              &lt;/div&gt;
+              &lt;div class="col-sm-4"&gt;
+                  &lt;h2&gt;Heading&lt;/h2&gt;
+                  &lt;p&gt;Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.&lt;/p&gt;
+                  &lt;p&gt;&lt;a class="btn btn-default" href="#" role="button"&gt;View details &amp;raquo;&lt;/a&gt;&lt;/p&gt;
+              &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;hr /&gt;
+      &lt;/div&gt;
+      &lt;!-- /container --&gt;
+&lt;/div&gt;
+
+
+&lt;script type="text/javascript"&gt;
+    (function () {
+        var resources = Web.MembershipResources.Messages;
+
+        function performLogin() {
+
+            var userName = $('#login-user-name'),
+                password = $('#login-password');
+            if (!userName.val())
+                $app.alert(resources.BlankUserName, function () {
+                    userName.focus();
+                });
+            else if (!password.val())
+                $app.alert(resources.BlankPassword, function () {
+                    password.focus();
+                });
+            else
+                $app.login(userName.val(), password.val(), true,
+                    function () {
+                        var returnUrl = window.location.href.match(/\?ReturnUrl=(.+)$/);
+                        window.location.replace(returnUrl &amp;&amp; decodeURIComponent(returnUrl[1]) || __baseUrl);
+                    },
+                    function () {
+                        $app.alert(resources.InvalidUserNameAndPassword, function () {
+                            userName.focus();
+                        });
+                    });
+            return false;
+        }
+
+        // remove any other "app" pages 
+        $('div.SettingsPanel div[data-app-role="page"]').remove();
+        // register event handlers
+        $(document)
+            .on('click', '#login-button', performLogin)
+            .on('keydown', '#login-user-name,#login-password', function (event) {
+                if (event.which == 13) {
+                    performLogin();
+                    return false;
+                }
+            });
+    })();
+&lt;/script&gt;
+
+            </body>
+    </userControl>
+  </userControls>
+</application>

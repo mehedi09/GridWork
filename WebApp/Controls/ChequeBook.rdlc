@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Textbox Name="Textbox1">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Fields!paidTo.Value</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox1</rd:DefaultName>
+        <Top>1.34598in</Top>
+        <Left>0.57861in</Left>
+        <Height>0.26389in</Height>
+        <Width>5.16667in</Width>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox2">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Fields!InWordAmnt.Value</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox2</rd:DefaultName>
+        <Top>1.79042in</Top>
+        <Left>1.33208in</Left>
+        <Height>0.29167in</Height>
+        <Width>4.4132in</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox3">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value xml:space="preserve">        </Value>
+                <Style>
+                  <Format>#,0.00;(#,0.00)</Format>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!Credit.Value</Value>
+                <Style>
+                  <Format>#,0.00;(#,0.00)</Format>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox3</rd:DefaultName>
+        <Top>1.79042in</Top>
+        <Left>5.87375in</Left>
+        <Height>0.44792in</Height>
+        <Width>1.76042in</Width>
+        <ZIndex>2</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+    </ReportItems>
+    <Height>3.66667in</Height>
+    <Style />
+  </Body>
+  <Width>7.76042in</Width>
+  <Page>
+    <LeftMargin>1in</LeftMargin>
+    <RightMargin>1in</RightMargin>
+    <TopMargin>1in</TopMargin>
+    <BottomMargin>1in</BottomMargin>
+    <Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="IPACERP">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>c824d8e4-ffd2-4f7a-9761-1b6423917854</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet1">
+      <Query>
+        <DataSourceName>IPACERP</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="AccTranDate">
+          <DataField>AccTranDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="VchrNumber">
+          <DataField>VchrNumber</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AccTranRef">
+          <DataField>AccTranRef</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AccTranSLNO">
+          <DataField>AccTranSLNO</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="RefNo">
+          <DataField>RefNo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AccName">
+          <DataField>AccName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Debit">
+          <DataField>Debit</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Credit">
+          <DataField>Credit</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Currency">
+          <DataField>Currency</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AccCurrencyRate">
+          <DataField>AccCurrencyRate</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="AccSubTypeID">
+          <DataField>AccSubTypeID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="AccSubCode">
+          <DataField>AccSubCode</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="SubName">
+          <DataField>SubName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Voucher">
+          <DataField>Voucher</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="HeadAccName">
+          <DataField>HeadAccName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TrStat">
+          <DataField>TrStat</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RevAcc">
+          <DataField>RevAcc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AccCode">
+          <DataField>AccCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CoaControlID">
+          <DataField>CoaControlID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CoaControlName">
+          <DataField>CoaControlName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CoaMainName">
+          <DataField>CoaMainName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CoaSubName">
+          <DataField>CoaSubName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SubLedger1">
+          <DataField>SubLedger1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SubLedger2">
+          <DataField>SubLedger2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SubLedger3">
+          <DataField>SubLedger3</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CoaMainID">
+          <DataField>CoaMainID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="BankName">
+          <DataField>BankName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BankAccNum">
+          <DataField>BankAccNum</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BankAccType">
+          <DataField>BankAccType</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CoaSubID">
+          <DataField>CoaSubID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="AccRemarks">
+          <DataField>AccRemarks</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Tran_Comment">
+          <DataField>Tran_Comment</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AccFundID">
+          <DataField>AccFundID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="FundName">
+          <DataField>FundName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Company">
+          <DataField>Company</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Address">
+          <DataField>Address</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Chequeno">
+          <DataField>Chequeno</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="paidTo">
+          <DataField>paidTo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Voucher_InstBy">
+          <DataField>Voucher_InstBy</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Voucher_EditBy">
+          <DataField>Voucher_EditBy</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Voucher_InstTime">
+          <DataField>Voucher_InstTime</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Voucher_EditTime">
+          <DataField>Voucher_EditTime</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="TranCode">
+          <DataField>TranCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="InWordAmnt">
+          <DataField>InWordAmnt</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="VchrType">
+          <DataField>VchrType</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="VchrTypeName">
+          <DataField>VchrTypeName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AccTranCode">
+          <DataField>AccTranCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="VchersWithBill">
+          <DataField>VchersWithBill</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BillReMarks">
+          <DataField>BillReMarks</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RefType">
+          <DataField>RefType</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ChequeDT">
+          <DataField>ChequeDT</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="ChequeBankBranch">
+          <DataField>ChequeBankBranch</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IsRevtran">
+          <DataField>IsRevtran</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="ChequeBookNo">
+          <DataField>ChequeBookNo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>IPACERP</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\Zahir\Documents\Code OnTime\Projects\Web App Factory\IPACERPNEW\WebApp\Controls\IPACERP.xsd</rd:SchemaPath>
+        <rd:TableName>GetChequePrintIPAC</rd:TableName>
+        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
+        <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
+        <rd:TableAdapterName>GetChequePrintIPACTableAdapter</rd:TableAdapterName>
+      </rd:DataSetInfo>
+    </DataSet>
+  </DataSets>
+  <EmbeddedImages>
+    <EmbeddedImage Name="download">
+      <MIMEType>image/png</MIMEType>
+      <ImageData>iVBORw0KGgoAAAANSUhEUgAAAHwAAAB8CAMAAACcwCSMAAAAmVBMVEX/////AAD/ysr/4uL/nZ3/lpb/paX/8/P/j4//6en/qan/+/v/bW3/9vb/wsL/QED/29v/09P/Wlr/trb/vb3z8/P/eXnp6en/ISGioqL/gID/srL/PDz/dXX/7u6ysrL/iIj/ZWX/MjKYmJiIiIj/UlJ+fn5hYWHT09P/FBS9vb1wcHDd3d1VVVXJycn/KChEREQzMzP/SkpSfA0nAAAE30lEQVRoge1Xa5PqNgy1EvKAEPLmFQh5ENgAu7T8/x9XWXaC4cJOO9Puh1uf2Zk4iu0jHckyy5iGhoaGhoaGhoaGhoaGhoaGhoaGhsZvC2c+vr+Y4c+Sb6Hy+/E4mPwotwkAiRwbNbQ/Su7fADZ8ELod+gGjH2UvrgAh80rODJ3rsVCtgYntiVFkEyaJUhXORNhy4zuCsR29/hDexsyF2mdTTl3lyGt0S3v4ji7JjS3oYd1dG2y34j25AfYrc1otIWYR5MzGDWqkcQzyYiYn+AHAXAxHMJ2laZrPAYaiNKFGU5q4G4i9b8hfVrHDmUzWmj4+r+i8VVMc635CBGVw9SW5jNiGW386TAjEcLyE92f0DTljMYDLZo6BjJQY0+5ges/gGsK11H0g96DuNTZh44jRVp6YIjKie8mY42/JQyx1jxI6x24zmnnMUfTzrwGbSd0Hcn9gVMinkHIBYhJuinKs6yLH4cYYyNfLe7FIVJTCNa+rNdc+fxTM5YH6D+R5XwWK7MUSUA1vCblZoFYletO5sHUr6ExJvoX5L2XB3TOYY1eFI/JdKh/XPBet0H0E8zCKIsOCdtAVC85AW5QENCeRhdrWDkrRcVOJ7hN5CdtfS9Lhh1scBdOoQGl3CArMxvVE3mM2fL8ftSnFnwqzi+FORdVGUBH5SOnhChK+trYM5qFnKW9yg4cGySATO4LWRZSVIo4Jy5Lb5leopRze2ByXWPpT
+WcDLGLfJJ+/a9oRcj7Gytj4LOyX0NYzSJEmvtM+ob7zjGtKBPPD6qTFntgPRJzk5eTMmcuzg1zd9IJxS3l2izaWECH/Zi1oypeBwSjyQD4UP3Zh5AcRJFGLFPZFDPBe5e0KRYl0UIdbchjqpR52eMIPYJaW7ja+SRxC8IMdVlpwyeiZvfV/2ERUONkbY5pwNA4ciSnk3j30ppew2LV94J0/eRX4D8bZ9Jp/w5dUTt7kRpToTma9YesO4AFrewvDoyWkW1+ze4W7QN4PhnOORiJm3qT1hfc45P+dXeGghItpN6vGfUkBdvsJDEoMV8ggM2A46d5x8a8wQkwBVHMhrbjKSOaVsSlL5t7aLfiWf0eWhIqlRDC+n8401POP3ZSHF3g5FjXdbpFypVS+1cs4powVeSXYJowk6UWEonLxr+yu1GoLpgYfbuNLqNuIh8nYov4ysgSRxI2a4FsFWrq9C2qyZOEjmPAjalEXrkOUlxelYE2aWFI7pug57Bte+XkckJdZA8P5i/hvw/X+4vIV1n0TsocG3c/91WPerrth886PgP4GpKPXT/zRo/L+w29HDOx5Xqnl/PL+cvmgeV1/Ec7VgL+yXy9Pqr9Pj+1mQZJ/snKnm7Eivl/1KPJtDJsi/vlQfP8TzRB+/mmYlnPsgZ1af9DlrhDFrjo/kH82e3Mv+3J/VznTcfwqy05E2ODUnUmZx3Ks+9uRnImt2h4+DGIlFQsxmtyfS5mv1SN4cDjQjO7KzKtKZrXZyIUV62l3I/cXnXl2+l2sE5eqjWTQXhVyk9LA70ef9QhruJBnpnv2xPzzIvhdZ2B2EdF+ni4h8dVKzvjof5L6CfLVoxEjkXMj8cT6IPc5Psmf0xwfZo71/faok1s9/nNdn7OlOyR73XjxyaGhoaGhoaGhoaGhoaGhoaGhoaGj8dvgL0EhQtSgnOFwAAAAASUVORK5CYII=</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>5ae37c94-a898-4e5e-a761-78fab023c73b</rd:ReportID>
+</Report>

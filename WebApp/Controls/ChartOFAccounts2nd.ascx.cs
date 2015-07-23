@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+
+
+public partial class Controls_ChartOFAccounts2nd : System.Web.UI.UserControl
+{
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        //rd1.Checked = true;
+        //Istdiv.Visible = true;
+        //rd2.Checked = false;
+        //Seconddiv.Visible = false;
+        //rd3.Checked = false;
+        //ThirdDiv.Visible = false;
+        //rd4.Checked = false;
+        //ForthDiv.Visible = false;
+    }
+}
+    

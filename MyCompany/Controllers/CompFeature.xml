@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="CompFeature" conflictDetection="overwriteChanges" label="Comp Feature" plugIn="MyCompany.Data.AnnotationPlugIn" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"CompFeature"."CompFeatureID" "CompFeatureID"
+	,"CompFeature"."CompID" "CompID"
+	,"CompFeature"."AccFundID" "AccFundID"
+	,"CompFeature"."AllowMultiCurrency" "AllowMultiCurrency"
+	,"CompFeature"."AllowBudget" "AllowBudget"
+	,"CompFeature"."AllowBudgetControl" "AllowBudgetControl"
+	,"CompFeature"."AllowSubsidiaryLed" "AllowSubsidiaryLed"
+	,"CompFeature"."AllowMultiGodowns" "AllowMultiGodowns"
+	,"CompFeature"."AllowProject" "AllowProject"
+	,"CompFeature"."AllowConsLedgerAuto" "AllowConsLedgerAuto"
+	,"CompFeature"."NextCodeStart" "NextCodeStart"
+	,"CompFeature"."IsQualityControl" "IsQualityControl"
+	,"CompFeature"."IsOrderControl" "IsOrderControl"
+	,"CompFeature"."DefaultCurrency" "DefaultCurrency"
+	,"CompFeature"."IsSectorYN" "IsSectorYN"
+	,"CompFeature"."IsVoucherPosted" "IsVoucherPosted"
+	,"CompFeature"."ChequeHonourControl" "ChequeHonourControl"
+from "dbo"."CompFeature" "CompFeature"
+]]></text>
+    </command>
+    <command id="CompFeatureIDIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="CompFeatureID" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="CompFeatureID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Comp Feature#" readOnly="true" />
+    <field name="CompID" type="Int32" label="Comp#" showInSummary="true" hidden="true" />
+    <field name="AccFundID" type="Int64" label="Company" showInSummary="true" contextFields="AccfundID=@Sesssion_CompanyID">
+      <items style="DropDownList" dataController="AccFunds" dataView="grid1" dataTextField="AccFundName" dataValueField="AccFundID" />
+    </field>
+    <field name="AllowMultiCurrency" type="Boolean" label="Allow Multi Currency" showInSummary="true" />
+    <field name="AllowBudget" type="Boolean" label="Allow Budget" showInSummary="true" />
+    <field name="AllowBudgetControl" type="Boolean" label="Allow Budget Control" showInSummary="true" />
+    <field name="AllowSubsidiaryLed" type="Boolean" label="Allow Subsidiary Led" />
+    <field name="AllowMultiGodowns" type="Boolean" label="Allow Multi Godowns" />
+    <field name="AllowProject" type="Boolean" label="Allow Project" />
+    <field name="AllowConsLedgerAuto" type="Boolean" label="Allow Cons Ledger Auto" />
+    <field name="NextCodeStart" type="String" label="Next Code Start" length="10" />
+    <field name="IsQualityControl" type="Boolean" default="((0))" label="Is Quality Control" />
+    <field name="IsOrderControl" type="Boolean" default="((0))" label="Is Order Control" />
+    <field name="DefaultCurrency" type="Int32" label="Default Currency" />
+    <field name="IsSectorYN" type="Boolean" label="Is Sector YN" />
+    <field name="IsVoucherPosted" type="Boolean" default="((0))" label="Is Voucher Posted" />
+    <field name="ChequeHonourControl" type="Boolean" label="Cheque Honour Control" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Company Feature" filter="AccFundID=@BusinessRules_CompanyID">
+      <headerText>Company Feature</headerText>
+      <dataFields>
+        <dataField fieldName="AccFundID" columns="15" hidden="true" />
+        <dataField fieldName="AllowMultiCurrency" />
+        <dataField fieldName="AllowBudget" hidden="true" />
+        <dataField fieldName="AllowBudgetControl" hidden="true" />
+        <dataField fieldName="AllowSubsidiaryLed" />
+        <dataField fieldName="AllowMultiGodowns" />
+        <dataField fieldName="AllowProject" />
+        <dataField fieldName="AllowConsLedgerAuto" hidden="true" />
+        <dataField fieldName="NextCodeStart" columns="10" />
+        <dataField fieldName="ChequeHonourControl" />
+        <dataField fieldName="IsVoucherPosted" />
+        <dataField fieldName="DefaultCurrency" columns="15" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review  Feature">
+      <headerText>Review  Feature</headerText>
+      <categories>
+        <category id="c1" headerText="Review" newColumn="true">
+          <description><![CDATA[Review]]></description>
+          <dataFields>
+            <dataField fieldName="AccFundID" columns="15" hidden="true" />
+            <dataField fieldName="AllowMultiCurrency" />
+            <dataField fieldName="AllowBudget" />
+            <dataField fieldName="AllowSubsidiaryLed" />
+            <dataField fieldName="IsVoucherPosted" />
+            <dataField fieldName="ChequeHonourControl" />
+            <dataField fieldName="DefaultCurrency" columns="15" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Company Feature">
+      <headerText>New Company Feature</headerText>
+      <categories>
+        <category id="c1" headerText="New" newColumn="true">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="AccFundID" columns="15" hidden="true" />
+            <dataField fieldName="AllowMultiCurrency" />
+            <dataField fieldName="AllowBudget" />
+            <dataField fieldName="AllowSubsidiaryLed" />
+            <dataField fieldName="IsVoucherPosted" />
+            <dataField fieldName="ChequeHonourControl" />
+            <dataField fieldName="DefaultCurrency" columns="15" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Delete" />
+      <action id="a6" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenKeySelected="true" whenClientScript="this.get_hasDetails()" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+</dataController>

@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="ProfitLossStatement" conflictDetection="overwriteChanges" label="ProfitLossStatement" plugIn="MyCompany.Data.AnnotationPlugIn" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands />
+  <fields>
+    <field name="AccFundCode" type="Int32" label="Acc Fund Code" showInSummary="true" />
+    <field name="CoaDetailID" type="Int32" label="Coa Detail#" showInSummary="true" />
+    <field name="AccName" type="String" label="Acc Name" length="50" showInSummary="true" />
+    <field name="AccBalTypeID" type="Int32" label="Acc Bal Type#" showInSummary="true" />
+    <field name="AccTypeID" type="Int32" label="Acc Type#" showInSummary="true" />
+    <field name="NatureAcc" type="Int32" label="Nature Acc" />
+    <field name="NatureAccName" type="String" label="Nature Acc Name" length="50" />
+    <field name="NatureAccDesc" type="String" label="Nature Acc Desc" length="50" />
+    <field name="OpenBalance" type="Decimal" label="Open Balance" />
+    <field name="Debit" type="Decimal" label="Debit" />
+    <field name="Credit" type="Decimal" label="Credit" />
+    <field name="Balance" type="Decimal" label="Balance" />
+    <field name="CoaControlID" type="Int32" label="Coa Control#" />
+    <field name="PAccName" type="String" label="P Acc Name" length="75" />
+    <field name="CoaSubID" type="Int32" label="Coa Sub#" />
+    <field name="SAccName" type="String" label="S Acc Name" length="75" />
+    <field name="CoaMainID" type="Int32" label="Coa Main#" />
+    <field name="MAccName" type="String" label="M Acc Name" length="75" />
+    <field name="RptSlno" type="Int32" label="Rpt Slno" />
+    <field name="CurrencyName" type="String" label="Currency Name" readOnly="true" length="3" />
+    <field name="Company" type="String" label="Company" readOnly="true" length="150" />
+    <field name="Address" type="String" label="Address" readOnly="true" length="150" />
+    <field name="FundName" type="String" label="Fund Name" readOnly="true" length="150" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Profit Loss Statement">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="AccFundCode" columns="15" />
+        <dataField fieldName="CoaDetailID" columns="15" />
+        <dataField fieldName="AccName" columns="50" />
+        <dataField fieldName="AccBalTypeID" columns="15" />
+        <dataField fieldName="AccTypeID" columns="15" />
+        <dataField fieldName="NatureAcc" columns="15" />
+        <dataField fieldName="NatureAccName" columns="50" />
+        <dataField fieldName="NatureAccDesc" columns="50" />
+        <dataField fieldName="OpenBalance" dataFormatString="c" columns="15" />
+        <dataField fieldName="Debit" dataFormatString="c" columns="15" />
+        <dataField fieldName="Credit" dataFormatString="c" columns="15" />
+        <dataField fieldName="Balance" dataFormatString="c" columns="15" />
+        <dataField fieldName="CoaControlID" columns="15" />
+        <dataField fieldName="PAccName" />
+        <dataField fieldName="CoaSubID" columns="15" />
+        <dataField fieldName="SAccName" />
+        <dataField fieldName="CoaMainID" columns="15" />
+        <dataField fieldName="MAccName" />
+        <dataField fieldName="RptSlno" columns="15" />
+        <dataField fieldName="CurrencyName" columns="3" />
+        <dataField fieldName="Company" />
+        <dataField fieldName="Address" />
+        <dataField fieldName="FundName" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Profit Loss Statement">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Profit Loss Statement" newColumn="true">
+          <description><![CDATA[$DefaultEditDescription]]></description>
+          <dataFields>
+            <dataField fieldName="AccFundCode" columns="15" />
+            <dataField fieldName="CoaDetailID" columns="15" />
+            <dataField fieldName="AccName" columns="50" />
+            <dataField fieldName="AccBalTypeID" columns="15" />
+            <dataField fieldName="AccTypeID" columns="15" />
+            <dataField fieldName="NatureAcc" columns="15" />
+            <dataField fieldName="NatureAccName" columns="50" />
+            <dataField fieldName="NatureAccDesc" columns="50" />
+            <dataField fieldName="OpenBalance" dataFormatString="c" columns="15" />
+            <dataField fieldName="Debit" dataFormatString="c" columns="15" />
+            <dataField fieldName="Credit" dataFormatString="c" columns="15" />
+            <dataField fieldName="Balance" dataFormatString="c" columns="15" />
+            <dataField fieldName="CoaControlID" columns="15" />
+            <dataField fieldName="PAccName" />
+            <dataField fieldName="CoaSubID" columns="15" />
+            <dataField fieldName="SAccName" />
+            <dataField fieldName="CoaMainID" columns="15" />
+            <dataField fieldName="MAccName" />
+            <dataField fieldName="RptSlno" columns="15" />
+            <dataField fieldName="CurrencyName" columns="3" />
+            <dataField fieldName="Company" />
+            <dataField fieldName="Address" />
+            <dataField fieldName="FundName" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Profit Loss Statement">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="New Profit Loss Statement" newColumn="true">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="AccFundCode" columns="15" />
+            <dataField fieldName="CoaDetailID" columns="15" />
+            <dataField fieldName="AccName" columns="50" />
+            <dataField fieldName="AccBalTypeID" columns="15" />
+            <dataField fieldName="AccTypeID" columns="15" />
+            <dataField fieldName="NatureAcc" columns="15" />
+            <dataField fieldName="NatureAccName" columns="50" />
+            <dataField fieldName="NatureAccDesc" columns="50" />
+            <dataField fieldName="OpenBalance" dataFormatString="c" columns="15" />
+            <dataField fieldName="Debit" dataFormatString="c" columns="15" />
+            <dataField fieldName="Credit" dataFormatString="c" columns="15" />
+            <dataField fieldName="Balance" dataFormatString="c" columns="15" />
+            <dataField fieldName="CoaControlID" columns="15" />
+            <dataField fieldName="PAccName" />
+            <dataField fieldName="CoaSubID" columns="15" />
+            <dataField fieldName="SAccName" />
+            <dataField fieldName="CoaMainID" columns="15" />
+            <dataField fieldName="MAccName" />
+            <dataField fieldName="RptSlno" columns="15" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Delete" />
+      <action id="a6" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenKeySelected="true" whenClientScript="this.get_hasDetails()" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+      <action commandName="Search" headerText="Select Date Range" confirmation="_controller=TrailBalanceParam&#xD;&#xA;_title=Select Date Range" id="a100" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+  <businessRules>
+    <rule type="Sql" id="enableResultSet" commandName="Select" phase="Before"><![CDATA[set @BusinessRules_EnableResultSet = 1
+-- Enable caching of the result set. Duration is specified in seconds.
+-- set @BusinessRules_ResultSetCacheDuration = 30 ]]></rule>
+    <rule type="Sql" id="getData" commandName="Select" phase="Before"><![CDATA[-- debug
+DECLARE @Parameters_AccFundCode  int
+
+DECLARE @Parameters_FrDate  datetime
+DECLARE @Parameters_ToDate  datetime
+-- end debug
+if(@Parameters_AccFundCode  is null )
+
+set @Parameters_AccFundCode  =3
+if(@Parameters_FrDate  is null )
+
+set @Parameters_FrDate  ='01/01/2015'
+if(@Parameters_ToDate  is null )
+
+set @Parameters_ToDate  ='12/31/2015'
+
+
+exec [dbo].[USP_ProfitLossACCNew] 
+@Parameters_AccFundCode,
+ @Parameters_FrDate,
+@Parameters_ToDate]]></rule>
+    <rule type="Sql" id="insert" commandName="Insert" phase="Before"><![CDATA[set @BusinessRules_PreventDefault = 1
+-- implement insert here]]></rule>
+    <rule type="Sql" id="update" commandName="Update" phase="Before"><![CDATA[set @BusinessRules_PreventDefault = 1
+-- implement update here]]></rule>
+    <rule type="Sql" id="delete" commandName="Delete" phase="Before"><![CDATA[set @BusinessRules_PreventDefault = 1
+-- implement delete here]]></rule>
+  </businessRules>
+</dataController>

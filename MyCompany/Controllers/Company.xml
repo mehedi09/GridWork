@@ -1,0 +1,400 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="Company" conflictDetection="overwriteChanges" label="Company" plugIn="MyCompany.Data.AnnotationPlugIn" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"Company"."CompanyID" "CompanyID"
+	,"Company"."CompanyName" "CompanyName"
+	,"Company"."Address" "Address"
+	,"Company"."Phone" "Phone"
+	,"Company"."Fax" "Fax"
+	,"Company"."Email" "Email"
+	,"Company"."Logo" "Logo"
+	,"Company"."CompanyTypeID" "CompanyTypeID"
+	,"CompanyType"."Description" "CompanyTypeDescription"
+	,"Company"."LicenseTO" "LicenseTO"
+	,"Company"."CashCode" "CashCode"
+	,"Company"."BankCode" "BankCode"
+	,"Company"."FixedAssetCode" "FixedAssetCode"
+	,"Company"."Depreciation" "Depreciation"
+	,"Company"."RawMAcc" "RawMAcc"
+	,"Company"."FinishGAcc" "FinishGAcc"
+	,"Company"."Inventory" "Inventory"
+	,"Company"."DepCalYesNo" "DepCalYesNo"
+	,"Company"."RawmStk" "RawmStk"
+	,"Company"."FinishStk" "FinishStk"
+	,"Company"."RCurr" "RCurr"
+	,"Company"."RCurrRate" "RCurrRate"
+	,"Company"."FCurr" "FCurr"
+	,"Company"."FCurrRate" "FCurrRate"
+	,"Company"."ProfitAcc" "ProfitAcc"
+	,"Company"."DateType" "DateType"
+	,"Company"."BaseCurrency" "BaseCurrency"
+	,"Company"."AccountBalShow" "AccountBalShow"
+	,"Company"."FundCode" "FundCode"
+	,"Company"."BranchCode" "BranchCode"
+	,"Company"."SubLedYN" "SubLedYN"
+	,"Company"."AccBalShow" "AccBalShow"
+	,"Company"."FundCodeYN" "FundCodeYN"
+	,"Company"."BranchCodeYN" "BranchCodeYN"
+	,"Company"."FixedAssetYN" "FixedAssetYN"
+	,"Company"."SalesAcct" "SalesAcct"
+	,"Company"."PurchaseAcct" "PurchaseAcct"
+	,"Company"."InvtoryVchrAuto" "InvtoryVchrAuto"
+	,"Company"."SDebitor" "SDebitor"
+	,"Company"."SCreditor" "SCreditor"
+	,"Company"."ProjectYN" "ProjectYN"
+	,"Company"."GodownYN" "GodownYN"
+	,"Company"."BatchYN" "BatchYN"
+	,"Company"."MgtYN" "MgtYN"
+	,"Company"."ExpireYN" "ExpireYN"
+	,"Company"."Active" "Active"
+	,"Company"."License" "License"
+	,"Company"."Instal" "Instal"
+	,"Company"."CopYN" "CopYN"
+	,"Company"."VchrNumberUnique" "VchrNumberUnique"
+	,"Company"."VchrNumberByType" "VchrNumberByType"
+	,"Company"."CurrAsset" "CurrAsset"
+	,"Company"."CurrLiab" "CurrLiab"
+	,"Company"."SaleAcc" "SaleAcc"
+	,"Company"."PurAcc" "PurAcc"
+	,"Company"."FixedAcc" "FixedAcc"
+	,"Company"."LoanLiab" "LoanLiab"
+	,"Company"."CapAcc" "CapAcc"
+	,"Company"."OpnStkAcc" "OpnStkAcc"
+	,"Company"."ClsStkAcc" "ClsStkAcc"
+	,"Company"."FabricCatID" "FabricCatID"
+	,"Company"."FabricItemID" "FabricItemID"
+	,"Company"."FuelAcc" "FuelAcc"
+	,"Company"."BasOwnerAcc" "BasOwnerAcc"
+	,"Company"."HelperAcc" "HelperAcc"
+	,"Company"."DriverAcc" "DriverAcc"
+	,"Company"."AdvanceAcc" "AdvanceAcc"
+	,"Company"."TicketSaleAcc" "TicketSaleAcc"
+	,"Company"."TicketAcc" "TicketAcc"
+	,"Company"."BusRsrvAcc" "BusRsrvAcc"
+	,"Company"."CntrDepositAcc" "CntrDepositAcc"
+	,"Company"."ConsFundCode" "ConsFundCode"
+	,"Company"."WorkinProgressAcc" "WorkinProgressAcc"
+from "dbo"."Company" "Company"
+	left join "dbo"."CompanyTypes" "CompanyType" on "Company"."CompanyTypeID" = "CompanyType"."CompTypeID"
+]]></text>
+    </command>
+  </commands>
+  <fields>
+    <field name="CompanyID" type="Int32" allowNulls="false" isPrimaryKey="true" default="('0001')" label="Company#" />
+    <field name="CompanyName" type="String" allowNulls="false" label="Company Name" length="150" showInSummary="true" />
+    <field name="Address" type="String" label="Address" length="150" showInSummary="true" />
+    <field name="Phone" type="String" label="Phone" length="50" showInSummary="true" />
+    <field name="Fax" type="String" label="Fax" length="50" showInSummary="true" />
+    <field name="Email" type="String" label="Email" length="50" showInSummary="true" />
+    <field name="Logo" type="Byte[]" onDemand="true" sourceFields="CompanyID" onDemandHandler="CompanyLogo" onDemandStyle="Thumbnail" allowQBE="false" allowSorting="false" label="Logo" />
+    <field name="CompanyTypeID" type="Int32" label="Company Type#">
+      <items style="Lookup" dataController="CompanyTypes" newDataView="createForm1" />
+    </field>
+    <field name="CompanyTypeDescription" type="String" readOnly="true" label="Company Type Description" length="50" />
+    <field name="LicenseTO" type="String" label="License TO" length="150" />
+    <field name="CashCode" type="String" label="Cash Code" length="11" />
+    <field name="BankCode" type="String" label="Bank Code" length="11" />
+    <field name="FixedAssetCode" type="String" label="Fixed Asset Code" length="11" />
+    <field name="Depreciation" type="String" label="Depreciation" length="11" />
+    <field name="RawMAcc" type="String" label="Raw M Acc" length="11" />
+    <field name="FinishGAcc" type="String" label="Finish G Acc" length="11" />
+    <field name="Inventory" type="String" label="Inventory" length="11" />
+    <field name="DepCalYesNo" type="String" label="Dep Cal Yes No" length="1" />
+    <field name="RawmStk" type="Decimal" label="Rawm Stk" />
+    <field name="FinishStk" type="Decimal" label="Finish Stk" />
+    <field name="RCurr" type="Int32" label="R Curr" />
+    <field name="RCurrRate" type="Decimal" label="R Curr Rate" />
+    <field name="FCurr" type="Int32" label="F Curr" />
+    <field name="FCurrRate" type="Decimal" label="F Curr Rate" />
+    <field name="ProfitAcc" type="String" label="Profit Acc" length="11" />
+    <field name="DateType" type="String" label="Date Type" length="1" />
+    <field name="BaseCurrency" type="Int32" default="((1))" label="Base Currency" />
+    <field name="AccountBalShow" type="Int32" label="Account Bal Show" />
+    <field name="FundCode" type="String" default="('0001')" label="Fund Code" length="4" />
+    <field name="BranchCode" type="String" default="('0001')" label="Branch Code" length="4" />
+    <field name="SubLedYN" type="String" allowNulls="false" label="Sub Led YN" length="1" />
+    <field name="AccBalShow" type="String" allowNulls="false" label="Acc Bal Show" length="1" />
+    <field name="FundCodeYN" type="String" allowNulls="false" label="Fund Code YN" length="1" />
+    <field name="BranchCodeYN" type="String" allowNulls="false" label="Branch Code YN" length="1" />
+    <field name="FixedAssetYN" type="String" allowNulls="false" label="Fixed Asset YN" length="1" />
+    <field name="SalesAcct" type="String" label="Sales Acct" length="11" />
+    <field name="PurchaseAcct" type="String" label="Purchase Acct" length="11" />
+    <field name="InvtoryVchrAuto" type="String" label="Invtory Vchr Auto" length="1" />
+    <field name="SDebitor" type="String" label="S Debitor" length="11" />
+    <field name="SCreditor" type="String" label="S Creditor" length="11" />
+    <field name="ProjectYN" type="String" label="Project YN" length="1" />
+    <field name="GodownYN" type="String" label="Godown YN" length="1" />
+    <field name="BatchYN" type="String" label="Batch YN" length="1" />
+    <field name="MgtYN" type="String" label="Mgt YN" length="1" />
+    <field name="ExpireYN" type="String" label="Expire YN" length="1" />
+    <field name="Active" type="String" label="Active" length="1" />
+    <field name="License" type="String" label="License" length="50" />
+    <field name="Instal" type="DateTime" label="Instal" />
+    <field name="CopYN" type="String" label="Cop YN" length="1" />
+    <field name="VchrNumberUnique" type="String" default="('Y')" label="Vchr Number Unique" length="1" />
+    <field name="VchrNumberByType" type="String" default="('N')" label="Vchr Number By Type" length="1" />
+    <field name="CurrAsset" type="String" label="Curr Asset" length="11" />
+    <field name="CurrLiab" type="String" label="Curr Liab" length="11" />
+    <field name="SaleAcc" type="String" label="Sale Acc" length="11" />
+    <field name="PurAcc" type="String" label="Pur Acc" length="11" />
+    <field name="FixedAcc" type="String" label="Fixed Acc" length="11" />
+    <field name="LoanLiab" type="String" label="Loan Liab" length="11" />
+    <field name="CapAcc" type="String" label="Cap Acc" length="11" />
+    <field name="OpnStkAcc" type="String" label="Opn Stk Acc" length="11" />
+    <field name="ClsStkAcc" type="String" label="Cls Stk Acc" length="11" />
+    <field name="FabricCatID" type="String" label="Fabric Cat#" length="4" />
+    <field name="FabricItemID" type="String" label="Fabric Item#" length="6" />
+    <field name="FuelAcc" type="String" label="Fuel Acc" length="11" />
+    <field name="BasOwnerAcc" type="String" label="Bas Owner Acc" length="11" />
+    <field name="HelperAcc" type="String" label="Helper Acc" length="11" />
+    <field name="DriverAcc" type="String" label="Driver Acc" length="11" />
+    <field name="AdvanceAcc" type="String" label="Advance Acc" length="11" />
+    <field name="TicketSaleAcc" type="String" label="Ticket Sale Acc" length="11" />
+    <field name="TicketAcc" type="String" label="Ticket Acc" length="11" />
+    <field name="BusRsrvAcc" type="String" label="Bus Rsrv Acc" length="11" />
+    <field name="CntrDepositAcc" type="String" label="Cntr Deposit Acc" length="11" />
+    <field name="ConsFundCode" type="String" default="('0001')" label="Cons Fund Code" length="4" />
+    <field name="WorkinProgressAcc" type="String" default="('')" label="Workin Progress Acc" length="11" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Company">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="CompanyName" />
+        <dataField fieldName="Address" />
+        <dataField fieldName="Phone" columns="50" />
+        <dataField fieldName="Fax" columns="50" />
+        <dataField fieldName="Email" columns="50" />
+        <dataField fieldName="Logo" columns="15" />
+        <dataField fieldName="CompanyTypeID" aliasFieldName="CompanyTypeDescription" hyperlinkFormatString="~/Pages/CompanyTypes.aspx?CompTypeID={CompanyTypeID}&amp;_controller=CompanyTypes&amp;_commandName=Select&amp;_commandArgument=editForm1" />
+        <dataField fieldName="LicenseTO" />
+        <dataField fieldName="CashCode" columns="11" />
+        <dataField fieldName="BankCode" columns="11" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Company">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Company" newColumn="true">
+          <description><![CDATA[$DefaultEditDescription]]></description>
+          <dataFields>
+            <dataField fieldName="CompanyName" />
+            <dataField fieldName="Address" />
+            <dataField fieldName="Phone" columns="50" />
+            <dataField fieldName="Fax" columns="50" />
+            <dataField fieldName="Email" columns="50" />
+            <dataField fieldName="Logo" columns="15" />
+            <dataField fieldName="CompanyTypeID" aliasFieldName="CompanyTypeDescription" hyperlinkFormatString="~/Pages/CompanyTypes.aspx?CompTypeID={CompanyTypeID}&amp;_controller=CompanyTypes&amp;_commandName=Select&amp;_commandArgument=editForm1" />
+            <dataField fieldName="LicenseTO" />
+            <dataField fieldName="CashCode" columns="11" />
+            <dataField fieldName="BankCode" columns="11" />
+            <dataField fieldName="FixedAssetCode" columns="11" />
+            <dataField fieldName="Depreciation" columns="11" />
+            <dataField fieldName="RawMAcc" columns="11" />
+            <dataField fieldName="FinishGAcc" columns="11" />
+            <dataField fieldName="Inventory" columns="11" />
+            <dataField fieldName="DepCalYesNo" columns="1" />
+            <dataField fieldName="RawmStk" dataFormatString="c" columns="15" />
+            <dataField fieldName="FinishStk" dataFormatString="c" columns="15" />
+            <dataField fieldName="RCurr" columns="15" />
+            <dataField fieldName="RCurrRate" columns="15" />
+            <dataField fieldName="FCurr" columns="15" />
+            <dataField fieldName="FCurrRate" columns="15" />
+            <dataField fieldName="ProfitAcc" columns="11" />
+            <dataField fieldName="DateType" columns="1" />
+            <dataField fieldName="BaseCurrency" columns="15" />
+            <dataField fieldName="AccountBalShow" columns="15" />
+            <dataField fieldName="FundCode" columns="4" />
+            <dataField fieldName="BranchCode" columns="4" />
+            <dataField fieldName="SubLedYN" columns="1" />
+            <dataField fieldName="AccBalShow" columns="1" />
+            <dataField fieldName="FundCodeYN" columns="1" />
+            <dataField fieldName="BranchCodeYN" columns="1" />
+            <dataField fieldName="FixedAssetYN" columns="1" />
+            <dataField fieldName="SalesAcct" columns="11" />
+            <dataField fieldName="PurchaseAcct" columns="11" />
+            <dataField fieldName="InvtoryVchrAuto" columns="1" />
+            <dataField fieldName="SDebitor" columns="11" />
+            <dataField fieldName="SCreditor" columns="11" />
+            <dataField fieldName="ProjectYN" columns="1" />
+            <dataField fieldName="GodownYN" columns="1" />
+            <dataField fieldName="BatchYN" columns="1" />
+            <dataField fieldName="MgtYN" columns="1" />
+            <dataField fieldName="ExpireYN" columns="1" />
+            <dataField fieldName="Active" columns="1" />
+            <dataField fieldName="License" columns="50" />
+            <dataField fieldName="Instal" columns="10" />
+            <dataField fieldName="CopYN" columns="1" />
+            <dataField fieldName="VchrNumberUnique" columns="1" />
+            <dataField fieldName="VchrNumberByType" columns="1" />
+            <dataField fieldName="CurrAsset" columns="11" />
+            <dataField fieldName="CurrLiab" columns="11" />
+            <dataField fieldName="SaleAcc" columns="11" />
+            <dataField fieldName="PurAcc" columns="11" />
+            <dataField fieldName="FixedAcc" columns="11" />
+            <dataField fieldName="LoanLiab" columns="11" />
+            <dataField fieldName="CapAcc" columns="11" />
+            <dataField fieldName="OpnStkAcc" columns="11" />
+            <dataField fieldName="ClsStkAcc" columns="11" />
+            <dataField fieldName="FabricCatID" columns="4" />
+            <dataField fieldName="FabricItemID" columns="6" />
+            <dataField fieldName="FuelAcc" columns="11" />
+            <dataField fieldName="BasOwnerAcc" columns="11" />
+            <dataField fieldName="HelperAcc" columns="11" />
+            <dataField fieldName="DriverAcc" columns="11" />
+            <dataField fieldName="AdvanceAcc" columns="11" />
+            <dataField fieldName="TicketSaleAcc" columns="11" />
+            <dataField fieldName="TicketAcc" columns="11" />
+            <dataField fieldName="BusRsrvAcc" columns="11" />
+            <dataField fieldName="CntrDepositAcc" columns="11" />
+            <dataField fieldName="ConsFundCode" columns="4" />
+            <dataField fieldName="WorkinProgressAcc" columns="11" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Company">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="New Company" newColumn="true">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="CompanyID" columns="15" />
+            <dataField fieldName="CompanyName" />
+            <dataField fieldName="Address" />
+            <dataField fieldName="Phone" columns="50" />
+            <dataField fieldName="Fax" columns="50" />
+            <dataField fieldName="Email" columns="50" />
+            <dataField fieldName="Logo" columns="15" />
+            <dataField fieldName="CompanyTypeID" aliasFieldName="CompanyTypeDescription" />
+            <dataField fieldName="LicenseTO" />
+            <dataField fieldName="CashCode" columns="11" />
+            <dataField fieldName="BankCode" columns="11" />
+            <dataField fieldName="FixedAssetCode" columns="11" />
+            <dataField fieldName="Depreciation" columns="11" />
+            <dataField fieldName="RawMAcc" columns="11" />
+            <dataField fieldName="FinishGAcc" columns="11" />
+            <dataField fieldName="Inventory" columns="11" />
+            <dataField fieldName="DepCalYesNo" columns="1" />
+            <dataField fieldName="RawmStk" dataFormatString="c" columns="15" />
+            <dataField fieldName="FinishStk" dataFormatString="c" columns="15" />
+            <dataField fieldName="RCurr" columns="15" />
+            <dataField fieldName="RCurrRate" columns="15" />
+            <dataField fieldName="FCurr" columns="15" />
+            <dataField fieldName="FCurrRate" columns="15" />
+            <dataField fieldName="ProfitAcc" columns="11" />
+            <dataField fieldName="DateType" columns="1" />
+            <dataField fieldName="BaseCurrency" columns="15" />
+            <dataField fieldName="AccountBalShow" columns="15" />
+            <dataField fieldName="FundCode" columns="4" />
+            <dataField fieldName="BranchCode" columns="4" />
+            <dataField fieldName="SubLedYN" columns="1" />
+            <dataField fieldName="AccBalShow" columns="1" />
+            <dataField fieldName="FundCodeYN" columns="1" />
+            <dataField fieldName="BranchCodeYN" columns="1" />
+            <dataField fieldName="FixedAssetYN" columns="1" />
+            <dataField fieldName="SalesAcct" columns="11" />
+            <dataField fieldName="PurchaseAcct" columns="11" />
+            <dataField fieldName="InvtoryVchrAuto" columns="1" />
+            <dataField fieldName="SDebitor" columns="11" />
+            <dataField fieldName="SCreditor" columns="11" />
+            <dataField fieldName="ProjectYN" columns="1" />
+            <dataField fieldName="GodownYN" columns="1" />
+            <dataField fieldName="BatchYN" columns="1" />
+            <dataField fieldName="MgtYN" columns="1" />
+            <dataField fieldName="ExpireYN" columns="1" />
+            <dataField fieldName="Active" columns="1" />
+            <dataField fieldName="License" columns="50" />
+            <dataField fieldName="Instal" columns="10" />
+            <dataField fieldName="CopYN" columns="1" />
+            <dataField fieldName="VchrNumberUnique" columns="1" />
+            <dataField fieldName="VchrNumberByType" columns="1" />
+            <dataField fieldName="CurrAsset" columns="11" />
+            <dataField fieldName="CurrLiab" columns="11" />
+            <dataField fieldName="SaleAcc" columns="11" />
+            <dataField fieldName="PurAcc" columns="11" />
+            <dataField fieldName="FixedAcc" columns="11" />
+            <dataField fieldName="LoanLiab" columns="11" />
+            <dataField fieldName="CapAcc" columns="11" />
+            <dataField fieldName="OpnStkAcc" columns="11" />
+            <dataField fieldName="ClsStkAcc" columns="11" />
+            <dataField fieldName="FabricCatID" columns="4" />
+            <dataField fieldName="FabricItemID" columns="6" />
+            <dataField fieldName="FuelAcc" columns="11" />
+            <dataField fieldName="BasOwnerAcc" columns="11" />
+            <dataField fieldName="HelperAcc" columns="11" />
+            <dataField fieldName="DriverAcc" columns="11" />
+            <dataField fieldName="AdvanceAcc" columns="11" />
+            <dataField fieldName="TicketSaleAcc" columns="11" />
+            <dataField fieldName="TicketAcc" columns="11" />
+            <dataField fieldName="BusRsrvAcc" columns="11" />
+            <dataField fieldName="CntrDepositAcc" columns="11" />
+            <dataField fieldName="ConsFundCode" columns="4" />
+            <dataField fieldName="WorkinProgressAcc" columns="11" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Delete" />
+      <action id="a6" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenKeySelected="true" whenClientScript="this.get_hasDetails()" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+</dataController>
