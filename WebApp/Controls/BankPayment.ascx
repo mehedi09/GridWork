@@ -78,6 +78,8 @@
                  </asp:LinkButton>
              </b>
 
+
+
             <asp:LinkButton ID="Find_VoucherButton" runat="server" CssClass="btn btn-info" Style="float: right" OnClick="Find_Voucher">
                 <i class="icon-ok icon-white"></i>&nbsp;Find Voucher
 
@@ -85,6 +87,9 @@
             <asp:LinkButton ID="LB_Voucher_Print" runat="server" CssClass="btn btn-info" Style="float: right" OnClick="Print_Voucher">
                 <i class="icon-ok icon-white"></i>&nbsp;Print Voucher
             </asp:LinkButton>
+
+
+
         </div>
         <div id="FromNSearch" runat="server">
             <div id="Find_Voucher_Form" runat="server">
@@ -92,7 +97,9 @@
                     <table style="width: 100%">
                         <tr>
                             <td valign="top">
+
                                 <table>
+
 
                                     <tr class="FieldWrapper" runat="server" visible="false">
                                         <td class="Header" valign="top">Company Name:
@@ -109,7 +116,7 @@
 
 
                                     <tr runat="server" id="tr_voucherType_find" visible="false">
-                                        <td class="Header" valign="top">Voucher Type :
+                                        <td class="Header " valign="top">Voucher Type :
                                         </td>
                                         <td class="auto-style1">
                                             <div class="FieldPlaceholder DataOnly">
