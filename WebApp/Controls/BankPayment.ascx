@@ -15,7 +15,12 @@
         }
             /*Dont allow more*/
         else if (charCode == 46 && !isDecimal) {
+
+
+
             return false;
+
+
         }
         if (charCode > 31 && (charCode < 48 || charCode > 57) || !isSubmit) {
             return false;
